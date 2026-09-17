@@ -100,7 +100,7 @@ Bibliothèque de départ : ~40 exercices (au moins 4 échauffements, 3 retours a
 | Tirs cadrés sur 10 | passes-tirs | /10 | + | 5 | 7 | 9 |
 | Tirs cadrés pied faible sur 10 | passes-tirs | /10 | + | 3 | 5 | 7 |
 | Sprint 20 m | physique | s | − | 5.0 | 4.5 | 4.1 |
-| Navette 5-10-5 | physique | s | − | 7.5 | 6.8 | 6.2 |
+| Allers-retours en 1 minute (FFF Mayenne, fiche 2) | physique | allers-retours | + | 3 | 4 | 5 |
 | Arrêts sur 10 tirs | gardien | /10 | + | 4 | 6 | 8 |
 
 **Paliers au-delà de l'or** : une fois l'or atteint, des paliers « Or +1 », « Or +2 », etc. se débloquent, espacés du même écart qu'entre argent et or (ex. jongles : 75, 100, 125…). Pour les défis « /10 », le plafond est 10 ; pour les temps, un plancher raisonnable est fixé par défi (`minValue`) et on n'ajoute plus de palier au-delà.

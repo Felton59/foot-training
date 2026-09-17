@@ -47,6 +47,8 @@ export interface Challenge {
   howTo: string[];
   /** Chrono Départ / Arrivée, ou compte à rebours de durée fixe. */
   timer?: { kind: 'stopwatch' } | { kind: 'countdown'; seconds: number };
+  /** Fiche d'origine quand le défi vient d'une source officielle. */
+  source?: string;
 }
 
 export interface BadgeDef {

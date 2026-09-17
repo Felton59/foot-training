@@ -57,7 +57,7 @@ describe('badge rules', () => {
   });
 
   it('requires bronze in every domain for touche-a-tout', () => {
-    const three = [res('jongles', 10), res('passes-a-deux', 10), res('navette-5-10-5', 7.5)];
+    const three = [res('jongles', 10), res('passes-a-deux', 10), res('allers-retours-1min', 3)];
     expect(earnedBadgeIds(state({ results: three }))).not.toContain('touche-a-tout');
     expect(earnedBadgeIds(state({ results: [...three, res('arrets-gardien', 4)] }))).toContain('touche-a-tout');
   });
@@ -65,7 +65,7 @@ describe('badge rules', () => {
   it('requires gold on 5 challenges for collectionneur', () => {
     const golds = [res('jongles', 50), res('controles', 9), res('passes-a-deux', 20), res('tirs-cadres', 9)];
     expect(earnedBadgeIds(state({ results: golds }))).not.toContain('collectionneur');
-    expect(earnedBadgeIds(state({ results: [...golds, res('navette-5-10-5', 6.2)] }))).toContain('collectionneur');
+    expect(earnedBadgeIds(state({ results: [...golds, res('allers-retours-1min', 5)] }))).toContain('collectionneur');
   });
 
   it('returns only new badges', () => {

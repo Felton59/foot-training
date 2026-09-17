@@ -27,9 +27,17 @@ describe('timed content', () => {
     }
   });
 
-  it('gives a 30 s countdown to the passes challenge only', () => {
+  it('gives countdowns to the fixed-duration challenges', () => {
     const countdowns = CHALLENGES.filter((c) => c.timer?.kind === 'countdown');
-    expect(countdowns.map((c) => [c.id, c.timer])).toEqual([['passes-a-deux', { kind: 'countdown', seconds: 30 }]]);
+    expect(countdowns.map((c) => [c.id, c.timer])).toEqual([
+      ['passes-a-deux', { kind: 'countdown', seconds: 30 }],
+      ['allers-retours-1min', { kind: 'countdown', seconds: 60 }],
+    ]);
+  });
+
+  it('bases the physical challenge on an FFF sheet instead of the 5-10-5 shuttle', () => {
+    expect(CHALLENGES.find((c) => c.id === 'navette-5-10-5')).toBeUndefined();
+    expect(CHALLENGES.find((c) => c.id === 'allers-retours-1min')?.source).toMatch(/^FFF – District de la Mayenne/);
   });
 
   it('gives a stopwatch to the timed exercises', () => {

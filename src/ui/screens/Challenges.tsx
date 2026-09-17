@@ -56,6 +56,7 @@ export default function Challenges({ state, update }: Props) {
         <ol className="steps">
           {selected.howTo.map((h) => <li key={h}>{h}</li>)}
         </ol>
+        {selected.source && <p className="muted">📄 D'après : {selected.source}</p>}
         {message && <p className="card">{message}</p>}
         <ChallengeInput
           challenge={selected}
