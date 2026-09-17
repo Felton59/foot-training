@@ -7,6 +7,7 @@ import Home from './ui/screens/Home';
 import Onboarding from './ui/screens/Onboarding';
 import Progress from './ui/screens/Progress';
 import SessionScreen from './ui/screens/Session';
+import Settings from './ui/screens/Settings';
 import { useAppState } from './ui/useAppState';
 
 type Tab = 'home' | 'challenges' | 'progress' | 'settings';
@@ -84,7 +85,7 @@ export default function App() {
       case 'progress':
         return <Progress state={state} />;
       case 'settings':
-        return <p className="muted">Réglages</p>;
+        return <Settings state={state} update={update} />;
     }
   }
 
