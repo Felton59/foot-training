@@ -1,12 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { getChallenge } from '../data/challenges';
+import type { Challenge } from '../data/types';
 import {
   bestValue, isBetter, isSuspiciousResult, isValidResultValue, meets, nextStep, rankLabel, reachedRank, stepValue,
 } from './tiers';
 
-const jongles = getChallenge('jongles')!;
-const tirs = getChallenge('tirs-cadres')!;
-const sprint = getChallenge('sprint-20m')!;
+const fixture = (c: Partial<Challenge> & Pick<Challenge, 'better' | 'tiers'>): Challenge =>
+  ({ id: 'x', name: 'x', domain: 'technique', unit: 'u', equipment: [], howTo: ['a', 'b'], ...c });
+const jongles = fixture({ better: 'higher', unit: 'jongles', tiers: { bronze: 10, argent: 25, or: 50 } });
+const tirs = fixture({ better: 'higher', unit: '/10', tiers: { bronze: 5, argent: 7, or: 9 }, maxValue: 10 });
+const sprint = fixture({ better: 'lower', unit: 's', tiers: { bronze: 5.0, argent: 4.5, or: 4.1 }, minValue: 3.5 });
 
 describe('tiers', () => {
   it('labels ranks', () => {

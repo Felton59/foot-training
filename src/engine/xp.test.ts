@@ -36,16 +36,16 @@ describe('xp', () => {
   });
 
   it('rewards records (not the first result) and first-time tiers', () => {
-    const xp = computeXp({ sessions: [], results: [result('jongles', 16, 8), result('jongles', 14, 12), result('jongles', 17, 30)] });
-    // sorted: 12 (first, bronze +15), 8 (no), 30 (record +20, argent +25)
+    const xp = computeXp({ sessions: [], results: [result('jongles-pied-fort', 16, 8), result('jongles-pied-fort', 14, 12), result('jongles-pied-fort', 17, 30)] });
+    // sorted: 12 (first, bronze +15), 8 (no), 30 (record +20, argent +25, or +40)
     expect(xp.records).toBe(20);
-    expect(xp.tiers).toBe(40);
-    expect(xp.total).toBe(60);
+    expect(xp.tiers).toBe(80);
+    expect(xp.total).toBe(100);
   });
 
   it('awards every tier crossed in one jump', () => {
-    const xp = computeXp({ sessions: [], results: [result('jongles', 14, 80)] });
-    // bronze 15 + argent 25 + or 40 + Or+1 (75) 40
+    const xp = computeXp({ sessions: [], results: [result('jongles-pied-fort', 14, 45)] });
+    // bronze 15 + argent 25 + or 40 + Or+1 (40) 40
     expect(xp.tiers).toBe(120);
     expect(xp.records).toBe(0);
   });

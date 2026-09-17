@@ -29,10 +29,10 @@ export const BADGE_RULES: Record<string, (f: BadgeFacts) => boolean> = {
   acharne: (f) => f.sessionCount >= 50,
   'semaine-or': (f) => f.weeks.length >= 1,
   'serie-4': (f) => longestWeekStreak(f.weeks) >= 4,
-  'jongles-50': (f) => (f.best('jongles') ?? 0) >= 50,
-  'pied-gauche': (f) => f.rank('jongles-pied-faible') >= 3 || f.rank('tirs-pied-faible') >= 3,
+  'jongles-50': (f) => (f.best('jongles-pied-fort') ?? 0) >= 50,
+  'pied-gauche': (f) => f.rank('jongles-pied-faible') >= 3 || f.rank('defi-tir-pied-faible') >= 3,
   fusee: (f) => f.rank('sprint-20m') >= 3,
-  sniper: (f) => (f.best('tirs-cadres') ?? 0) >= 10,
+  sniper: (f) => (f.best('defi-tir') ?? 0) >= 15,
   mur: (f) => f.rank('arrets-gardien') >= 3,
   'touche-a-tout': (f) =>
     ALL_DOMAINS.every((d) => CHALLENGES.some((c) => c.domain === d && f.rank(c.id) >= 1)),

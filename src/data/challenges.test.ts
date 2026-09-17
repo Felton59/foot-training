@@ -33,8 +33,19 @@ describe('challenges data', () => {
   });
 
   it('finds challenges by id', () => {
-    expect(getChallenge('jongles')?.name).toBe("Jongles d'affilée");
+    expect(getChallenge('jongles-pied-fort')?.name).toBe('Jongles pied fort');
     expect(getChallenge('nope')).toBeUndefined();
+  });
+});
+
+describe('official challenges', () => {
+  it('replaces invented challenges with FFF ones', () => {
+    for (const old of ['jongles', 'slalom-plots', 'passes-a-deux', 'tirs-cadres', 'tirs-pied-faible']) {
+      expect(getChallenge(old), old).toBeUndefined();
+    }
+    for (const id of ['jongles-pied-fort', 'jongles-pied-faible', 'defi-slalom-12', 'defi-passe-dosee', 'defi-tir', 'defi-tir-pied-faible', 'allers-retours-1min']) {
+      expect(getChallenge(id)?.source, id).toMatch(/^FFF – District/);
+    }
   });
 });
 

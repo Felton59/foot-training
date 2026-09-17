@@ -92,13 +92,13 @@ Bibliothèque de départ : ~40 exercices (au moins 4 échauffements, 3 retours a
 
 | Défi | Domaine | Unité | Sens | Bronze | Argent | Or |
 |---|---|---|---|---|---|---|
-| Jongles d'affilée | technique | jongles | + | 10 | 25 | 50 |
-| Jongles pied faible | technique | jongles | + | 5 | 10 | 20 |
-| Slalom 6 plots aller-retour | technique | s | − | 20 | 16 | 13 |
+| Jongles pied fort (FFF Cher, défi jonglage) | technique | jongles | + | 10 | 20 | 30 |
+| Jongles pied faible (FFF Cher, défi jonglage) | technique | jongles | + | 5 | 10 | 20 |
+| Défi slalom 12 points (FFF Yvelines U9, fiche 6) | technique | points (/12) | + | 8 | 10 | 12 |
 | Contrôles réussis sur 10 | technique | /10 | + | 5 | 7 | 9 |
-| Passes contre le mur en 30 s | passes-tirs | passes | + | 10 | 15 | 20 |
-| Tirs cadrés sur 10 | passes-tirs | /10 | + | 5 | 7 | 9 |
-| Tirs cadrés pied faible sur 10 | passes-tirs | /10 | + | 3 | 5 | 7 |
+| Défi passe dosée (FFF Yvelines U9, fiche 7) | passes-tirs | points (/50) | + | 15 | 25 | 35 |
+| Défi tir (FFF Mayenne, fiches 4 et 7) | passes-tirs | points (/15) | + | 5 | 8 | 11 |
+| Défi tir pied faible (FFF Mayenne, fiche 4) | passes-tirs | points (/15) | + | 3 | 6 | 9 |
 | Sprint 20 m | physique | s | − | 5.0 | 4.5 | 4.1 |
 | Allers-retours en 1 minute (FFF Mayenne, fiche 2) | physique | allers-retours | + | 3 | 4 | 5 |
 | Arrêts sur 10 tirs | gardien | /10 | + | 4 | 6 | 8 |

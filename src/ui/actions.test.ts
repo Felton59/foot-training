@@ -9,7 +9,7 @@ const later = (min: number) => new Date(now.getTime() + min * 60_000);
 
 const plan: SessionPlan = {
   durationMin: 30,
-  challengeId: 'jongles',
+  challengeId: 'jongles-pied-fort',
   items: [
     { exerciseId: 'ech-toe-taps', domain: 'echauffement', durationMin: 5 },
     { exerciseId: 'tech-feintes', domain: 'technique', durationMin: 17 },
@@ -48,7 +48,7 @@ describe('session actions', () => {
     expect(done.inProgress).toBeUndefined();
     expect(done.sessions).toHaveLength(1);
     expect(done.sessions[0].items.map((i) => i.done)).toEqual([true, false, true]);
-    expect(done.results).toEqual([{ challengeId: 'jongles', date: later(40).toISOString(), value: 12 }]);
+    expect(done.results).toEqual([{ challengeId: 'jongles-pied-fort', date: later(40).toISOString(), value: 12 }]);
     expect(done.badges.map((b) => b.id)).toEqual(['premier-pas']);
   });
 
@@ -80,9 +80,9 @@ describe('session actions', () => {
     const before = runThrough(base(), [true, false, true]);
     const after = finishSession(before, later(40), 12);
     // 8 done minutes + bronze 15
-    expect(summarizeChange(before, after, 'jongles')).toEqual({ xpGained: 23, levelUp: null, newBadgeIds: ['premier-pas'], newRecord: false });
-    const again = addResult(after, 'jongles', 300, later(60));
-    const summary = summarizeChange(after, again, 'jongles');
+    expect(summarizeChange(before, after, 'jongles-pied-fort')).toEqual({ xpGained: 23, levelUp: null, newBadgeIds: ['premier-pas'], newRecord: false });
+    const again = addResult(after, 'jongles-pied-fort', 100, later(60));
+    const summary = summarizeChange(after, again, 'jongles-pied-fort');
     expect(summary.newRecord).toBe(true);
     expect(summary.levelUp).toBe('Espoir');
   });

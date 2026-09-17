@@ -94,10 +94,10 @@ describe('buildSession', () => {
   });
 
   it('picks the least recently attempted challenge of a session domain', () => {
-    const results = [{ challengeId: 'jongles', date: '2026-09-16T18:00:00.000Z', value: 12 }];
+    const results = [{ challengeId: 'jongles-pied-fort', date: '2026-09-16T18:00:00.000Z', value: 12 }];
     const plan = buildSession({ durationMin: 30, equipment: ALL, history: [], results, rng: zero });
     const ch = getChallenge(plan.challengeId!)!;
-    expect(ch.id).not.toBe('jongles');
+    expect(ch.id).not.toBe('jongles-pied-fort');
     expect(blockDomains(plan)).toContain(ch.domain);
   });
 });

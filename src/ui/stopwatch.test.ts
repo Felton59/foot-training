@@ -30,7 +30,6 @@ describe('timed content', () => {
   it('gives countdowns to the fixed-duration challenges', () => {
     const countdowns = CHALLENGES.filter((c) => c.timer?.kind === 'countdown');
     expect(countdowns.map((c) => [c.id, c.timer])).toEqual([
-      ['passes-a-deux', { kind: 'countdown', seconds: 30 }],
       ['allers-retours-1min', { kind: 'countdown', seconds: 60 }],
     ]);
   });
