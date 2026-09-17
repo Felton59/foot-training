@@ -54,6 +54,11 @@ describe('exercises data', () => {
     }
   });
 
+  it('shows a diagram for every exercise that places things at a distance', () => {
+    const withDistance = EXERCISES.filter((e) => e.steps.some((s) => /\d+(,\d+)? m\b/.test(s)));
+    expect(withDistance.filter((e) => !e.diagram).map((e) => e.id)).toEqual([]);
+  });
+
   it('keeps diagram elements inside the pitch', () => {
     for (const e of EXERCISES.filter((ex) => ex.diagram)) {
       const height = e.diagram!.height ?? 60;

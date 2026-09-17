@@ -7,8 +7,14 @@ export const EXERCISES: Exercise[] = [
     source: "FFF – District de la Mayenne, « 30 exercices et défis techniques U7-U9 » (fiche 2)",
     diagram: {
       height: 40,
-      items: [{ kind: 'enfant', x: 8, y: 24 }, { kind: 'ballon', x: 15, y: 24 }, { kind: 'texte', x: 55, y: 12, text: 'petites touches' }],
-      arrows: [{ kind: 'course', points: [[20, 24], [92, 24]] }],
+      items: [
+        { kind: 'plot', x: 8, y: 22 }, { kind: 'plot', x: 92, y: 22 }, { kind: 'enfant', x: 16, y: 12 }, { kind: 'ballon', x: 23, y: 14 },
+        { kind: 'texte', x: 50, y: 5, text: 'petites touches' }, { kind: 'texte', x: 50, y: 36, text: '10 m' },
+      ],
+      arrows: [
+        { kind: 'course', points: [[28, 16], [84, 16]], label: '1' },
+        { kind: 'course', points: [[84, 27], [16, 27]], label: '2' },
+      ],
     } },
   { id: 'ech-toe-taps', name: 'Toe taps', domain: 'echauffement', durationMin: 5, equipment: ['ballon'],
     steps: ["Ballon arrêté devant toi : touche le dessus du ballon avec la semelle, sans appuyer, pied droit puis pied gauche, en alternant vite.", "Fais 30 secondes rapide, puis 15 secondes de repos.", "Recommence jusqu'à la fin du temps."],
@@ -30,7 +36,18 @@ export const EXERCISES: Exercise[] = [
   { id: 'tech-jongles-pied-faible', name: 'Jongles pied faible', domain: 'technique', durationMin: 6, equipment: ['ballon'],
     steps: ["Jongle uniquement avec ton pied le moins fort.", "Au début, laisse le ballon rebondir par terre entre deux touches.", "Quand ça devient facile, essaie sans rebond."] },
   { id: 'tech-conduite-semelle', name: 'Conduite à la semelle', domain: 'technique', durationMin: 6, equipment: ['ballon'],
-    steps: ["Recule sur 5 m en tirant le ballon vers toi avec la semelle.", "Puis fais rouler le ballon de côté sous ta semelle, en pas chassés, sur 3 m.", "Recommence avec l'autre pied."] },
+    steps: ["Recule sur 5 m en tirant le ballon vers toi avec la semelle.", "Puis fais rouler le ballon de côté sous ta semelle, en pas chassés, sur 3 m.", "Recommence avec l'autre pied."],
+    diagram: {
+      height: 50,
+      items: [
+        { kind: 'enfant', x: 76, y: 14 }, { kind: 'ballon', x: 84, y: 14 }, { kind: 'plot', x: 93, y: 14 },
+        { kind: 'plot', x: 22, y: 14 }, { kind: 'texte', x: 50, y: 5, text: '5 m en reculant' }, { kind: 'texte', x: 44, y: 34, text: '3 m de côté' },
+      ],
+      arrows: [
+        { kind: 'course', points: [[66, 18], [28, 18]], label: '1' },
+        { kind: 'course', points: [[22, 22], [22, 44]], label: '2' },
+      ],
+    } },
   { id: 'tech-slalom', name: 'Slalom entre les plots', domain: 'technique', durationMin: 8, equipment: ['ballon', 'plots'],
     steps: ["Aligne 4 plots espacés de 1,5 m.", "Fais l'aller-retour en slalom, ballon au pied : aller avec le pied droit, retour avec le pied gauche.", "Tu pars avec 10 points : chaque plot touché fait perdre 1 point. Recommence en essayant de garder tes 10 points, puis de plus en plus vite."],
     source: "FFF – District de la Mayenne, « 30 exercices et défis techniques U7-U9 » (fiche 11)",
@@ -56,7 +73,12 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'course', curve: true, points: [[18, 14], [72, 13], [89, 20], [72, 27], [22, 27]] }],
     } },
   { id: 'tech-controle-lance', name: 'Contrôles de balles lancées', domain: 'technique', durationMin: 8, equipment: ['ballon'],
-    steps: ["Papa, à 3 m de toi, te lance le ballon en cloche, à la main.", "Arrête-le avec le pied, la cuisse ou la poitrine : il doit rester tout près de toi.", "Change de partie du corps à chaque fois."] },
+    steps: ["Papa, à 3 m de toi, te lance le ballon en cloche, à la main.", "Arrête-le avec le pied, la cuisse ou la poitrine : il doit rester tout près de toi.", "Change de partie du corps à chaque fois."],
+    diagram: {
+      height: 40,
+      items: [{ kind: 'enfant', x: 15, y: 24 }, { kind: 'papa', x: 85, y: 24 }, { kind: 'texte', x: 50, y: 36, text: '3 m' }],
+      arrows: [{ kind: 'balle', curve: true, points: [[78, 20], [50, 6], [22, 20]] }],
+    } },
   { id: 'tech-controle-oriente', name: 'Contrôle orienté', domain: 'technique', durationMin: 8, equipment: ['ballon', 'plots'],
     steps: ["Pose un plot à 3 m à ta gauche et un à 3 m à ta droite.", "Papa te fait une passe et crie « gauche » ou « droite ».", "D'une seule touche, pousse le ballon vers le bon plot."],
     diagram: {
@@ -331,7 +353,18 @@ export const EXERCISES: Exercise[] = [
       ],
     } },
   { id: 'phy-pas-chasses', name: 'Pas chassés et appuis', domain: 'physique', durationMin: 5, equipment: [],
-    steps: ["Fais des pas chassés sur 4 m vers la gauche, puis reviens vers la droite, sans croiser les pieds.", "Puis fais des petits pas très rapides sur place pendant 10 secondes, et repose-toi 10 secondes.", "Alterne les deux jusqu'à la fin du temps."] },
+    steps: ["Fais des pas chassés sur 4 m vers la gauche, puis reviens vers la droite, sans croiser les pieds.", "Puis fais des petits pas très rapides sur place pendant 10 secondes, et repose-toi 10 secondes.", "Alterne les deux jusqu'à la fin du temps."],
+    diagram: {
+      height: 40,
+      items: [
+        { kind: 'plot', x: 15, y: 30 }, { kind: 'plot', x: 85, y: 30 }, { kind: 'enfant', x: 78, y: 19 },
+        { kind: 'texte', x: 50, y: 36, text: '4 m' },
+      ],
+      arrows: [
+        { kind: 'course', points: [[72, 15], [20, 15]], label: '1' },
+        { kind: 'course', points: [[20, 23], [72, 23]], label: '2' },
+      ],
+    } },
   { id: 'phy-cloche-pied', name: 'Cloche-pied', domain: 'physique', durationMin: 5, equipment: [],
     steps: ["Fais 10 sauts sur le pied gauche, puis 10 sur le pied droit.", "Fais 10 sauts pieds joints en avant, puis 10 en arrière.", "Repose-toi 30 secondes et recommence."],
     tip: 'Atterris en douceur, genoux souples.' },
@@ -404,7 +437,18 @@ export const EXERCISES: Exercise[] = [
     } },
   { id: 'gar-plongeons', name: 'Plongeons à genoux', domain: 'gardien', durationMin: 6, equipment: ['ballon'],
     steps: ["Sur l'herbe (jamais sur un sol dur), mets-toi avec un genou au sol, l'autre jambe pliée, les bras le long du corps.", "Papa, à 3 m, fait rouler doucement le ballon à côté de toi, à gauche ou à droite.", "Pousse sur ta jambe, tends les bras vers le ballon et laisse-toi tomber sur le côté : attrape-le avec les deux mains et serre-le contre toi."],
-    source: "FIFA Training Centre, « Goalkeeping fundamentals : learning to dive low » (exercice 1), en version douce" },
+    source: "FIFA Training Centre, « Goalkeeping fundamentals : learning to dive low » (exercice 1), en version douce",
+    diagram: {
+      height: 50,
+      items: [
+        { kind: 'papa', x: 50, y: 8 }, { kind: 'enfant', x: 50, y: 36 }, { kind: 'ballon', x: 26, y: 38 },
+        { kind: 'texte', x: 60, y: 22, text: '3 m' }, { kind: 'texte', x: 50, y: 47, text: 'à genoux, sur l’herbe' },
+      ],
+      arrows: [
+        { kind: 'balle', points: [[45, 13], [29, 33]] },
+        { kind: 'course', points: [[44, 38], [32, 38]] },
+      ],
+    } },
   { id: 'gar-arrets', name: 'Arrêts dans le but', domain: 'gardien', durationMin: 8, equipment: ['ballon', 'plots'],
     steps: ["Fais un but avec 2 plots écartés de 2 m et mets-toi au milieu.", "Papa tire doucement depuis 5 m, d'abord droit sur toi.", "Puis il tire de plus en plus loin de tes mains."],
     diagram: {
