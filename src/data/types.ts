@@ -13,6 +13,17 @@ export interface Exercise {
   diagram?: Diagram;
   /** Affiche un chrono Départ / Arrivée pendant l'exercice. */
   stopwatch?: boolean;
+  /** Version utilisée quand un vrai but est disponible (au lieu d'un but en plots). */
+  withGoal?: { steps: string[]; equipment: Equipment[]; goal: GoalPlacement };
+}
+
+/** Où dessiner le vrai but dans le schéma, et quels éléments (plots du but, légende) retirer. */
+export interface GoalPlacement {
+  x: number;
+  y: number;
+  length: number;
+  vertical: boolean;
+  removes: [number, number][];
 }
 
 /** Schéma vu de dessus. Terrain de 100 de large sur `height` de haut (60 par défaut). */
@@ -24,7 +35,8 @@ export interface Diagram {
 
 export type DiagramItem =
   | { kind: 'enfant' | 'papa' | 'plot' | 'ballon' | 'cible'; x: number; y: number }
-  | { kind: 'texte'; x: number; y: number; text: string };
+  | { kind: 'texte'; x: number; y: number; text: string }
+  | { kind: 'but'; x: number; y: number; length: number; vertical: boolean };
 
 export interface DiagramArrow {
   /** course = déplacement du joueur, balle = passe ou tir. */
@@ -50,6 +62,8 @@ export interface Challenge {
   /** Fiche d'origine quand le défi vient d'une source officielle. */
   source?: string;
   diagram?: Diagram;
+  /** Version utilisée quand un vrai but est disponible (au lieu d'un but en plots). */
+  withGoal?: { howTo: string[]; equipment: Equipment[]; goal: GoalPlacement };
 }
 
 export interface BadgeDef {

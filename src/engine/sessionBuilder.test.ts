@@ -145,3 +145,20 @@ describe('exercise rotation', () => {
     expect(technique(plan)).toEqual(['T3']);
   });
 });
+
+describe('real goal', () => {
+  it('proposes goal exercises and challenges to a family with a goal but no cones', () => {
+    const warmup: Exercise = { id: 'W1', name: 'W1', domain: 'echauffement', durationMin: 5, equipment: [], steps: ['a', 'b'] };
+    const cooldown: Exercise = { id: 'R1', name: 'R1', domain: 'retour-calme', durationMin: 3, equipment: [], steps: ['a', 'b'] };
+    const plan = buildSession({
+      durationMin: 30,
+      equipment: ['ballon', 'but'],
+      history: [],
+      results: [],
+      rng: zero,
+      exercises: [warmup, cooldown, getExercise('gar-arrets')!, getExercise('pt-tirs-cadres')!],
+    });
+    expect(plan.items.map((i) => i.exerciseId)).toEqual(['W1', 'pt-tirs-cadres', 'gar-arrets', 'R1']);
+    expect(plan.challengeId).toBe('defi-tirs-au-but');
+  });
+});

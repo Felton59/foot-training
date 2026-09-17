@@ -104,6 +104,11 @@ export const EXERCISES: Exercise[] = [
         { kind: 'course', curve: true, points: [[19, 30], [48, 30], [60, 45], [76, 42]], label: '1' },
         { kind: 'balle', points: [[79, 39], [94, 30]], label: '2' },
       ],
+    },
+    withGoal: {
+      steps: ["Papa se met devant le but.", "Pars à 8 m du but avec le ballon et essaie de passer papa avec une feinte.", "Si tu le passes, tire dans le but. Papa défend doucement au début."],
+      equipment: ['ballon', 'but'],
+      goal: { x: 95, y: 30, length: 20, vertical: true, removes: [[92, 20], [92, 40]] },
     } },
   { id: 'tech-feintes', name: 'Feintes sur place', domain: 'technique', durationMin: 6, equipment: ['ballon'],
     steps: ["Ballon arrêté devant toi : fais tourner ta jambe devant le ballon sans le toucher (passement de jambe), 10 fois à gauche puis 10 fois à droite.", "Fais semblant de tirer, puis emmène le ballon sur le côté avec l'intérieur du pied (crochet), 10 fois.", "Recommence de plus en plus vite."] },
@@ -145,6 +150,11 @@ export const EXERCISES: Exercise[] = [
       height: 50,
       items: [{ kind: 'enfant', x: 6, y: 25 }, { kind: 'ballon', x: 12, y: 29 }, { kind: 'plot', x: 35, y: 25 }, { kind: 'plot', x: 60, y: 25 }, { kind: 'plot', x: 92, y: 15 }, { kind: 'plot', x: 92, y: 35 }],
       arrows: [{ kind: 'course', curve: true, points: [[16, 25], [30, 14], [42, 25], [55, 36], [67, 25]], label: "1" }, { kind: 'balle', points: [[71, 25], [91, 25]], label: "2" }],
+    },
+    withGoal: {
+      steps: ["Aligne 2 plots espacés de 4 m, le 2e à 4 m du but.", "Pars ballon au pied : évite le 1er plot par un dribble (1 point), puis le 2e (1 point).", "Tire dans le but (1 point) : 3 points possibles. Change de pied et de dribble à chaque passage."],
+      equipment: ['ballon', 'plots', 'but'],
+      goal: { x: 95, y: 25, length: 20, vertical: true, removes: [[92, 15], [92, 35]] },
     } },
   { id: 'tech-soleil', name: "1, 2, 3 Soleil ballon au pied", domain: 'technique', durationMin: 6, equipment: ['ballon'],
     steps: ["Papa se met à 15 m, dos à toi. Tu pars avec ton ballon.", "Pendant que papa dit « 1, 2, 3… », avance en conduisant ton ballon.", "Sur « soleil ! », papa se retourne : arrête-toi, le pied sur le ballon. S'il voit bouger le ballon, retourne au départ !"],
@@ -168,6 +178,11 @@ export const EXERCISES: Exercise[] = [
     diagram: {
       items: [{ kind: 'plot', x: 34, y: 6 }, { kind: 'plot', x: 34, y: 54 }, { kind: 'plot', x: 60, y: 6 }, { kind: 'plot', x: 60, y: 54 }, { kind: 'papa', x: 47, y: 30 }, { kind: 'plot', x: 92, y: 20 }, { kind: 'plot', x: 92, y: 40 }, { kind: 'enfant', x: 6, y: 34 }, { kind: 'ballon', x: 13, y: 36 }],
       arrows: [{ kind: 'course', curve: true, points: [[17, 38], [40, 46], [66, 38]], label: "1" }, { kind: 'balle', points: [[70, 36], [91, 30]], label: "2" }],
+    },
+    withGoal: {
+      steps: ["Avec des plots, marque une zone de 5 m de large où papa défend, à 5 m devant le but.", "Pars ballon au pied et passe la zone de papa sans te faire prendre le ballon.", "Une fois passé, va marquer dans le but. Si papa te prend le ballon, repars du départ. Combien de buts en 2 minutes ?"],
+      equipment: ['ballon', 'plots', 'but'],
+      goal: { x: 95, y: 30, length: 20, vertical: true, removes: [[92, 20], [92, 40]] },
     } },
 
   // Passes et tirs (15)
@@ -208,6 +223,11 @@ export const EXERCISES: Exercise[] = [
         { kind: 'plot', x: 90, y: 16 }, { kind: 'plot', x: 90, y: 44 }, { kind: 'texte', x: 50, y: 54, text: '6 m' },
       ],
       arrows: [{ kind: 'balle', points: [[20, 28], [87, 21]] }, { kind: 'balle', points: [[20, 32], [87, 39]] }],
+    },
+    withGoal: {
+      steps: ["Pose le ballon à 6 m du but.", "Tire en visant près d'un poteau.", "Puis vise près de l'autre poteau, et recommence."],
+      equipment: ['ballon', 'but'],
+      goal: { x: 94, y: 30, length: 28, vertical: true, removes: [[90, 16], [90, 44]] },
     } },
   { id: 'pt-tirs-pied-faible', name: 'Tirs pied faible', domain: 'passes-tirs', durationMin: 6, equipment: ['ballon', 'plots'],
     steps: ["Fais un but avec 2 plots écartés de 2 m.", "Pose le ballon à 5 m du but.", "Tire uniquement avec ton pied le moins fort."],
@@ -218,6 +238,11 @@ export const EXERCISES: Exercise[] = [
         { kind: 'texte', x: 50, y: 8, text: 'pied le moins fort' }, { kind: 'texte', x: 50, y: 54, text: '5 m' },
       ],
       arrows: [{ kind: 'balle', points: [[22, 30], [92, 30]] }],
+    },
+    withGoal: {
+      steps: ["Pose le ballon à 5 m du but.", "Tire uniquement avec ton pied le moins fort."],
+      equipment: ['ballon', 'but'],
+      goal: { x: 94, y: 30, length: 28, vertical: true, removes: [[90, 16], [90, 44]] },
     } },
   { id: 'pt-tirs-apres-conduite', name: 'Conduite puis tir', domain: 'passes-tirs', durationMin: 8, equipment: ['ballon', 'plots'],
     steps: ["Fais un but de 2 plots écartés de 2 m, et pose 3 repères de tir : à 5 m (1 point), 7 m (2 points) et 9 m (3 points).", "Pars 5 m derrière le repère de ton choix en conduisant le ballon, et tire quand tu arrives sur le repère.", "Fais 3 tirs par manche et essaie de marquer au moins 3 points."],
@@ -232,6 +257,11 @@ export const EXERCISES: Exercise[] = [
         { kind: 'course', points: [[17, 25], [52, 25]], label: '1' },
         { kind: 'balle', points: [[56, 25], [94, 25]], label: '2' },
       ],
+    },
+    withGoal: {
+      steps: ["Pose 3 repères de tir devant le but : à 5 m (1 point), 7 m (2 points) et 9 m (3 points).", "Pars 5 m derrière le repère de ton choix en conduisant le ballon, et tire quand tu arrives sur le repère.", "Fais 3 tirs par manche et essaie de marquer au moins 3 points."],
+      equipment: ['ballon', 'plots', 'but'],
+      goal: { x: 95, y: 25, length: 24, vertical: true, removes: [[92, 13], [92, 37]] },
     } },
   { id: 'pt-volee', name: 'Reprises de volée', domain: 'passes-tirs', durationMin: 6, equipment: ['ballon'],
     steps: ["Mets-toi à 3 m de papa.", "Papa lance le ballon à la main vers ton pied.", "Frappe le ballon avant qu'il touche le sol et renvoie-le dans les mains de papa."],
@@ -266,6 +296,11 @@ export const EXERCISES: Exercise[] = [
         { kind: 'balle', points: [[51, 17], [57, 42]], label: '3' },
         { kind: 'balle', points: [[60, 44], [88, 31]], label: '4' },
       ],
+    },
+    withGoal: {
+      steps: ["Mets-toi à 15 m du but ; papa se place à mi-chemin, sur le côté.", "Passe le ballon à papa (1) et cours vers le but (2).", "Papa te remet le ballon devant toi (3) : tire au but (4)."],
+      equipment: ['ballon', 'but'],
+      goal: { x: 95, y: 30, length: 20, vertical: true, removes: [[92, 20], [92, 40]] },
     } },
   { id: 'pt-precision-cible', name: 'Tir sur cible', domain: 'passes-tirs', durationMin: 6, equipment: ['ballon'],
     steps: ["Choisis une cible : un arbre, un seau ou un sac.", "Pose le ballon à 5 m et tire 10 fois.", "Compte combien de fois tu as touché la cible, puis essaie de faire mieux."],
@@ -318,6 +353,11 @@ export const EXERCISES: Exercise[] = [
     diagram: {
       items: [{ kind: 'plot', x: 92, y: 20 }, { kind: 'plot', x: 92, y: 40 }, { kind: 'papa', x: 55, y: 52 }, { kind: 'enfant', x: 40, y: 30 }],
       arrows: [{ kind: 'balle', points: [[51, 47], [43, 36]], label: "1" }, { kind: 'balle', points: [[46, 30], [90, 30]], label: "2" }],
+    },
+    withGoal: {
+      steps: ["Papa se place sur le côté, à 5 m du but.", "Papa appuie sur « Départ » et te passe le ballon : tire au but, puis reviens vers papa pour la passe suivante.", "Marque 10 buts le plus vite possible : papa appuie sur « Arrivée » au 10e. Moins d'1 minute, c'est de l'or !"],
+      equipment: ['ballon', 'but'],
+      goal: { x: 95, y: 30, length: 20, vertical: true, removes: [[92, 20], [92, 40]] },
     } },
   { id: 'pt-beret-tir', name: "Le béret tir", domain: 'passes-tirs', durationMin: 6, equipment: ['ballon', 'plots'],
     steps: ["Pose le ballon à 8 m de toi, un plot 3 m derrière le ballon, et un but de 2 plots 6 m plus loin.", "Papa appuie sur « Départ » en criant « partez ! » : sprinte jusqu'au ballon et fais le tour du plot en conduite.", "Tire au but : papa appuie sur « Arrivée » quand le ballon passe. Essaie de battre ton temps."],
@@ -326,6 +366,11 @@ export const EXERCISES: Exercise[] = [
     diagram: {
       items: [{ kind: 'enfant', x: 6, y: 30 }, { kind: 'ballon', x: 30, y: 30 }, { kind: 'plot', x: 46, y: 30 }, { kind: 'plot', x: 92, y: 20 }, { kind: 'plot', x: 92, y: 40 }],
       arrows: [{ kind: 'course', points: [[11, 30], [26, 30]], label: "1" }, { kind: 'course', curve: true, points: [[33, 26], [48, 22], [52, 32], [42, 38]], label: "2" }, { kind: 'balle', points: [[50, 38], [90, 32]], label: "3" }],
+    },
+    withGoal: {
+      steps: ["Pose le ballon à 8 m de toi et un plot 3 m derrière le ballon ; le but est 6 m plus loin.", "Papa appuie sur « Départ » en criant « partez ! » : sprinte jusqu'au ballon et fais le tour du plot en conduite.", "Tire au but : papa appuie sur « Arrivée » quand le ballon passe. Essaie de battre ton temps."],
+      equipment: ['ballon', 'plots', 'but'],
+      goal: { x: 95, y: 30, length: 20, vertical: true, removes: [[92, 20], [92, 40]] },
     } },
 
   // Physique / coordination (8)
@@ -460,6 +505,11 @@ export const EXERCISES: Exercise[] = [
         { kind: 'balle', points: [[75, 29], [17, 29]], label: '1' },
         { kind: 'balle', points: [[75, 33], [16, 42]], label: '2' },
       ],
+    },
+    withGoal: {
+      steps: ["Mets-toi au milieu du but.", "Papa tire doucement depuis 5 m, d'abord droit sur toi.", "Puis il tire de plus en plus loin de tes mains."],
+      equipment: ['ballon', 'but'],
+      goal: { x: 5, y: 30, length: 36, vertical: true, removes: [[10, 12], [10, 48]] },
     } },
   { id: 'gar-relances', name: 'Relances', domain: 'gardien', durationMin: 6, equipment: ['ballon', 'plots'],
     steps: ["Pose un plot à 8 m de toi.", "Relance le ballon à la main en le faisant rouler jusqu'au plot.", "Puis pose le ballon par terre et dégage-le au pied le plus loin possible."],
@@ -490,6 +540,11 @@ export const EXERCISES: Exercise[] = [
     diagram: {
       items: [{ kind: 'plot', x: 12, y: 15 }, { kind: 'plot', x: 12, y: 45 }, { kind: 'enfant', x: 12, y: 6 }, { kind: 'papa', x: 80, y: 30 }],
       arrows: [{ kind: 'course', points: [[16, 10], [16, 28]], label: "1" }, { kind: 'balle', points: [[73, 30], [22, 30]], label: "2" }],
+    },
+    withGoal: {
+      steps: ["Mets-toi à côté d'un poteau, dos à papa, qui est à 6 m du but.", "Papa crie « Hop ! » : retourne-toi, fais des pas chassés jusqu'au milieu du but.", "Papa tire doucement : attrape le ballon devant ton visage ou ton ventre, bien en équilibre."],
+      equipment: ['ballon', 'but'],
+      goal: { x: 8, y: 30, length: 30, vertical: true, removes: [[12, 15], [12, 45]] },
     } },
   { id: 'gar-plongeon-couleur', name: "Plongeon couleur", domain: 'gardien', durationMin: 6, equipment: ['ballon', 'plots'],
     steps: ["Sur l'herbe, mets-toi accroupi, un genou au sol. Pose un plot de couleur à 1,5 m à ta gauche et un d'une autre couleur à 1,5 m à ta droite.", "Papa, devant toi, montre ou crie une couleur : laisse-toi tomber sur le côté vers ce plot, les deux mains en avant.", "Quand c'est facile, papa fait rouler le ballon vers le plot annoncé : attrape-le en tombant et serre-le contre toi."],

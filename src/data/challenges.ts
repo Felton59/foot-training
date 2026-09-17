@@ -128,6 +128,11 @@ export const CHALLENGES: Challenge[] = [
         { kind: 'balle', points: [[38, 42], [9, 32]], label: '3' },
       ],
     },
+    withGoal: {
+      howTo: ["Mets-toi à 9 m du but, dos au but ; papa se place à 5 m devant toi. Pose 2 plots à 6 m du but.", "Papa te passe le ballon et crie « gauche » ou « droite » : contrôle-le d'une seule touche en te retournant de ce côté (1 point si c'est le bon côté).", "Tire tout de suite, sans dépasser les plots des 6 m : 2 points si tu marques. Fais 5 passages (15 points au maximum)."],
+      equipment: ['ballon', 'plots', 'but'],
+      goal: { x: 4, y: 30, length: 18, vertical: true, removes: [[6, 22], [6, 38], [7, 48]] },
+    },
   },
   {
     id: 'defi-passe-dosee',
@@ -176,6 +181,11 @@ export const CHALLENGES: Challenge[] = [
         { kind: 'balle', points: [[56, 34], [92, 30]], label: '2' },
       ],
     },
+    withGoal: {
+      howTo: ["Pose 3 repères de tir devant le but : à 5 m (1 point), 7 m (2 points) et 9 m (3 points).", "Fais 5 tirs en choisissant ton repère à chaque fois, ballon arrêté ou après une conduite.", "Un tir compte s'il entre dans le but. Additionne tes points (15 au maximum)."],
+      equipment: ['ballon', 'plots', 'but'],
+      goal: { x: 96, y: 30, length: 22, vertical: true, removes: [[94, 20], [94, 40]] },
+    },
   },
   {
     id: 'defi-tir-pied-faible',
@@ -200,6 +210,11 @@ export const CHALLENGES: Challenge[] = [
         { kind: 'course', points: [[18, 36], [46, 36]], label: '1' },
         { kind: 'balle', points: [[56, 34], [92, 30]], label: '2' },
       ],
+    },
+    withGoal: {
+      howTo: ["Pose 3 repères de tir devant le but : à 5 m (1 point), 7 m (2 points) et 9 m (3 points).", "Fais 5 tirs avec ton pied faible uniquement, en choisissant ton repère à chaque fois.", "Un tir compte s'il entre dans le but. Additionne tes points (15 au maximum)."],
+      equipment: ['ballon', 'plots', 'but'],
+      goal: { x: 96, y: 30, length: 22, vertical: true, removes: [[94, 20], [94, 40]] },
     },
   },
   {
@@ -290,6 +305,11 @@ export const CHALLENGES: Challenge[] = [
         { kind: 'balle', points: [[50, 21], [60, 43]] },
         { kind: 'course', points: [[44, 48], [36, 48]] },
       ],
+    },
+    withGoal: {
+      howTo: ["Mets-toi sur ta ligne de but, au milieu.", "Papa tire 10 penalties depuis 6 m, quand tu es prêt. Tu peux te déplacer sur ta ligne, mais pas avancer avant le tir.", "Compte les ballons arrêtés ou détournés. Si papa tire à côté du but, il refait ce tir."],
+      equipment: ['ballon', 'but'],
+      goal: { x: 50, y: 49, length: 44, vertical: false, removes: [[30, 50], [70, 50], [88, 50]] },
     },
   },
 ];

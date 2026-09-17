@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { getBadge } from '../../data/badges';
 import { CHALLENGES, getChallenge } from '../../data/challenges';
+import { challengeFor } from '../../engine/goal';
 import { bestValue, rankLabel, reachedRank } from '../../engine/tiers';
 import { DOMAIN_LABELS, EQUIPMENT_LABELS, type AppState } from '../../storage/schema';
 import { addResult, summarizeChange, type ChangeSummary } from '../actions';
@@ -40,13 +41,14 @@ export default function Challenges({ state, update, selectedId, onSelect: setSel
     window.scrollTo(0, selectedId ? 0 : listScroll.current);
   }, [selectedId]);
   const valuesOf = (id: string) => state.results.filter((r) => r.challengeId === id);
-  const selected = selectedId ? getChallenge(selectedId) : undefined;
+  const owned = state.profile?.equipment ?? [];
+  const found = selectedId ? getChallenge(selectedId) : undefined;
+  const selected = found ? challengeFor(found, owned) : undefined;
 
   if (selected) {
     const results = valuesOf(selected.id);
     const best = bestValue(selected, results.map((r) => r.value));
     const rank = best === null ? 0 : reachedRank(selected, best);
-    const owned = state.profile?.equipment ?? [];
     const missing = selected.equipment.filter((e) => !owned.includes(e));
 
     return (

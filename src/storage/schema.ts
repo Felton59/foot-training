@@ -1,10 +1,10 @@
 export type Domain = 'technique' | 'passes-tirs' | 'physique' | 'gardien';
 export type ExerciseKind = Domain | 'echauffement' | 'retour-calme';
-export type Equipment = 'ballon' | 'plots' | 'grand-espace';
+export type Equipment = 'ballon' | 'plots' | 'grand-espace' | 'but';
 export type Duration = 30 | 45 | 60;
 
 export const ALL_DOMAINS: Domain[] = ['technique', 'passes-tirs', 'physique', 'gardien'];
-export const ALL_EQUIPMENT: Equipment[] = ['ballon', 'plots', 'grand-espace'];
+export const ALL_EQUIPMENT: Equipment[] = ['ballon', 'plots', 'grand-espace', 'but'];
 export const DURATIONS: Duration[] = [30, 45, 60];
 
 export const DOMAIN_LABELS: Record<ExerciseKind, string> = {
@@ -20,6 +20,7 @@ export const EQUIPMENT_LABELS: Record<Equipment, string> = {
   ballon: 'Ballon',
   plots: 'Plots',
   'grand-espace': 'Grand espace (terrain, parc)',
+  but: 'But de foot',
 };
 
 export interface SessionItem {

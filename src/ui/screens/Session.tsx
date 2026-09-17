@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import { getBadge } from '../../data/badges';
 import { getChallenge } from '../../data/challenges';
 import { getExercise } from '../../data/exercises';
+import { challengeFor, exerciseFor } from '../../engine/goal';
 import { bestValue } from '../../engine/tiers';
-import { ALL_EQUIPMENT, DOMAIN_LABELS, EQUIPMENT_LABELS, type AppState, type InProgressSession } from '../../storage/schema';
+import { ALL_EQUIPMENT, DOMAIN_LABELS, EQUIPMENT_LABELS, type AppState, type Equipment, type InProgressSession } from '../../storage/schema';
 import {
   abandonSession, beginExercises, completeCurrent, finishSession, summarizeChange, updateProgress, type ChangeSummary,
 } from '../actions';
@@ -25,6 +26,7 @@ interface Props {
 export default function SessionScreen({ state, update, onExit }: Props) {
   const [recap, setRecap] = useState<ChangeSummary | null>(null);
   const ip = state.inProgress;
+  const owned = state.profile?.equipment ?? [];
   useWakeLock(ip?.phase === 'exercises');
 
   if (recap) return <Recap summary={recap} onClose={onExit} />;
@@ -46,6 +48,7 @@ export default function SessionScreen({ state, update, onExit }: Props) {
   if (ip.phase === 'preview') {
     return (
       <Preview
+        owned={owned}
         ip={ip}
         onGo={() => {
           unlockAudio();
@@ -59,15 +62,19 @@ export default function SessionScreen({ state, update, onExit }: Props) {
     );
   }
   if (ip.phase === 'exercises') {
-    return <ExerciseRunner key={ip.currentIndex} ip={ip} update={update} onPause={onExit} />;
+    return <ExerciseRunner key={ip.currentIndex} ip={ip} owned={owned} update={update} onPause={onExit} />;
   }
-  return <ChallengePhase state={state} ip={ip} onFinish={finish} />;
+  return <ChallengePhase state={state} ip={ip} owned={owned} onFinish={finish} />;
 }
 
-function Preview({ ip, onGo, onCancel }: { ip: InProgressSession; onGo: () => void; onCancel: () => void }) {
-  const challenge = ip.plan.challengeId ? getChallenge(ip.plan.challengeId) : undefined;
+function Preview({ ip, owned, onGo, onCancel }: { ip: InProgressSession; owned: Equipment[]; onGo: () => void; onCancel: () => void }) {
+  const found = ip.plan.challengeId ? getChallenge(ip.plan.challengeId) : undefined;
+  const challenge = found ? challengeFor(found, owned) : undefined;
   const needed = new Set([
-    ...ip.plan.items.flatMap((i) => getExercise(i.exerciseId)?.equipment ?? []),
+    ...ip.plan.items.flatMap((i) => {
+      const exercise = getExercise(i.exerciseId);
+      return exercise ? exerciseFor(exercise, owned).equipment : [];
+    }),
     ...(challenge?.equipment ?? []),
   ]);
   return (
@@ -99,9 +106,10 @@ function Preview({ ip, onGo, onCancel }: { ip: InProgressSession; onGo: () => vo
   );
 }
 
-function ExerciseRunner({ ip, update, onPause }: { ip: InProgressSession; update: Update; onPause: () => void }) {
+function ExerciseRunner({ ip, owned, update, onPause }: { ip: InProgressSession; owned: Equipment[]; update: Update; onPause: () => void }) {
   const item = ip.plan.items[ip.currentIndex];
-  const exercise = getExercise(item.exerciseId);
+  const found = getExercise(item.exerciseId);
+  const exercise = found ? exerciseFor(found, owned) : undefined;
   const [ended, setEnded] = useState(ip.remainingSec === 0);
   const timer = useCountdown(ip.remainingSec, () => {
     setEnded(true);
@@ -171,8 +179,9 @@ function ExerciseRunner({ ip, update, onPause }: { ip: InProgressSession; update
   );
 }
 
-function ChallengePhase({ state, ip, onFinish }: { state: AppState; ip: InProgressSession; onFinish: (value: number | null) => void }) {
-  const challenge = ip.plan.challengeId ? getChallenge(ip.plan.challengeId) : undefined;
+function ChallengePhase({ state, ip, owned, onFinish }: { state: AppState; ip: InProgressSession; owned: Equipment[]; onFinish: (value: number | null) => void }) {
+  const found = ip.plan.challengeId ? getChallenge(ip.plan.challengeId) : undefined;
+  const challenge = found ? challengeFor(found, owned) : undefined;
   if (!challenge) {
     return (
       <main className="screen stack">

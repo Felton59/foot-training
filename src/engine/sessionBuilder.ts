@@ -1,6 +1,7 @@
 import { CHALLENGES } from '../data/challenges';
 import { EXERCISES } from '../data/exercises';
 import type { Challenge, Exercise } from '../data/types';
+import { isDoable } from './goal';
 import {
   ALL_DOMAINS,
   type ChallengeResult,
@@ -49,13 +50,11 @@ function shuffle<T>(items: T[], rng: Rng): T[] {
   return a;
 }
 
-const hasEquipment = (needed: Equipment[], owned: Equipment[]) => needed.every((q) => owned.includes(q));
-
 export function buildSession(input: BuildInput): SessionPlan {
   const rng = input.rng ?? Math.random;
   const structure = STRUCTURE[input.durationMin];
-  const exercises = (input.exercises ?? EXERCISES).filter((e) => hasEquipment(e.equipment, input.equipment));
-  const challenges = (input.challenges ?? CHALLENGES).filter((c) => hasEquipment(c.equipment, input.equipment));
+  const exercises = (input.exercises ?? EXERCISES).filter((e) => isDoable(e, input.equipment));
+  const challenges = (input.challenges ?? CHALLENGES).filter((c) => isDoable(c, input.equipment));
   const history = [...input.history].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
   const lastIds = new Set(history[0]?.items.map((i) => i.exerciseId) ?? []);
   const used = new Set<string>();

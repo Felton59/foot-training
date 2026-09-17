@@ -49,6 +49,26 @@ function Item({ item }: { item: DiagramItem }) {
       );
     case 'texte':
       return <text x={item.x} y={item.y} className="note">{item.text}</text>;
+    case 'but': {
+      const depth = 3;
+      const [w, h] = item.vertical ? [depth, item.length] : [item.length, depth];
+      const x0 = item.x - w / 2;
+      const y0 = item.y - h / 2;
+      const mesh = Array.from({ length: Math.floor(item.length / 2.5) - 1 }, (_, i) => (i + 1) * 2.5);
+      return (
+        <g>
+          <rect x={x0} y={y0} width={w} height={h} className="goal-net" />
+          {mesh.map((d) =>
+            item.vertical ? (
+              <line key={d} x1={x0} x2={x0 + w} y1={y0 + d} y2={y0 + d} className="goal-mesh" />
+            ) : (
+              <line key={d} x1={x0 + d} x2={x0 + d} y1={y0} y2={y0 + h} className="goal-mesh" />
+            ),
+          )}
+          <rect x={x0} y={y0} width={w} height={h} className="goal-frame" />
+        </g>
+      );
+    }
   }
 }
 

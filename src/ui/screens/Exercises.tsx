@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { EXERCISES, getExercise } from '../../data/exercises';
+import { exerciseFor, isDoable } from '../../engine/goal';
 import { groupExercisesByKind } from '../../engine/library';
 import { DOMAIN_LABELS, EQUIPMENT_LABELS, type AppState, type Equipment } from '../../storage/schema';
 import ExerciseDiagram from '../components/ExerciseDiagram';
@@ -29,7 +30,8 @@ export default function Exercises({ state, selectedId, onSelect: setSelectedId }
     window.scrollTo(0, selectedId ? 0 : listScroll.current);
   }, [selectedId]);
   const owned = state.profile?.equipment ?? [];
-  const selected = selectedId ? getExercise(selectedId) : undefined;
+  const found = selectedId ? getExercise(selectedId) : undefined;
+  const selected = found ? exerciseFor(found, owned) : undefined;
 
   if (selected) {
     const missing = selected.equipment.filter((e) => !owned.includes(e));
@@ -68,7 +70,7 @@ export default function Exercises({ state, selectedId, onSelect: setSelectedId }
             {KIND_ICONS[group.kind]} {DOMAIN_LABELS[group.kind]} ({group.exercises.length})
           </h2>
           {group.exercises.map((e) => {
-            const available = e.equipment.every((q) => owned.includes(q));
+            const available = isDoable(e, owned);
             return (
               <button key={e.id} className="list-button" onClick={() => {
                   listScroll.current = window.scrollY;
@@ -78,7 +80,7 @@ export default function Exercises({ state, selectedId, onSelect: setSelectedId }
                   <strong>{e.name}</strong>
                   <br />
                   <span className="muted">
-                    {e.durationMin} min · {equipmentText(e.equipment)}
+                    {e.durationMin} min · {equipmentText(exerciseFor(e, owned).equipment)}
                   </span>
                 </span>
                 {!available && <span className="chip">Matériel manquant</span>}
