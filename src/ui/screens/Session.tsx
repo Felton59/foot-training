@@ -126,7 +126,15 @@ function ExerciseRunner({ ip, update, onPause }: { ip: InProgressSession; update
         <span>
           {ip.currentIndex + 1} / {total}
         </span>
-        <button className="link" onClick={onPause}>Quitter</button>
+        <button
+          className="link"
+          onClick={() => {
+            update((s) => updateProgress(s, { remainingSec: timer.remaining }));
+            onPause();
+          }}
+        >
+          Quitter
+        </button>
       </div>
       <div className="progress-line">
         <div style={{ width: `${(ip.currentIndex / total) * 100}%` }} />
