@@ -14,6 +14,7 @@ export function beep(): void {
   try {
     ctx ??= new AudioContext();
     const audio = ctx;
+    if (audio.state !== 'running') void audio.resume();
     const t = audio.currentTime;
     for (const offset of [0, 0.3, 0.6]) {
       const osc = audio.createOscillator();

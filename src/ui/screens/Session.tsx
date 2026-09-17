@@ -140,7 +140,7 @@ function ExerciseRunner({ ip, update, onPause }: { ip: InProgressSession; update
       ) : timer.running ? (
         <button className="btn" onClick={timer.pause}>⏸ Pause</button>
       ) : (
-        <button className="btn btn-primary btn-big" onClick={timer.start}>
+        <button className="btn btn-primary btn-big" onClick={() => { unlockAudio(); timer.start(); }}>
           ▶ {timer.remaining === item.durationMin * 60 ? 'Démarrer' : 'Reprendre'}
         </button>
       )}
