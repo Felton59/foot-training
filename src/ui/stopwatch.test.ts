@@ -32,7 +32,7 @@ describe('timed content', () => {
     expect(countdowns.map((c) => [c.id, c.timer])).toEqual([['passes-a-deux', { kind: 'countdown', seconds: 30 }]]);
   });
 
-  it('gives a stopwatch to the agility course exercise', () => {
-    expect(EXERCISES.filter((e) => e.stopwatch).map((e) => e.id)).toEqual(['phy-parcours']);
+  it('gives a stopwatch to the timed exercises', () => {
+    expect(EXERCISES.filter((e) => e.stopwatch).map((e) => e.id)).toEqual(['pt-10-buts-or', 'pt-beret-tir', 'phy-parcours']);
   });
 });

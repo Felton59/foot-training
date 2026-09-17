@@ -5,14 +5,25 @@ import { EXERCISES, getExercise } from './exercises';
 const count = (kind: ExerciseKind) => EXERCISES.filter((e) => e.domain === kind).length;
 
 describe('exercises data', () => {
-  it('has 42 exercises with unique ids', () => {
-    expect(EXERCISES).toHaveLength(42);
-    expect(new Set(EXERCISES.map((e) => e.id)).size).toBe(42);
+  it('has 56 exercises with unique ids', () => {
+    expect(EXERCISES).toHaveLength(56);
+    expect(new Set(EXERCISES.map((e) => e.id)).size).toBe(56);
   });
 
-  it('uses FFF sheets for the exercises that replaced invented ones', () => {
+  it('bases goalkeeper exercises on FIFA Training Centre fundamentals', () => {
+    for (const id of ['gar-mains-ballon', 'gar-arrets-genoux', 'gar-retourne-attrape', 'gar-plongeon-couleur', 'gar-plongeons', 'gar-prise-balle']) {
+      expect(getExercise(id)?.source, id).toMatch(/^FIFA Training Centre/);
+    }
+  });
+
+  it('uses FFF sheets for the exercises that replaced invented ones or were added from them', () => {
     expect(getExercise('phy-chat-ballon')).toBeUndefined();
-    for (const id of ['phy-terre-mer-ciel', 'tech-10-vies', 'pt-passe-dosee']) {
+    const fromFff = [
+      'phy-terre-mer-ciel', 'tech-10-vies', 'pt-passe-dosee',
+      'tech-maison-jardin', 'tech-couleurs', 'tech-dribble-plots', 'tech-soleil', 'tech-epervier', 'tech-traverser-marquer',
+      'pt-tir-porte', 'pt-parcours-passes', 'pt-10-buts-or', 'pt-beret-tir',
+    ];
+    for (const id of fromFff) {
       expect(getExercise(id)?.source, id).toMatch(/^FFF – District/);
     }
   });
