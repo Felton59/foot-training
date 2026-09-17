@@ -56,6 +56,16 @@ describe('session actions', () => {
     expect(finishSession(runThrough(base(), [true, true, true]), later(40), null).results).toEqual([]);
   });
 
+  it('abandons instead of recording a session when no item was done', () => {
+    const s = base();
+    const after = finishSession(runThrough(s, [false, false, false]), later(40), 12);
+    expect(after.inProgress).toBeUndefined();
+    expect(after.sessions).toEqual([]);
+    expect(after.results).toEqual([]);
+    expect(after.badges).toEqual([]);
+    expect(after).toEqual(abandonSession(startSession(s, plan, now)));
+  });
+
   it('abandons a session', () => {
     expect(abandonSession(startSession(base(), plan, now)).inProgress).toBeUndefined();
   });

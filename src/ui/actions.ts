@@ -57,6 +57,7 @@ export function abandonSession(s: AppState): AppState {
 export function finishSession(s: AppState, now: Date, challengeValue: number | null): AppState {
   const ip = s.inProgress;
   if (!ip) return s;
+  if (!ip.done.some(Boolean)) return abandonSession(s);
   const session: CompletedSession = {
     id: `s-${now.getTime().toString(36)}`,
     date: now.toISOString(),
