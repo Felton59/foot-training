@@ -23,6 +23,10 @@ export const MIGRATIONS: Record<number, Migration> = {};
 
 const isObj = (x: unknown): x is Record<string, unknown> => typeof x === 'object' && x !== null && !Array.isArray(x);
 const isStr = (x: unknown): x is string => typeof x === 'string';
+const isSessionItem = (item: unknown): item is Record<string, unknown> =>
+  isObj(item) && isStr(item.exerciseId) && isStr(item.domain) &&
+  typeof item.durationMin === 'number' && Number.isFinite(item.durationMin) &&
+  typeof item.done === 'boolean';
 
 export function isAppState(x: unknown): x is AppState {
   if (!isObj(x) || x.version !== STATE_VERSION) return false;
@@ -34,7 +38,7 @@ export function isAppState(x: unknown): x is AppState {
   if (!validProfile) return false;
   const validSessions =
     Array.isArray(x.sessions) &&
-    x.sessions.every((s) => isObj(s) && isStr(s.id) && isStr(s.date) && DURATIONS.includes(s.plannedMin as never) && Array.isArray(s.items));
+    x.sessions.every((s) => isObj(s) && isStr(s.id) && isStr(s.date) && DURATIONS.includes(s.plannedMin as never) && Array.isArray(s.items) && s.items.every(isSessionItem));
   if (!validSessions) return false;
   const validResults =
     Array.isArray(x.results) &&

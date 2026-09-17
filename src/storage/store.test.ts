@@ -57,6 +57,7 @@ describe('store', () => {
     expect(isAppState(sample())).toBe(true);
     expect(isAppState({ ...sample(), results: [{ challengeId: 'jongles', date: 'x', value: 'douze' }] })).toBe(false);
     expect(isAppState({ ...sample(), profile: { name: 'Léo', avatar: '⚽', equipment: ['mur'] } })).toBe(false);
+    expect(isAppState({ ...sample(), sessions: [{ ...sample().sessions[0], items: [{}] }] })).toBe(false);
   });
 
   it('rejects newer versions', () => {
