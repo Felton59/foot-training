@@ -3,6 +3,7 @@ import { buildSession } from './engine/sessionBuilder';
 import type { Duration } from './storage/schema';
 import { abandonSession, setProfile, startSession } from './ui/actions';
 import Challenges from './ui/screens/Challenges';
+import Exercises from './ui/screens/Exercises';
 import Home from './ui/screens/Home';
 import Onboarding from './ui/screens/Onboarding';
 import Progress from './ui/screens/Progress';
@@ -10,10 +11,11 @@ import SessionScreen from './ui/screens/Session';
 import Settings from './ui/screens/Settings';
 import { useAppState } from './ui/useAppState';
 
-type Tab = 'home' | 'challenges' | 'progress' | 'settings';
+type Tab = 'home' | 'exercises' | 'challenges' | 'progress' | 'settings';
 
 const TABS: { id: Tab; label: string; icon: string }[] = [
   { id: 'home', label: 'Accueil', icon: '🏠' },
+  { id: 'exercises', label: 'Exercices', icon: '📋' },
   { id: 'challenges', label: 'Défis', icon: '🎯' },
   { id: 'progress', label: 'Progrès', icon: '📈' },
   { id: 'settings', label: 'Réglages', icon: '⚙️' },
@@ -85,6 +87,8 @@ export default function App() {
             onBackup={() => setTab('settings')}
           />
         );
+      case 'exercises':
+        return <Exercises state={state} />;
       case 'challenges':
         return <Challenges state={state} update={update} />;
       case 'progress':
