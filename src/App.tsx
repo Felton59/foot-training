@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { setProfile } from './ui/actions';
+import { buildSession } from './engine/sessionBuilder';
+import type { Duration } from './storage/schema';
+import { abandonSession, setProfile, startSession } from './ui/actions';
+import Home from './ui/screens/Home';
 import Onboarding from './ui/screens/Onboarding';
 import { useAppState } from './ui/useAppState';
 
@@ -41,12 +44,27 @@ export default function App() {
     );
   }
 
+  const startNew = (durationMin: Duration) => {
+    update((s) =>
+      startSession(s, buildSession({ durationMin, equipment: s.profile!.equipment, history: s.sessions, results: s.results }), new Date()),
+    );
+    setInSession(true);
+  };
+
   // SESSION_SCREEN
 
   function renderTab() {
     switch (tab) {
       case 'home':
-        return <p className="muted">Accueil</p>;
+        return (
+          <Home
+            state={state}
+            onStart={startNew}
+            onResume={() => setInSession(true)}
+            onAbandon={() => update(abandonSession)}
+            onBackup={() => setTab('settings')}
+          />
+        );
       case 'challenges':
         return <p className="muted">Défis</p>;
       case 'progress':
