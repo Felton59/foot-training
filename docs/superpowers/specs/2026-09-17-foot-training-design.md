@@ -94,17 +94,17 @@ Bibliothèque de départ : ~40 exercices (au moins 4 échauffements, 3 retours a
 |---|---|---|---|---|---|---|
 | Jongles pied fort (FFF Cher, défi jonglage) | technique | jongles | + | 3 | 6 | 10 |
 | Jongles pied faible (FFF Cher, défi jonglage) | technique | jongles | + | 2 | 4 | 6 |
-| Jonglerie en mouvement (FFF Vendée, tests PPF) | technique | m (/20) | + | 2 | 5 | 10 |
-| Défi slalom 12 points (FFF Yvelines U9, fiche 6) | technique | points (/12) | + | 8 | 10 | 12 |
-| Conduite de balle chronométrée (FFF Vendée, tests PPF) | technique | s | − | 25 | 21 | 18 |
-| Défi contrôle orienté + tir (FFF Escaut, défi U10-U11) | technique | points (/15) | + | 6 | 9 | 12 |
-| Défi passe dosée (FFF Yvelines U9, fiche 7) | passes-tirs | points (/50) | + | 15 | 25 | 35 |
-| Défi tir (FFF Mayenne, fiches 4 et 7) | passes-tirs | points (/15) | + | 5 | 8 | 11 |
-| Défi tir pied faible (FFF Mayenne, fiche 4) | passes-tirs | points (/15) | + | 3 | 6 | 9 |
-| Sprint 20 m (FFF Vendée, tests PPF) | physique | s | − | 5.0 | 4.5 | 4.1 |
-| Course brisée 4 × 10 m (FFF Vendée, tests PPF) | physique | s | − | 15 | 13.5 | 12.5 |
-| Allers-retours en 1 minute (FFF Mayenne, fiche 2) | physique | allers-retours | + | 3 | 4 | 5 |
-| Défi tirs au but, gardien (FFF Indre-et-Loire, défi U11) | gardien | /10 | + | 3 | 5 | 7 |
+| Jonglerie en mouvement (FFF Vendée, tests PPF) | technique | m (/20) | + | 1 | 3 | 6 |
+| Défi slalom 12 points (FFF Yvelines U9, fiche 6) | technique | points (/12) | + | 6 | 8 | 10 |
+| Conduite de balle chronométrée (FFF Vendée, tests PPF) | technique | s | − | 35 | 30 | 25 |
+| Défi contrôle orienté + tir (FFF Escaut, défi U10-U11) | technique | points (/15) | + | 4 | 7 | 10 |
+| Défi passe dosée (FFF Yvelines U9, fiche 7) | passes-tirs | points (/50) | + | 8 | 15 | 25 |
+| Défi tir (FFF Mayenne, fiches 4 et 7) | passes-tirs | points (/15) | + | 3 | 6 | 9 |
+| Défi tir pied faible (FFF Mayenne, fiche 4) | passes-tirs | points (/15) | + | 2 | 4 | 6 |
+| Sprint 20 m (FFF Vendée, tests PPF) | physique | s | − | 5.5 | 5 | 4.6 |
+| Course brisée 4 × 10 m (FFF Vendée, tests PPF) | physique | s | − | 16.5 | 15 | 14 |
+| Allers-retours en 1 minute (FFF Mayenne, fiche 2) | physique | allers-retours | + | 2 | 3 | 4 |
+| Défi tirs au but, gardien (FFF Indre-et-Loire, défi U11) | gardien | /10 | + | 2 | 4 | 6 |
 
 **Paliers au-delà de l'or** : une fois l'or atteint, des paliers « Or +1 », « Or +2 », etc. se débloquent, espacés du même écart qu'entre argent et or (ex. jongles : 75, 100, 125…). Pour les défis « /10 », le plafond est 10 ; pour les temps, un plancher raisonnable est fixé par défi (`minValue`) et on n'ajoute plus de palier au-delà.
 

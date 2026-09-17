@@ -54,6 +54,20 @@ describe('age-appropriate goals', () => {
     expect(getChallenge('jongles-pied-fort')?.tiers).toEqual({ bronze: 3, argent: 6, or: 10 });
     expect(getChallenge('jongles-pied-faible')?.tiers).toEqual({ bronze: 2, argent: 4, or: 6 });
   });
+
+  it('keeps every challenge goal suited to an 8-year-old beginner', () => {
+    expect(getChallenge('jonglerie-mouvement')?.tiers, 'jonglerie-mouvement').toEqual({ bronze: 1, argent: 3, or: 6 });
+    expect(getChallenge('defi-slalom-12')?.tiers, 'defi-slalom-12').toEqual({ bronze: 6, argent: 8, or: 10 });
+    expect(getChallenge('conduite-piquets')?.tiers, 'conduite-piquets').toEqual({ bronze: 35, argent: 30, or: 25 });
+    expect(getChallenge('defi-controle-tir')?.tiers, 'defi-controle-tir').toEqual({ bronze: 4, argent: 7, or: 10 });
+    expect(getChallenge('defi-passe-dosee')?.tiers, 'defi-passe-dosee').toEqual({ bronze: 8, argent: 15, or: 25 });
+    expect(getChallenge('defi-tir')?.tiers, 'defi-tir').toEqual({ bronze: 3, argent: 6, or: 9 });
+    expect(getChallenge('defi-tir-pied-faible')?.tiers, 'defi-tir-pied-faible').toEqual({ bronze: 2, argent: 4, or: 6 });
+    expect(getChallenge('sprint-20m')?.tiers, 'sprint-20m').toEqual({ bronze: 5.5, argent: 5, or: 4.6 });
+    expect(getChallenge('course-brisee-4x10')?.tiers, 'course-brisee-4x10').toEqual({ bronze: 16.5, argent: 15, or: 14 });
+    expect(getChallenge('allers-retours-1min')?.tiers, 'allers-retours-1min').toEqual({ bronze: 2, argent: 3, or: 4 });
+    expect(getChallenge('defi-tirs-au-but')?.tiers, 'defi-tirs-au-but').toEqual({ bronze: 2, argent: 4, or: 6 });
+  });
 });
 
 describe('badges data', () => {

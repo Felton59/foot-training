@@ -37,22 +37,23 @@ describe('xp', () => {
 
   it('rewards records (not the first result) and first-time tiers', () => {
     const xp = computeXp({ sessions: [], results: [result('defi-passe-dosee', 16, 10), result('defi-passe-dosee', 14, 20), result('defi-passe-dosee', 17, 40)] });
-    // sorted: 20 (first, bronze +15), 10 (no), 40 (record +20, argent +25, or +40)
+    // sorted: 20 (first, bronze +15, argent +25), 10 (no), 40 (record +20, or +40, Or+1 +40)
     expect(xp.records).toBe(20);
-    expect(xp.tiers).toBe(80);
-    expect(xp.total).toBe(100);
+    expect(xp.tiers).toBe(120);
+    expect(xp.total).toBe(140);
   });
 
   it('awards every tier crossed in one jump', () => {
     const xp = computeXp({ sessions: [], results: [result('defi-passe-dosee', 14, 45)] });
-    // bronze 15 + argent 25 + or 40 + Or+1 (45) 40
-    expect(xp.tiers).toBe(120);
+    // bronze 15 + argent 25 + or 40 + Or+1 (35) 40 + Or+2 (45) 40
+    expect(xp.tiers).toBe(160);
     expect(xp.records).toBe(0);
   });
 
   it('does not re-award a tier already reached', () => {
     const xp = computeXp({ sessions: [], results: [result('sprint-20m', 14, 4.9), result('sprint-20m', 15, 4.95), result('sprint-20m', 16, 4.8)] });
-    expect(xp.tiers).toBe(15);
+    // 4.9 s reaches bronze (5.5) and argent (5.0) once; 4.8 s is a record but no new tier
+    expect(xp.tiers).toBe(40);
     expect(xp.records).toBe(20);
   });
 
