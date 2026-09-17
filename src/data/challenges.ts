@@ -3,6 +3,7 @@ import type { Challenge } from './types';
 const CHER_JONGLAGE = 'FFF – District du Cher, règlement du « Défi jonglage »';
 const YVELINES_U9 = 'FFF – District des Yvelines, « 141 exercices et défis techniques U9-U11 »';
 const MAYENNE = 'FFF – District de la Mayenne, « 30 exercices et défis techniques U7-U9 »';
+const VENDEE_TESTS = 'FFF – District de Vendée, tests du Projet de Performance Fédéral';
 
 export const CHALLENGES: Challenge[] = [
   {
@@ -11,7 +12,7 @@ export const CHALLENGES: Challenge[] = [
     domain: 'technique',
     unit: 'jongles',
     better: 'higher',
-    tiers: { bronze: 10, argent: 20, or: 30 },
+    tiers: { bronze: 3, argent: 6, or: 10 },
     equipment: ['ballon'],
     howTo: ["Le ballon part du sol : soulève-le avec le pied pour commencer.", "Jongle uniquement avec ton pied fort : aucune autre partie du corps pour rattraper.", "Papa compte tes jongles. Tu as 2 essais : garde le meilleur."],
     source: CHER_JONGLAGE,
@@ -22,10 +23,22 @@ export const CHALLENGES: Challenge[] = [
     domain: 'technique',
     unit: 'jongles',
     better: 'higher',
-    tiers: { bronze: 5, argent: 10, or: 20 },
+    tiers: { bronze: 2, argent: 4, or: 6 },
     equipment: ['ballon'],
     howTo: ["Le ballon part du sol : soulève-le avec le pied pour commencer.", "Jongle uniquement avec ton pied faible : aucune autre partie du corps pour rattraper.", "Papa compte tes jongles. Tu as 2 essais : garde le meilleur."],
     source: CHER_JONGLAGE,
+  },
+  {
+    id: 'jonglerie-mouvement',
+    name: 'Jonglerie en mouvement',
+    domain: 'technique',
+    unit: 'm',
+    better: 'higher',
+    tiers: { bronze: 2, argent: 5, or: 10 },
+    maxValue: 20,
+    equipment: ['ballon', 'plots'],
+    howTo: ["Pose un plot de départ, puis un plot tous les 5 m jusqu'à 20 m.", "Monte le ballon avec le pied et avance en jonglant uniquement avec les pieds, sans jamais laisser le ballon toucher le sol.", "Papa note la distance où le ballon est tombé (20 m si tu arrives au bout). Tu as 2 essais : garde le meilleur."],
+    source: `${VENDEE_TESTS} (jonglerie en mouvement sur 20 m, mesurée ici en distance au lieu du temps)`,
   },
   {
     id: 'defi-slalom-12',
@@ -38,6 +51,19 @@ export const CHALLENGES: Challenge[] = [
     equipment: ['ballon', 'plots'],
     howTo: ["Aligne 4 plots espacés de 2 m, puis pose un dernier plot 5 m plus loin. Tu pars avec 12 points.", "Slalome entre les 4 plots, puis avance jusqu'au dernier plot en poussant le ballon avec la semelle, pied droit puis pied gauche.", "Fais le tour du dernier plot et reviens de la même façon, le plus vite possible. Chaque plot touché fait perdre 1 point."],
     source: `${YVELINES_U9} (défi technique, fiche 6)`,
+  },
+  {
+    id: 'conduite-piquets',
+    name: 'Conduite de balle chronométrée',
+    domain: 'technique',
+    unit: 's',
+    better: 'lower',
+    tiers: { bronze: 25, argent: 21, or: 18 },
+    minValue: 10,
+    equipment: ['ballon', 'plots'],
+    howTo: ["Fais une porte de départ de 2 m. Pose un plot A à 8 m en face, un plot B à 4 m à gauche et un plot C à 4 m à droite, à mi-chemin. Derrière la porte, marque un petit carré de 1 m avec 4 plots.", "Papa appuie sur « Départ » quand tu passes la porte : contourne le plot A, puis les plots B et C, et reviens par la porte.", "Papa appuie sur « Arrivée » quand tu repasses la porte : arrête le ballon dans le carré, sinon l'essai ne compte pas. 2 essais : un en partant par la droite, un par la gauche."],
+    timer: { kind: 'stopwatch' },
+    source: `${VENDEE_TESTS} (conduite de balle ; distances choisies pour le jardin, le protocole ne les précise pas)`,
   },
   {
     id: 'defi-controle-tir',
@@ -99,6 +125,19 @@ export const CHALLENGES: Challenge[] = [
     howTo: ["Place 2 plots à 20 m l'un de l'autre et mets-toi derrière le premier.", "Pars quand tu veux : papa appuie sur « Départ » à ton premier pas, puis sur « Arrivée » quand tu passes le 2e plot.", "Fais 2 essais et garde le meilleur temps."],
     timer: { kind: 'stopwatch' },
     source: 'FFF – District de Vendée, tests athlétiques du Projet de Performance Fédéral (vitesse linéaire 20 m)',
+  },
+  {
+    id: 'course-brisee-4x10',
+    name: 'Course brisée 4 × 10 m',
+    domain: 'physique',
+    unit: 's',
+    better: 'lower',
+    tiers: { bronze: 15, argent: 13.5, or: 12.5 },
+    minValue: 9,
+    equipment: ['plots'],
+    howTo: ["Trace 2 lignes à 10 m l'une de l'autre avec des plots. Mets ton pied d'appui derrière la première ligne.", "Pars quand tu veux (papa appuie sur « Départ » à ton premier pas) : fais 4 fois les 10 m (aller, retour, aller, retour) en touchant chaque ligne avec le pied.", "Papa appuie sur « Arrivée » quand tu repasses la ligne de départ. Fais 2 essais et garde le meilleur temps."],
+    timer: { kind: 'stopwatch' },
+    source: `${VENDEE_TESTS} (vitesse en course brisée 4 × 10 m)`,
   },
   {
     id: 'allers-retours-1min',

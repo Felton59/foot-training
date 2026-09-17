@@ -88,18 +88,21 @@ interface Challenge {
 }
 ```
 
-Bibliothèque de départ : ~40 exercices (au moins 4 échauffements, 3 retours au calme, 8 par domaine technique / passes-tirs / physique, 5 gardien) et les 10 défis ci-dessous.
+Bibliothèque de départ : ~40 exercices (au moins 4 échauffements, 3 retours au calme, 8 par domaine technique / passes-tirs / physique, 5 gardien) et les 13 défis ci-dessous.
 
 | Défi | Domaine | Unité | Sens | Bronze | Argent | Or |
 |---|---|---|---|---|---|---|
-| Jongles pied fort (FFF Cher, défi jonglage) | technique | jongles | + | 10 | 20 | 30 |
-| Jongles pied faible (FFF Cher, défi jonglage) | technique | jongles | + | 5 | 10 | 20 |
+| Jongles pied fort (FFF Cher, défi jonglage) | technique | jongles | + | 3 | 6 | 10 |
+| Jongles pied faible (FFF Cher, défi jonglage) | technique | jongles | + | 2 | 4 | 6 |
+| Jonglerie en mouvement (FFF Vendée, tests PPF) | technique | m (/20) | + | 2 | 5 | 10 |
 | Défi slalom 12 points (FFF Yvelines U9, fiche 6) | technique | points (/12) | + | 8 | 10 | 12 |
+| Conduite de balle chronométrée (FFF Vendée, tests PPF) | technique | s | − | 25 | 21 | 18 |
 | Défi contrôle orienté + tir (FFF Escaut, défi U10-U11) | technique | points (/15) | + | 6 | 9 | 12 |
 | Défi passe dosée (FFF Yvelines U9, fiche 7) | passes-tirs | points (/50) | + | 15 | 25 | 35 |
 | Défi tir (FFF Mayenne, fiches 4 et 7) | passes-tirs | points (/15) | + | 5 | 8 | 11 |
 | Défi tir pied faible (FFF Mayenne, fiche 4) | passes-tirs | points (/15) | + | 3 | 6 | 9 |
 | Sprint 20 m (FFF Vendée, tests PPF) | physique | s | − | 5.0 | 4.5 | 4.1 |
+| Course brisée 4 × 10 m (FFF Vendée, tests PPF) | physique | s | − | 15 | 13.5 | 12.5 |
 | Allers-retours en 1 minute (FFF Mayenne, fiche 2) | physique | allers-retours | + | 3 | 4 | 5 |
 | Défi tirs au but, gardien (FFF Indre-et-Loire, défi U11) | gardien | /10 | + | 3 | 5 | 7 |
 

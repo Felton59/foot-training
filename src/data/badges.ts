@@ -6,7 +6,7 @@ export const BADGES: BadgeDef[] = [
   { id: 'acharne', name: 'Acharné', emoji: '💪', description: "Termine 50 séances." },
   { id: 'semaine-or', name: 'Semaine en or', emoji: '🌟', description: "Fais au moins 3 séances dans une semaine." },
   { id: 'serie-4', name: 'Série de 4', emoji: '🔥', description: "Réussis 4 semaines de suite." },
-  { id: 'jongles-50', name: '50 jongles', emoji: '🤹', description: "Fais 50 jongles du pied fort." },
+  { id: 'jongleur', name: 'Jongleur', emoji: '🤹', description: "Fais 20 jongles du pied fort." },
   { id: 'pied-gauche', name: 'Pied gauche en feu', emoji: '🦶', description: "Atteins l'or au défi jongles ou au défi tir avec ton pied faible." },
   { id: 'fusee', name: 'Fusée', emoji: '🚀', description: "Atteins l'or au sprint 20 m." },
   { id: 'sniper', name: 'Sniper', emoji: '🎯', description: "Marque 15 points sur 15 au défi tir." },

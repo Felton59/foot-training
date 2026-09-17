@@ -5,8 +5,8 @@ import { CHALLENGES, getChallenge } from './challenges';
 
 describe('challenges data', () => {
   it('has 10 challenges with unique ids', () => {
-    expect(CHALLENGES).toHaveLength(10);
-    expect(new Set(CHALLENGES.map((c) => c.id)).size).toBe(10);
+    expect(CHALLENGES).toHaveLength(13);
+    expect(new Set(CHALLENGES.map((c) => c.id)).size).toBe(13);
   });
 
   it('covers every domain', () => {
@@ -43,9 +43,16 @@ describe('official challenges', () => {
     for (const old of ['jongles', 'slalom-plots', 'passes-a-deux', 'tirs-cadres', 'tirs-pied-faible', 'controles', 'arrets-gardien']) {
       expect(getChallenge(old), old).toBeUndefined();
     }
-    for (const id of ['jongles-pied-fort', 'jongles-pied-faible', 'defi-slalom-12', 'defi-passe-dosee', 'defi-tir', 'defi-tir-pied-faible', 'allers-retours-1min', 'defi-controle-tir', 'sprint-20m', 'defi-tirs-au-but']) {
+    for (const id of ['jongles-pied-fort', 'jongles-pied-faible', 'defi-slalom-12', 'defi-passe-dosee', 'defi-tir', 'defi-tir-pied-faible', 'allers-retours-1min', 'defi-controle-tir', 'sprint-20m', 'defi-tirs-au-but', 'course-brisee-4x10', 'jonglerie-mouvement', 'conduite-piquets']) {
       expect(getChallenge(id)?.source, id).toMatch(/^FFF – District/);
     }
+  });
+});
+
+describe('age-appropriate goals', () => {
+  it('keeps juggling goals reachable for an 8-year-old', () => {
+    expect(getChallenge('jongles-pied-fort')?.tiers).toEqual({ bronze: 3, argent: 6, or: 10 });
+    expect(getChallenge('jongles-pied-faible')?.tiers).toEqual({ bronze: 2, argent: 4, or: 6 });
   });
 });
 
