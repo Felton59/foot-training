@@ -27,6 +27,24 @@ const isSessionItem = (item: unknown): item is Record<string, unknown> =>
   isObj(item) && isStr(item.exerciseId) && isStr(item.domain) &&
   typeof item.durationMin === 'number' && Number.isFinite(item.durationMin) &&
   typeof item.done === 'boolean';
+const isPlanItem = (item: unknown): item is Record<string, unknown> =>
+  isObj(item) && isStr(item.exerciseId) && isStr(item.domain) &&
+  typeof item.durationMin === 'number' && Number.isFinite(item.durationMin);
+const isFiniteNumber = (x: unknown): x is number => typeof x === 'number' && Number.isFinite(x);
+
+export function isInProgress(x: unknown): boolean {
+  if (!isObj(x)) return false;
+  const plan = x.plan;
+  if (!isObj(plan) || !DURATIONS.includes(plan.durationMin as never)) return false;
+  if (plan.challengeId !== null && !isStr(plan.challengeId)) return false;
+  if (!Array.isArray(plan.items) || !plan.items.every(isPlanItem)) return false;
+  if (x.phase !== 'preview' && x.phase !== 'exercises' && x.phase !== 'challenge') return false;
+  if (!Number.isInteger(x.currentIndex) || (x.currentIndex as number) < 0) return false;
+  if (!isFiniteNumber(x.remainingSec) || x.remainingSec < 0) return false;
+  if (!Array.isArray(x.done) || x.done.length !== plan.items.length || !x.done.every((d) => typeof d === 'boolean')) return false;
+  if (!isStr(x.startedAt)) return false;
+  return true;
+}
 
 export function isAppState(x: unknown): x is AppState {
   if (!isObj(x) || x.version !== STATE_VERSION) return false;
@@ -47,7 +65,7 @@ export function isAppState(x: unknown): x is AppState {
   const validBadges = Array.isArray(x.badges) && x.badges.every((b) => isObj(b) && isStr(b.id) && isStr(b.earnedAt));
   if (!validBadges) return false;
   if (x.lastBackupAt !== undefined && !isStr(x.lastBackupAt)) return false;
-  if (x.inProgress !== undefined && !(isObj(x.inProgress) && isObj(x.inProgress.plan))) return false;
+  if (x.inProgress !== undefined && !isInProgress(x.inProgress)) return false;
   return true;
 }
 
@@ -62,6 +80,10 @@ export function migrate(raw: unknown): AppState {
     if (!step) throw new Error(`Migration manquante depuis la version ${v}.`);
     current = step(current);
   }
+  if (isObj(current) && current.inProgress !== undefined && !isInProgress(current.inProgress)) {
+    const { inProgress: _dropped, ...rest } = current;
+    current = rest;
+  }
   if (!isAppState(current)) throw new Error('Données invalides.');
   return current;
 }
@@ -74,7 +96,11 @@ export function loadState(kv: KV | null, now: Date): LoadResult {
     return { status: 'ok', state: migrate(JSON.parse(raw)) };
   } catch {
     const corruptKey = `foot-training:corrupt-${now.toISOString().replace(/[:.]/g, '-')}`;
-    kv.setItem(corruptKey, raw);
+    try {
+      kv.setItem(corruptKey, raw);
+    } catch {
+      // best-effort backup; still proceed to clear the corrupt main key
+    }
     kv.removeItem(STORAGE_KEY);
     return { status: 'corrupt', state: initialState(), corruptKey };
   }

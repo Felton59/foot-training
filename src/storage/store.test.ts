@@ -47,6 +47,20 @@ describe('store', () => {
     expect(kv.getItem(STORAGE_KEY)).toBeNull();
   });
 
+  it('does not throw if saving the corrupt copy fails', () => {
+    const kv = new MemoryKV();
+    kv.setItem(STORAGE_KEY, '{nope');
+    const originalSetItem = kv.setItem.bind(kv);
+    kv.setItem = (k: string, v: string) => {
+      if (k !== STORAGE_KEY) throw new Error('QuotaExceededError');
+      originalSetItem(k, v);
+    };
+    let result: ReturnType<typeof loadState> | undefined;
+    expect(() => { result = loadState(kv, now); }).not.toThrow();
+    expect(result?.status).toBe('corrupt');
+    expect(kv.getItem(STORAGE_KEY)).toBeNull();
+  });
+
   it('treats structurally invalid data as corrupt', () => {
     const kv = new MemoryKV();
     kv.setItem(STORAGE_KEY, JSON.stringify({ ...initialState(), sessions: 'oops' }));
@@ -74,5 +88,32 @@ describe('store', () => {
     const kv = new MemoryKV();
     kv.setItem = () => { throw new Error('QuotaExceededError'); };
     expect(saveState(kv, sample())).toBe(false);
+  });
+
+  it('drops an invalid inProgress but keeps the rest of the state', () => {
+    const kv = new MemoryKV();
+    const withBadInProgress = { ...sample(), inProgress: { plan: { durationMin: 30, challengeId: null, items: [] }, phase: 'nope', currentIndex: 0, remainingSec: 0, done: [], startedAt: now.toISOString() } };
+    kv.setItem(STORAGE_KEY, JSON.stringify(withBadInProgress));
+    const result = loadState(kv, now);
+    expect(result.status).toBe('ok');
+    expect(result.state.inProgress).toBeUndefined();
+    expect(result.state.sessions).toEqual(sample().sessions);
+  });
+
+  it('round-trips a valid inProgress', () => {
+    const kv = new MemoryKV();
+    const withInProgress: AppState = {
+      ...sample(),
+      inProgress: {
+        plan: { durationMin: 30, challengeId: 'jongles', items: [{ exerciseId: 'tech-feintes', domain: 'technique', durationMin: 8 }] },
+        phase: 'exercises',
+        currentIndex: 0,
+        remainingSec: 120,
+        done: [false],
+        startedAt: now.toISOString(),
+      },
+    };
+    kv.setItem(STORAGE_KEY, JSON.stringify(withInProgress));
+    expect(loadState(kv, now)).toEqual({ status: 'ok', state: withInProgress });
   });
 });
