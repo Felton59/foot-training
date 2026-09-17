@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getBadge } from '../../data/badges';
 import { CHALLENGES, getChallenge } from '../../data/challenges';
 import { bestValue, rankLabel, reachedRank } from '../../engine/tiers';
@@ -11,6 +11,8 @@ import { formatValue } from '../format';
 interface Props {
   state: AppState;
   update: (fn: (s: AppState) => AppState) => void;
+  selectedId: string | null;
+  onSelect: (id: string | null) => void;
 }
 
 function resultMessage(summary: ChangeSummary): string {
@@ -29,9 +31,13 @@ function RankChip({ rank }: { rank: number }) {
   return <span className={`chip rank-${Math.min(rank, 3)}`}>{rankLabel(rank)}</span>;
 }
 
-export default function Challenges({ state, update }: Props) {
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+export default function Challenges({ state, update, selectedId, onSelect: setSelectedId }: Props) {
   const [message, setMessage] = useState<string | null>(null);
+  const listScroll = useRef(0);
+  useEffect(() => {
+    setMessage(null);
+    window.scrollTo(0, selectedId ? 0 : listScroll.current);
+  }, [selectedId]);
   const valuesOf = (id: string) => state.results.filter((r) => r.challengeId === id);
   const selected = selectedId ? getChallenge(selectedId) : undefined;
 
@@ -44,7 +50,7 @@ export default function Challenges({ state, update }: Props) {
 
     return (
       <div className="stack">
-        <button className="link" onClick={() => { setSelectedId(null); setMessage(null); }}>
+        <button className="link" onClick={() => setSelectedId(null)}>
           ← Tous les défis
         </button>
         <h1>{selected.name}</h1>
@@ -79,7 +85,10 @@ export default function Challenges({ state, update }: Props) {
       {CHALLENGES.map((c) => {
         const best = bestValue(c, valuesOf(c.id).map((r) => r.value));
         return (
-          <button key={c.id} className="list-button" onClick={() => setSelectedId(c.id)}>
+          <button key={c.id} className="list-button" onClick={() => {
+              listScroll.current = window.scrollY;
+              setSelectedId(c.id);
+            }}>
             <span>
               <strong>{c.name}</strong>
               <br />

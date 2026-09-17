@@ -9,9 +9,9 @@ import Onboarding from './ui/screens/Onboarding';
 import Progress from './ui/screens/Progress';
 import SessionScreen from './ui/screens/Session';
 import Settings from './ui/screens/Settings';
+import type { Tab } from './ui/navigation';
 import { useAppState } from './ui/useAppState';
-
-type Tab = 'home' | 'exercises' | 'challenges' | 'progress' | 'settings';
+import { useRoute } from './ui/useRoute';
 
 const TABS: { id: Tab; label: string; icon: string }[] = [
   { id: 'home', label: 'Accueil', icon: '🏠' },
@@ -23,8 +23,7 @@ const TABS: { id: Tab; label: string; icon: string }[] = [
 
 export default function App() {
   const { state, update, loadStatus, saveFailed } = useAppState();
-  const [tab, setTab] = useState<Tab>('home');
-  const [inSession, setInSession] = useState(false);
+  const { route, openTab, openDetail, openSession, back } = useRoute();
   const [corruptDismissed, setCorruptDismissed] = useState(false);
 
   const banners = (
@@ -48,7 +47,6 @@ export default function App() {
         <Onboarding
           onDone={(p) => {
             update((s) => setProfile(s, p));
-            setTab('home');
           }}
         />
       </>
@@ -59,38 +57,29 @@ export default function App() {
     update((s) =>
       startSession(s, buildSession({ durationMin, equipment: s.profile!.equipment, history: s.sessions, results: s.results }), new Date()),
     );
-    setInSession(true);
+    openSession();
   };
 
-  if (inSession) {
-    return (
-      <SessionScreen
-        state={state}
-        update={update}
-        onExit={() => {
-          setInSession(false);
-          setTab('home');
-        }}
-      />
-    );
+  if (route.session) {
+    return <SessionScreen state={state} update={update} onExit={back} />;
   }
 
   function renderTab() {
-    switch (tab) {
+    switch (route.tab) {
       case 'home':
         return (
           <Home
             state={state}
             onStart={startNew}
-            onResume={() => setInSession(true)}
+            onResume={openSession}
             onAbandon={() => update(abandonSession)}
-            onBackup={() => setTab('settings')}
+            onBackup={() => openTab('settings')}
           />
         );
       case 'exercises':
-        return <Exercises state={state} />;
+        return <Exercises state={state} selectedId={route.detail} onSelect={(id) => (id ? openDetail(id) : back())} />;
       case 'challenges':
-        return <Challenges state={state} update={update} />;
+        return <Challenges state={state} update={update} selectedId={route.detail} onSelect={(id) => (id ? openDetail(id) : back())} />;
       case 'progress':
         return <Progress state={state} />;
       case 'settings':
@@ -104,7 +93,7 @@ export default function App() {
       <main className="screen with-tabs">{renderTab()}</main>
       <nav className="tabbar">
         {TABS.map((t) => (
-          <button key={t.id} className={t.id === tab ? 'active' : ''} onClick={() => setTab(t.id)}>
+          <button key={t.id} className={t.id === route.tab ? 'active' : ''} onClick={() => openTab(t.id)}>
             <span aria-hidden>{t.icon}</span>
             {t.label}
           </button>

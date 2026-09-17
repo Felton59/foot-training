@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { EXERCISES, getExercise } from '../../data/exercises';
 import { groupExercisesByKind } from '../../engine/library';
 import { DOMAIN_LABELS, EQUIPMENT_LABELS, type AppState, type Equipment } from '../../storage/schema';
@@ -17,12 +17,17 @@ const KIND_ICONS: Record<string, string> = {
 const equipmentText = (equipment: Equipment[]) =>
   equipment.length ? equipment.map((e) => EQUIPMENT_LABELS[e]).join(', ') : 'Aucun matériel';
 
-export default function Exercises({ state }: { state: AppState }) {
-  const [selectedId, setSelected] = useState<string | null>(null);
-  const setSelectedId = (id: string | null) => {
-    setSelected(id);
-    window.scrollTo(0, 0);
-  };
+interface Props {
+  state: AppState;
+  selectedId: string | null;
+  onSelect: (id: string | null) => void;
+}
+
+export default function Exercises({ state, selectedId, onSelect: setSelectedId }: Props) {
+  const listScroll = useRef(0);
+  useEffect(() => {
+    window.scrollTo(0, selectedId ? 0 : listScroll.current);
+  }, [selectedId]);
   const owned = state.profile?.equipment ?? [];
   const selected = selectedId ? getExercise(selectedId) : undefined;
 
@@ -65,7 +70,10 @@ export default function Exercises({ state }: { state: AppState }) {
           {group.exercises.map((e) => {
             const available = e.equipment.every((q) => owned.includes(q));
             return (
-              <button key={e.id} className="list-button" onClick={() => setSelectedId(e.id)}>
+              <button key={e.id} className="list-button" onClick={() => {
+                  listScroll.current = window.scrollY;
+                  setSelectedId(e.id);
+                }}>
                 <span>
                   <strong>{e.name}</strong>
                   <br />
