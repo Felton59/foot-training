@@ -30,7 +30,7 @@ export const CHALLENGES: Challenge[] = [
     tiers: { bronze: 20, argent: 16, or: 13 },
     minValue: 8,
     equipment: ['ballon', 'plots'],
-    howTo: ["Aligne 6 plots espacés de 2 grands pas.", "Slalome ballon au pied jusqu'au bout puis reviens en slalomant.", "Papa chronomètre. Un plot renversé = +2 s."],
+    howTo: ["Aligne 6 plots espacés de 1,5 m.", "Slalome ballon au pied jusqu'au bout puis reviens en slalomant.", "Papa chronomètre. Un plot renversé = +2 s."],
   },
   {
     id: 'controles',
@@ -41,7 +41,7 @@ export const CHALLENGES: Challenge[] = [
     tiers: { bronze: 5, argent: 7, or: 9 },
     maxValue: 10,
     equipment: ['ballon'],
-    howTo: ["Papa lance le ballon en l'air à 3 m de toi, 10 fois.", "Un contrôle est réussi si le ballon reste à moins d'un pas de toi."],
+    howTo: ["Papa lance le ballon en l'air à 3 m de toi, 10 fois.", "Un contrôle est réussi si le ballon reste à moins d'1 m de toi."],
   },
   {
     id: 'passes-a-deux',
@@ -51,7 +51,7 @@ export const CHALLENGES: Challenge[] = [
     better: 'higher',
     tiers: { bronze: 10, argent: 15, or: 20 },
     equipment: ['ballon'],
-    howTo: ["Place-toi à 5 grands pas de papa.", "Faites-vous des passes le plus vite possible pendant 30 s.", "Compte seulement tes passes qui arrivent dans les pieds de papa."],
+    howTo: ["Place-toi à 4 m de papa.", "Faites-vous des passes le plus vite possible pendant 30 s.", "Compte seulement tes passes qui arrivent dans les pieds de papa."],
   },
   {
     id: 'tirs-cadres',
@@ -62,7 +62,7 @@ export const CHALLENGES: Challenge[] = [
     tiers: { bronze: 5, argent: 7, or: 9 },
     maxValue: 10,
     equipment: ['ballon', 'plots'],
-    howTo: ["Fais un but avec 2 plots écartés de 3 grands pas.", "Tire 10 fois à 8 pas du but.", "Compte les tirs qui passent entre les plots."],
+    howTo: ["Fais un but avec 2 plots écartés de 2 m.", "Tire 10 fois à 6 m du but.", "Compte les tirs qui passent entre les plots."],
   },
   {
     id: 'tirs-pied-faible',
@@ -73,7 +73,7 @@ export const CHALLENGES: Challenge[] = [
     tiers: { bronze: 3, argent: 5, or: 7 },
     maxValue: 10,
     equipment: ['ballon', 'plots'],
-    howTo: ["Même but qu'aux tirs cadrés, à 8 pas.", "Tire 10 fois avec ton pied le moins fort.", "Compte les tirs qui passent entre les plots."],
+    howTo: ["Même but qu'aux tirs cadrés, à 6 m.", "Tire 10 fois avec ton pied le moins fort.", "Compte les tirs qui passent entre les plots."],
   },
   {
     id: 'sprint-20m',
@@ -84,7 +84,7 @@ export const CHALLENGES: Challenge[] = [
     tiers: { bronze: 5.0, argent: 4.5, or: 4.1 },
     minValue: 3.5,
     equipment: ['grand-espace', 'plots'],
-    howTo: ["Place 2 plots à 20 m (environ 25 grands pas d'adulte).", "Pars au signal de papa et cours jusqu'au 2e plot.", "Garde le meilleur de 2 essais."],
+    howTo: ["Place 2 plots à 20 m l'un de l'autre.", "Pars au signal de papa et cours jusqu'au 2e plot.", "Garde le meilleur de 2 essais."],
   },
   {
     id: 'navette-5-10-5',
@@ -106,7 +106,7 @@ export const CHALLENGES: Challenge[] = [
     tiers: { bronze: 4, argent: 6, or: 8 },
     maxValue: 10,
     equipment: ['ballon', 'plots'],
-    howTo: ["Garde un but de 3 grands pas fait avec 2 plots.", "Papa tire 10 fois à 6 pas, pas trop fort.", "Compte les ballons arrêtés ou détournés."],
+    howTo: ["Garde un but de 2 m fait avec 2 plots.", "Papa tire 10 fois à 5 m, pas trop fort.", "Compte les ballons arrêtés ou détournés."],
   },
 ];
 
