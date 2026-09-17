@@ -5,7 +5,7 @@
   --bg: #f6f7f4;
   --card: #ffffff;
   --text: #1c1917;
-  --muted: #78716c;
+  --muted: #57534e;
   --border: #e7e5e4;
   --gold: #ca8a04;
   --silver: #71717a;
@@ -78,9 +78,10 @@ p { line-height: 1.45; }
 .week-dots .dot.today { border-color: var(--green); }
 
 .chip { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; background: var(--border); }
-.chip.rank-1 { background: #fde7cf; color: var(--bronze); }
-.chip.rank-2 { background: #e4e4e7; color: var(--silver); }
-.chip.rank-3 { background: #fef08a; color: var(--gold); }
+.chip.rank-1 { background: #fde7cf; color: #92400e; }
+.chip.rank-2 { background: #e4e4e7; color: #3f3f46; }
+.chip.rank-3 { background: #fef08a; color: #854d0e; }
+.error { color: #b91c1c; font-weight: 600; }
 
 .timer { font-size: 4.5rem; font-weight: 800; text-align: center; font-variant-numeric: tabular-nums; margin: 12px 0; }
 .timer.over { color: var(--green); }
