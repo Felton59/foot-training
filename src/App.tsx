@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { buildSession } from './engine/sessionBuilder';
 import type { Duration } from './storage/schema';
 import { abandonSession, setProfile, startSession } from './ui/actions';
+import Challenges from './ui/screens/Challenges';
 import Home from './ui/screens/Home';
 import Onboarding from './ui/screens/Onboarding';
 import SessionScreen from './ui/screens/Session';
@@ -78,7 +79,7 @@ export default function App() {
           />
         );
       case 'challenges':
-        return <p className="muted">Défis</p>;
+        return <Challenges state={state} update={update} />;
       case 'progress':
         return <p className="muted">Progrès</p>;
       case 'settings':
