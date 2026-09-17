@@ -30,7 +30,7 @@ export const CHALLENGES: Challenge[] = [
     tiers: { bronze: 20, argent: 16, or: 13 },
     minValue: 8,
     equipment: ['ballon', 'plots'],
-    howTo: ["Aligne 6 plots espacés de 1,5 m.", "Slalome ballon au pied jusqu'au bout puis reviens en slalomant.", "Papa chronomètre. Un plot renversé = +2 s."],
+    howTo: ["Aligne 6 plots espacés de 1,5 m.", "Slalome ballon au pied jusqu'au bout puis reviens en slalomant.", "Papa chronomètre du départ jusqu'à ton retour. Chaque plot renversé ajoute 2 secondes."],
   },
   {
     id: 'controles',
@@ -106,7 +106,7 @@ export const CHALLENGES: Challenge[] = [
     tiers: { bronze: 4, argent: 6, or: 8 },
     maxValue: 10,
     equipment: ['ballon', 'plots'],
-    howTo: ["Garde un but de 2 m fait avec 2 plots.", "Papa tire 10 fois à 5 m, pas trop fort.", "Compte les ballons arrêtés ou détournés."],
+    howTo: ["Fais un but avec 2 plots écartés de 2 m et mets-toi au milieu.", "Papa tire 10 fois à 5 m, pas trop fort.", "Compte les ballons arrêtés ou détournés."],
   },
 ];
 

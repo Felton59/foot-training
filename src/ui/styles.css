@@ -88,6 +88,25 @@ p { line-height: 1.45; }
 .steps { padding-left: 1.2rem; font-size: 1.15rem; }
 .steps li { margin-bottom: 8px; }
 .tip { background: var(--green-light); border-radius: 12px; padding: 10px 14px; }
+.diagram { margin: 0; }
+.diagram > svg { display: block; width: 100%; height: auto; }
+.diagram .pitch { fill: #4d9a5b; }
+.diagram .kid { fill: #2563eb; stroke: #fff; stroke-width: 0.6; }
+.diagram .dad { fill: #b91c1c; stroke: #fff; stroke-width: 0.6; }
+.diagram .player-label { fill: #fff; font-size: 2.7px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
+.diagram .cone { fill: #f97316; stroke: #7c2d12; stroke-width: 0.3; }
+.diagram .ball { fill: #fff; stroke: #1c1917; stroke-width: 0.5; }
+.diagram .note { fill: #fff; font-size: 3.5px; font-weight: 600; text-anchor: middle; dominant-baseline: central; }
+.diagram .arrow { fill: none; stroke-width: 0.8; stroke-linecap: round; }
+.diagram .arrow.course { stroke: #fff; }
+.diagram .arrow.balle { stroke: #fde047; stroke-dasharray: 2 1.5; }
+.diagram .arrow-head.course { fill: #fff; }
+.diagram .arrow-head.balle { fill: #fde047; }
+.diagram .step-badge { fill: #1c1917; }
+.diagram .step-label { fill: #fff; font-size: 3.2px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
+.diagram-legend { display: flex; gap: 16px; justify-content: center; font-size: 0.85rem; color: var(--muted); margin-top: 6px; }
+.diagram-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.diagram .legend-swatch { width: 32px; height: auto; }
 .progress-line { height: 6px; background: var(--border); border-radius: 999px; overflow: hidden; }
 .progress-line > div { height: 100%; background: var(--green); }
 

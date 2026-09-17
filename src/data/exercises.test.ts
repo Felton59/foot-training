@@ -36,6 +36,23 @@ describe('exercises data', () => {
     }
   });
 
+  it('keeps diagram elements inside the pitch', () => {
+    for (const e of EXERCISES.filter((ex) => ex.diagram)) {
+      const height = e.diagram!.height ?? 60;
+      const points = [
+        ...e.diagram!.items.map((i) => [i.x, i.y]),
+        ...e.diagram!.arrows.flatMap((a) => a.points),
+      ];
+      for (const [x, y] of points) {
+        expect(x, e.id).toBeGreaterThanOrEqual(0);
+        expect(x, e.id).toBeLessThanOrEqual(100);
+        expect(y, e.id).toBeGreaterThanOrEqual(0);
+        expect(y, e.id).toBeLessThanOrEqual(height);
+      }
+      for (const a of e.diagram!.arrows) expect(a.points.length, e.id).toBeGreaterThanOrEqual(2);
+    }
+  });
+
   it('finds exercises by id', () => {
     expect(getExercise('ech-trottinage-ballon')?.domain).toBe('echauffement');
     expect(getExercise('nope')).toBeUndefined();

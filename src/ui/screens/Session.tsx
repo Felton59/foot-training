@@ -8,6 +8,7 @@ import {
   abandonSession, beginExercises, completeCurrent, finishSession, summarizeChange, updateProgress, type ChangeSummary,
 } from '../actions';
 import ChallengeInput from '../components/ChallengeInput';
+import ExerciseDiagram from '../components/ExerciseDiagram';
 import { beep, unlockAudio } from '../lib/sound';
 import { useWakeLock } from '../lib/wakeLock';
 import { useCountdown } from '../useCountdown';
@@ -152,6 +153,7 @@ function ExerciseRunner({ ip, update, onPause }: { ip: InProgressSession; update
           ▶ {timer.remaining === item.durationMin * 60 ? 'Démarrer' : 'Reprendre'}
         </button>
       )}
+      {exercise?.diagram && <ExerciseDiagram diagram={exercise.diagram} title={exercise.name} />}
       <ol className="steps">
         {exercise?.steps.map((step) => <li key={step}>{step}</li>)}
       </ol>
