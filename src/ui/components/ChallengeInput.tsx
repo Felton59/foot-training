@@ -19,18 +19,21 @@ export default function ChallengeInput({ challenge, best, onSubmit, submitLabel 
     const value = Number(text.trim().replace(',', '.'));
     if (text.trim() === '' || !isValidResultValue(challenge, value)) {
       setError(
-        challenge.better === 'lower'
-          ? 'Entre un temps plus grand que 0 (par exemple 4,5).'
-          : challenge.maxValue !== undefined
-            ? `Entre un nombre entre 0 et ${challenge.maxValue}.`
-            : 'Entre un nombre positif.',
+        challenge.unit !== 's' && !Number.isInteger(value)
+          ? 'Entre un nombre entier.'
+          : challenge.better === 'lower'
+            ? 'Entre un temps plus grand que 0 (par exemple 4,5).'
+            : challenge.maxValue !== undefined
+              ? `Entre un nombre entre 0 et ${challenge.maxValue}.`
+              : 'Entre un nombre positif.',
       );
       return;
     }
-    if (
-      isSuspiciousResult(challenge, value, best) &&
-      !window.confirm(`${formatValue(value)} ${challenge.unit} ? C’est beaucoup mieux que ton record (${formatValue(best!)}). Tu confirmes ?`)
-    ) {
+    const confirmMessage =
+      best === null
+        ? `${formatValue(value)} ${challenge.unit} ? C’est énorme ! Tu confirmes ?`
+        : `${formatValue(value)} ${challenge.unit} ? C’est beaucoup mieux que ton record (${formatValue(best)}). Tu confirmes ?`;
+    if (isSuspiciousResult(challenge, value, best) && !window.confirm(confirmMessage)) {
       return;
     }
     setError(null);
@@ -55,7 +58,7 @@ export default function ChallengeInput({ challenge, best, onSubmit, submitLabel 
         <input inputMode="decimal" value={text} onChange={(e) => setText(e.target.value)} />
       </label>
       {error && (
-        <p role="alert" className="btn-danger">
+        <p role="alert" className="error">
           {error}
         </p>
       )}

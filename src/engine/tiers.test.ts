@@ -67,8 +67,29 @@ describe('tiers', () => {
     expect(isSuspiciousResult(jongles, 45, 20)).toBe(true);
     expect(isSuspiciousResult(jongles, 35, 20)).toBe(false);
     expect(isSuspiciousResult(jongles, 8, 3)).toBe(false);
-    expect(isSuspiciousResult(jongles, 5000, null)).toBe(false);
     expect(isSuspiciousResult(sprint, 2.9, 4.5)).toBe(true);
     expect(isSuspiciousResult(sprint, 3.5, 4.5)).toBe(false);
+  });
+
+  it('flags suspicious first results (no previous record)', () => {
+    // jongles.tiers.or === 50 (from earlier test), so >100 is suspicious, <=100 is not
+    expect(isSuspiciousResult(jongles, 101, null)).toBe(true);
+    expect(isSuspiciousResult(jongles, 99, null)).toBe(false);
+    expect(isSuspiciousResult(jongles, 5000, null)).toBe(true);
+    // sprint.better === 'lower', or === 3.9 (from tiers data) -> lower than or/1.5 is suspicious
+    expect(isSuspiciousResult(sprint, sprint.tiers.or / 1.5 - 0.01, null)).toBe(true);
+    expect(isSuspiciousResult(sprint, sprint.tiers.or, null)).toBe(false);
+  });
+
+  it('rejects non-integer values for non-second units', () => {
+    expect(isValidResultValue(jongles, 7.5)).toBe(false);
+    expect(isValidResultValue(jongles, 7)).toBe(true);
+    expect(isValidResultValue(sprint, 4.5)).toBe(true);
+  });
+
+  it('rejects values below minValue for lower-is-better challenges', () => {
+    expect(sprint.minValue).toBe(3.5);
+    expect(isValidResultValue(sprint, 3.4)).toBe(false);
+    expect(isValidResultValue(sprint, 3.5)).toBe(true);
   });
 });

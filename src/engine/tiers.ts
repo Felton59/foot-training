@@ -71,11 +71,15 @@ export function bestValue(ch: Challenge, values: number[]): number | null {
 export function isValidResultValue(ch: Challenge, value: number): boolean {
   if (!Number.isFinite(value)) return false;
   if (ch.better === 'higher' ? value < 0 : value <= 0) return false;
+  if (ch.unit !== 's' && !Number.isInteger(value)) return false;
+  if (ch.better === 'lower' && ch.minValue !== undefined && value < ch.minValue) return false;
   return ch.maxValue === undefined || value <= ch.maxValue;
 }
 
 export function isSuspiciousResult(ch: Challenge, value: number, best: number | null): boolean {
-  if (best === null) return false;
+  if (best === null) {
+    return ch.better === 'higher' ? value > ch.tiers.or * 2 : value < ch.tiers.or / 1.5;
+  }
   if (ch.better === 'higher') return value > best * 2 && value - best >= 10;
   return value < best / 1.5;
 }
