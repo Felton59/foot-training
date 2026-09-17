@@ -1,0 +1,43 @@
+import { describe, expect, it } from 'vitest';
+import { ALL_DOMAINS, ALL_EQUIPMENT, type ExerciseKind } from '../storage/schema';
+import { EXERCISES, getExercise } from './exercises';
+
+const count = (kind: ExerciseKind) => EXERCISES.filter((e) => e.domain === kind).length;
+
+describe('exercises data', () => {
+  it('has 40 exercises with unique ids', () => {
+    expect(EXERCISES).toHaveLength(40);
+    expect(new Set(EXERCISES.map((e) => e.id)).size).toBe(40);
+  });
+
+  it('has the expected mix', () => {
+    expect(count('echauffement')).toBeGreaterThanOrEqual(4);
+    expect(count('retour-calme')).toBeGreaterThanOrEqual(3);
+    expect(count('technique')).toBeGreaterThanOrEqual(8);
+    expect(count('passes-tirs')).toBeGreaterThanOrEqual(8);
+    expect(count('physique')).toBeGreaterThanOrEqual(8);
+    expect(count('gardien')).toBeGreaterThanOrEqual(5);
+  });
+
+  it('is usable with only a ball', () => {
+    const ballOnly = (kind: ExerciseKind) =>
+      EXERCISES.filter((e) => e.domain === kind && e.equipment.every((q) => q === 'ballon')).length;
+    for (const kind of [...ALL_DOMAINS, 'echauffement', 'retour-calme'] as ExerciseKind[]) {
+      expect(ballOnly(kind), kind).toBeGreaterThanOrEqual(2);
+    }
+  });
+
+  it('has well-formed entries', () => {
+    for (const e of EXERCISES) {
+      expect(e.steps.length, e.id).toBeGreaterThanOrEqual(2);
+      expect(e.steps.length, e.id).toBeLessThanOrEqual(4);
+      expect(e.durationMin, e.id).toBeGreaterThan(0);
+      expect(e.equipment.every((q) => ALL_EQUIPMENT.includes(q)), e.id).toBe(true);
+    }
+  });
+
+  it('finds exercises by id', () => {
+    expect(getExercise('ech-trottinage-ballon')?.domain).toBe('echauffement');
+    expect(getExercise('nope')).toBeUndefined();
+  });
+});
