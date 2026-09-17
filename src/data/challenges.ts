@@ -42,7 +42,7 @@ export const CHALLENGES: Challenge[] = [
     tiers: { bronze: 5, argent: 7, or: 9 },
     maxValue: 10,
     equipment: ['ballon'],
-    howTo: ["Papa lance le ballon en l'air à 3 m de toi, 10 fois.", "Un contrôle est réussi si le ballon reste à moins d'1 m de toi."],
+    howTo: ["Papa, à 3 m de toi, te lance le ballon en l'air 10 fois.", "Un contrôle est réussi si le ballon reste à moins d'1 m de toi."],
   },
   {
     id: 'passes-a-deux',
@@ -52,7 +52,7 @@ export const CHALLENGES: Challenge[] = [
     better: 'higher',
     tiers: { bronze: 10, argent: 15, or: 20 },
     equipment: ['ballon'],
-    howTo: ["Place-toi à 4 m de papa.", "Papa lance le compte à rebours : faites-vous des passes le plus vite possible jusqu'au bip.", "Compte seulement tes passes qui arrivent dans les pieds de papa."],
+    howTo: ["Place-toi à 4 m de papa.", "Papa lance le compte à rebours : faites-vous des passes le plus vite possible jusqu'au bip.", "Papa compte à voix haute tes passes qui arrivent dans ses pieds."],
     timer: { kind: 'countdown', seconds: 30 },
   },
   {
@@ -75,7 +75,7 @@ export const CHALLENGES: Challenge[] = [
     tiers: { bronze: 3, argent: 5, or: 7 },
     maxValue: 10,
     equipment: ['ballon', 'plots'],
-    howTo: ["Même but qu'aux tirs cadrés, à 6 m.", "Tire 10 fois avec ton pied le moins fort.", "Compte les tirs qui passent entre les plots."],
+    howTo: ["Fais un but avec 2 plots écartés de 2 m et pose le ballon à 6 m.", "Tire 10 fois avec ton pied le moins fort.", "Compte les tirs qui passent entre les plots."],
   },
   {
     id: 'sprint-20m',
@@ -98,7 +98,7 @@ export const CHALLENGES: Challenge[] = [
     tiers: { bronze: 7.5, argent: 6.8, or: 6.2 },
     minValue: 5,
     equipment: ['plots'],
-    howTo: ["Aligne 3 plots espacés de 5 m ; pars de celui du milieu.", "Papa appuie sur « Départ » : cours toucher le plot de droite, puis celui de gauche, puis reviens au milieu.", "Papa appuie sur « Arrivée » à ton retour. Garde le meilleur de 2 essais."],
+    howTo: ["Aligne 3 plots espacés de 5 m ; pars de celui du milieu.", "Papa appuie sur « Départ » : cours toucher le plot de droite, puis celui de gauche, puis reviens au milieu (5 m, puis 10 m, puis 5 m).", "Papa appuie sur « Arrivée » à ton retour. Garde le meilleur de 2 essais."],
     timer: { kind: 'stopwatch' },
   },
   {
@@ -110,7 +110,7 @@ export const CHALLENGES: Challenge[] = [
     tiers: { bronze: 4, argent: 6, or: 8 },
     maxValue: 10,
     equipment: ['ballon', 'plots'],
-    howTo: ["Fais un but avec 2 plots écartés de 2 m et mets-toi au milieu.", "Papa tire 10 fois à 5 m, pas trop fort.", "Compte les ballons arrêtés ou détournés."],
+    howTo: ["Fais un but avec 2 plots écartés de 2 m et mets-toi au milieu.", "Papa tire 10 fois à 5 m, pas trop fort. S'il tire à côté du but, il refait ce tir.", "Compte les ballons arrêtés ou détournés."],
   },
 ];
 

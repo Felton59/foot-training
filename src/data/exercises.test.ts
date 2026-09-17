@@ -5,9 +5,16 @@ import { EXERCISES, getExercise } from './exercises';
 const count = (kind: ExerciseKind) => EXERCISES.filter((e) => e.domain === kind).length;
 
 describe('exercises data', () => {
-  it('has 40 exercises with unique ids', () => {
-    expect(EXERCISES).toHaveLength(40);
-    expect(new Set(EXERCISES.map((e) => e.id)).size).toBe(40);
+  it('has 42 exercises with unique ids', () => {
+    expect(EXERCISES).toHaveLength(42);
+    expect(new Set(EXERCISES.map((e) => e.id)).size).toBe(42);
+  });
+
+  it('uses FFF sheets for the exercises that replaced invented ones', () => {
+    expect(getExercise('phy-chat-ballon')).toBeUndefined();
+    for (const id of ['phy-terre-mer-ciel', 'tech-10-vies', 'pt-passe-dosee']) {
+      expect(getExercise(id)?.source, id).toMatch(/^FFF – District/);
+    }
   });
 
   it('has the expected mix', () => {

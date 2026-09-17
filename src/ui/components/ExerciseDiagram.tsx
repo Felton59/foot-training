@@ -39,6 +39,14 @@ function Item({ item }: { item: DiagramItem }) {
       return <path d={`M${item.x} ${item.y - 4} L${item.x + 3.5} ${item.y + 2.5} L${item.x - 3.5} ${item.y + 2.5} Z`} className="cone" />;
     case 'ballon':
       return <circle cx={item.x} cy={item.y} r={2.2} className="ball" />;
+    case 'cible':
+      return (
+        <g>
+          <circle cx={item.x} cy={item.y} r={5} className="target" />
+          <circle cx={item.x} cy={item.y} r={3.2} className="target-ring" />
+          <circle cx={item.x} cy={item.y} r={1.4} className="target" />
+        </g>
+      );
     case 'texte':
       return <text x={item.x} y={item.y} className="note">{item.text}</text>;
   }

@@ -98,6 +98,8 @@ p { line-height: 1.45; }
 .diagram .player-label { fill: #fff; font-size: 2.7px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
 .diagram .cone { fill: #f97316; stroke: #7c2d12; stroke-width: 0.3; }
 .diagram .ball { fill: #fff; stroke: #1c1917; stroke-width: 0.5; }
+.diagram .target { fill: #dc2626; }
+.diagram .target-ring { fill: #fff; }
 .diagram .note { fill: #fff; font-size: 3.5px; font-weight: 600; text-anchor: middle; dominant-baseline: central; }
 .diagram .arrow { fill: none; stroke-width: 0.8; stroke-linecap: round; }
 .diagram .arrow.course { stroke: #fff; }

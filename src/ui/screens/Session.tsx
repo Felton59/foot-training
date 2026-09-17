@@ -160,6 +160,7 @@ function ExerciseRunner({ ip, update, onPause }: { ip: InProgressSession; update
       </ol>
       {exercise?.tip && <p className="tip">💡 {exercise.tip}</p>}
       {exercise?.stopwatch && <Stopwatch />}
+      {exercise?.source && <p className="muted">📄 D'après : {exercise.source}</p>}
       <button className="btn btn-primary btn-big" onClick={() => update((s) => completeCurrent(s, true))}>
         ✅ Exercice fait
       </button>

@@ -8,6 +8,8 @@ export interface Exercise {
   equipment: Equipment[];
   steps: string[];
   tip?: string;
+  /** Fiche d'origine quand l'exercice vient d'une source officielle. */
+  source?: string;
   diagram?: Diagram;
   /** Affiche un chrono Départ / Arrivée pendant l'exercice. */
   stopwatch?: boolean;
@@ -21,7 +23,7 @@ export interface Diagram {
 }
 
 export type DiagramItem =
-  | { kind: 'enfant' | 'papa' | 'plot' | 'ballon'; x: number; y: number }
+  | { kind: 'enfant' | 'papa' | 'plot' | 'ballon' | 'cible'; x: number; y: number }
   | { kind: 'texte'; x: number; y: number; text: string };
 
 export interface DiagramArrow {

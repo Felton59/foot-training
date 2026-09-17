@@ -46,6 +46,7 @@ export default function Exercises({ state }: { state: AppState }) {
         </ol>
         {selected.tip && <p className="tip">💡 {selected.tip}</p>}
         {selected.stopwatch && <Stopwatch />}
+        {selected.source && <p className="muted">📄 D'après : {selected.source}</p>}
       </div>
     );
   }
