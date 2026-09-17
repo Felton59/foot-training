@@ -5,6 +5,7 @@ import { abandonSession, setProfile, startSession } from './ui/actions';
 import Challenges from './ui/screens/Challenges';
 import Home from './ui/screens/Home';
 import Onboarding from './ui/screens/Onboarding';
+import Progress from './ui/screens/Progress';
 import SessionScreen from './ui/screens/Session';
 import { useAppState } from './ui/useAppState';
 
@@ -81,7 +82,7 @@ export default function App() {
       case 'challenges':
         return <Challenges state={state} update={update} />;
       case 'progress':
-        return <p className="muted">Progrès</p>;
+        return <Progress state={state} />;
       case 'settings':
         return <p className="muted">Réglages</p>;
     }
