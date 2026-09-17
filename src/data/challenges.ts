@@ -30,7 +30,8 @@ export const CHALLENGES: Challenge[] = [
     tiers: { bronze: 20, argent: 16, or: 13 },
     minValue: 8,
     equipment: ['ballon', 'plots'],
-    howTo: ["Aligne 6 plots espacés de 1,5 m.", "Slalome ballon au pied jusqu'au bout puis reviens en slalomant.", "Papa chronomètre du départ jusqu'à ton retour. Chaque plot renversé ajoute 2 secondes."],
+    howTo: ["Aligne 6 plots espacés de 1,5 m.", "Papa appuie sur « Départ » : slalome ballon au pied jusqu'au bout, puis reviens en slalomant.", "Papa appuie sur « Arrivée » à ton retour. Chaque plot renversé ajoute 2 secondes."],
+    timer: { kind: 'stopwatch' },
   },
   {
     id: 'controles',
@@ -51,7 +52,8 @@ export const CHALLENGES: Challenge[] = [
     better: 'higher',
     tiers: { bronze: 10, argent: 15, or: 20 },
     equipment: ['ballon'],
-    howTo: ["Place-toi à 4 m de papa.", "Faites-vous des passes le plus vite possible pendant 30 s.", "Compte seulement tes passes qui arrivent dans les pieds de papa."],
+    howTo: ["Place-toi à 4 m de papa.", "Papa lance le compte à rebours : faites-vous des passes le plus vite possible jusqu'au bip.", "Compte seulement tes passes qui arrivent dans les pieds de papa."],
+    timer: { kind: 'countdown', seconds: 30 },
   },
   {
     id: 'tirs-cadres',
@@ -84,7 +86,8 @@ export const CHALLENGES: Challenge[] = [
     tiers: { bronze: 5.0, argent: 4.5, or: 4.1 },
     minValue: 3.5,
     equipment: ['grand-espace', 'plots'],
-    howTo: ["Place 2 plots à 20 m l'un de l'autre.", "Pars au signal de papa et cours jusqu'au 2e plot.", "Garde le meilleur de 2 essais."],
+    howTo: ["Place 2 plots à 20 m l'un de l'autre.", "Papa crie « Partez ! » en appuyant sur « Départ » : cours jusqu'au 2e plot.", "Papa appuie sur « Arrivée » quand tu passes le plot. Garde le meilleur de 2 essais."],
+    timer: { kind: 'stopwatch' },
   },
   {
     id: 'navette-5-10-5',
@@ -95,7 +98,8 @@ export const CHALLENGES: Challenge[] = [
     tiers: { bronze: 7.5, argent: 6.8, or: 6.2 },
     minValue: 5,
     equipment: ['plots'],
-    howTo: ["Aligne 3 plots espacés de 5 m ; pars de celui du milieu.", "Cours toucher le plot de droite, puis celui de gauche, puis reviens au milieu.", "Garde le meilleur de 2 essais."],
+    howTo: ["Aligne 3 plots espacés de 5 m ; pars de celui du milieu.", "Papa appuie sur « Départ » : cours toucher le plot de droite, puis celui de gauche, puis reviens au milieu.", "Papa appuie sur « Arrivée » à ton retour. Garde le meilleur de 2 essais."],
+    timer: { kind: 'stopwatch' },
   },
   {
     id: 'arrets-gardien',

@@ -9,6 +9,8 @@ export interface Exercise {
   steps: string[];
   tip?: string;
   diagram?: Diagram;
+  /** Affiche un chrono Départ / Arrivée pendant l'exercice. */
+  stopwatch?: boolean;
 }
 
 /** Schéma vu de dessus. Terrain de 100 de large sur `height` de haut (60 par défaut). */
@@ -41,6 +43,8 @@ export interface Challenge {
   minValue?: number;
   equipment: Equipment[];
   howTo: string[];
+  /** Chrono Départ / Arrivée, ou compte à rebours de durée fixe. */
+  timer?: { kind: 'stopwatch' } | { kind: 'countdown'; seconds: number };
 }
 
 export interface BadgeDef {

@@ -2,6 +2,9 @@ import { useState } from 'react';
 import type { Challenge } from '../../data/types';
 import { isSuspiciousResult, isValidResultValue, nextStep } from '../../engine/tiers';
 import { formatValue } from '../format';
+import { secondsInputText } from '../stopwatch';
+import ChallengeCountdown from './ChallengeCountdown';
+import Stopwatch from './Stopwatch';
 
 interface Props {
   challenge: Challenge;
@@ -53,6 +56,15 @@ export default function ChallengeInput({ challenge, best, onSubmit, submitLabel 
           </span>
         )}
       </div>
+      {challenge.timer?.kind === 'stopwatch' && (
+        <Stopwatch
+          onStop={(seconds) => {
+            setText(secondsInputText(seconds));
+            setError(null);
+          }}
+        />
+      )}
+      {challenge.timer?.kind === 'countdown' && <ChallengeCountdown seconds={challenge.timer.seconds} />}
       <label className="field">
         Ton résultat ({challenge.unit})
         <input inputMode="decimal" value={text} onChange={(e) => setText(e.target.value)} />

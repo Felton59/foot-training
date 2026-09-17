@@ -106,7 +106,8 @@ export const EXERCISES: Exercise[] = [
   { id: 'phy-chat-ballon', name: 'Chat ballon', domain: 'physique', durationMin: 6, equipment: ['ballon'],
     steps: ["Délimitez une zone d'environ 10 m sur 10 m.", "Conduis ton ballon dans la zone et échappe à papa qui essaie de te toucher.", "Si papa te touche, on inverse : c'est toi qui chasses."] },
   { id: 'phy-parcours', name: "Parcours d'agilité", domain: 'physique', durationMin: 8, equipment: ['plots'],
-    steps: ["Installe le parcours : 4 plots en ligne pour un slalom, un plot couché à sauter, puis un plot d'arrivée 5 m plus loin.", "Fais le parcours sans ballon le plus vite possible pendant que papa chronomètre.", "Repose-toi, puis essaie de battre ton temps."] },
+    steps: ["Installe le parcours : 4 plots en ligne pour un slalom, un plot couché à sauter, puis un plot d'arrivée 5 m plus loin.", "Papa appuie sur « Départ » : fais le parcours sans ballon le plus vite possible, et il appuie sur « Arrivée » à la fin.", "Repose-toi, puis essaie de battre ton temps."],
+    stopwatch: true },
 
   // Gardien (5)
   { id: 'gar-prise-balle', name: 'Prises de balle', domain: 'gardien', durationMin: 6, equipment: ['ballon'],

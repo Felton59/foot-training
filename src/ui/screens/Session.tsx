@@ -9,6 +9,7 @@ import {
 } from '../actions';
 import ChallengeInput from '../components/ChallengeInput';
 import ExerciseDiagram from '../components/ExerciseDiagram';
+import Stopwatch from '../components/Stopwatch';
 import { beep, unlockAudio } from '../lib/sound';
 import { useWakeLock } from '../lib/wakeLock';
 import { useCountdown } from '../useCountdown';
@@ -158,6 +159,7 @@ function ExerciseRunner({ ip, update, onPause }: { ip: InProgressSession; update
         {exercise?.steps.map((step) => <li key={step}>{step}</li>)}
       </ol>
       {exercise?.tip && <p className="tip">💡 {exercise.tip}</p>}
+      {exercise?.stopwatch && <Stopwatch />}
       <button className="btn btn-primary btn-big" onClick={() => update((s) => completeCurrent(s, true))}>
         ✅ Exercice fait
       </button>
