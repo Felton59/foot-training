@@ -4,6 +4,7 @@ import type { Duration } from './storage/schema';
 import { abandonSession, setProfile, startSession } from './ui/actions';
 import Home from './ui/screens/Home';
 import Onboarding from './ui/screens/Onboarding';
+import SessionScreen from './ui/screens/Session';
 import { useAppState } from './ui/useAppState';
 
 type Tab = 'home' | 'challenges' | 'progress' | 'settings';
@@ -51,7 +52,18 @@ export default function App() {
     setInSession(true);
   };
 
-  // SESSION_SCREEN
+  if (inSession) {
+    return (
+      <SessionScreen
+        state={state}
+        update={update}
+        onExit={() => {
+          setInSession(false);
+          setTab('home');
+        }}
+      />
+    );
+  }
 
   function renderTab() {
     switch (tab) {
