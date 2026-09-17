@@ -158,7 +158,7 @@ Règles :
 1. Seuls les exercices et défis dont tout le matériel est disponible sont proposés.
 2. Les domaines des blocs sont choisis du moins récemment travaillé au plus récent (sur l'historique), sans doublon dans une même séance tant que possible.
 3. Le domaine **gardien** apparaît au plus dans 1 séance sur 3 (sur les 3 dernières séances).
-4. Un exercice présent dans la séance précédente n'est pas reproposé s'il existe une alternative.
+4. Dans chaque catégorie, les exercices jamais faits passent en premier, puis ceux faits il y a le plus longtemps (égalités tirées au hasard) ; un exercice de la séance précédente, fait ou passé, n'est reproposé que s'il n'existe pas d'alternative.
 5. Le défi porte sur un des domaines de la séance ; priorité au défi le moins récemment tenté.
 6. Si les filtres ne laissent aucun exercice pour un domaine, ce domaine est sauté et remplacé par le suivant.
 

@@ -60,11 +60,26 @@ export function buildSession(input: BuildInput): SessionPlan {
   const lastIds = new Set(history[0]?.items.map((i) => i.exerciseId) ?? []);
   const used = new Set<string>();
 
+  // Index (0 = newest) of the latest session where each exercise was actually done.
+  const lastDone = new Map<string, number>();
+  history.forEach((s, i) =>
+    s.items.forEach((it) => {
+      if (it.done && !lastDone.has(it.exerciseId)) lastDone.set(it.exerciseId, i);
+    }),
+  );
+  // Higher = better candidate: never done first, then done longest ago; anything from the previous session comes last.
+  const staleness = (e: Exercise) => (lastIds.has(e.id) ? -1 : (lastDone.get(e.id) ?? Number.POSITIVE_INFINITY));
+
   const pick = (kind: ExerciseKind, count: number): Exercise[] => {
     const pool = exercises.filter((e) => e.domain === kind && !used.has(e.id));
-    const fresh = pool.filter((e) => !lastIds.has(e.id));
-    const repeats = pool.filter((e) => lastIds.has(e.id));
-    const chosen = [...shuffle(fresh, rng), ...shuffle(repeats, rng)].slice(0, count);
+    // Shuffle first so the stable sort breaks ties at random.
+    const chosen = shuffle(pool, rng)
+      .sort((a, b) => {
+        const sa = staleness(a);
+        const sb = staleness(b);
+        return sa === sb ? 0 : sa > sb ? -1 : 1;
+      })
+      .slice(0, count);
     chosen.forEach((e) => used.add(e.id));
     return chosen;
   };

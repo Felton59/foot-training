@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { getChallenge } from '../data/challenges';
 import { EXERCISES, getExercise } from '../data/exercises';
+import type { Exercise } from '../data/types';
 import { DURATIONS, type CompletedSession, type Domain, type Equipment, type SessionPlan } from '../storage/schema';
 import { buildSession, CHALLENGE_MIN, splitMinutes, STRUCTURE } from './sessionBuilder';
 
@@ -99,5 +100,48 @@ describe('buildSession', () => {
     const ch = getChallenge(plan.challengeId!)!;
     expect(ch.id).not.toBe('jongles-pied-fort');
     expect(blockDomains(plan)).toContain(ch.domain);
+  });
+});
+
+describe('exercise rotation', () => {
+  const ex = (id: string, domain: Exercise['domain']): Exercise => ({ id, name: id, domain, durationMin: 5, equipment: [], steps: ['a', 'b'] });
+  // Order matters: a plain shuffle with rng = 0 would pick T2 first.
+  const library = [ex('W1', 'echauffement'), ex('R1', 'retour-calme'), ex('T3', 'technique'), ex('T2', 'technique'), ex('T1', 'technique'), ex('P1', 'passes-tirs')];
+  const done = (date: string, exerciseId: string): CompletedSession => ({
+    id: date,
+    date,
+    plannedMin: 30,
+    items: [{ exerciseId, domain: 'technique', durationMin: 8, done: true }],
+  });
+  const technique = (plan: SessionPlan) => plan.items.filter((i) => i.domain === 'technique').map((i) => i.exerciseId);
+
+  it('prefers an exercise never done over one done a few sessions ago', () => {
+    const history = [done('2026-09-16T17:00:00.000Z', 'T1'), done('2026-09-15T17:00:00.000Z', 'T2')];
+    const plan = buildSession({ durationMin: 30, equipment: ALL, history, results: [], rng: zero, exercises: library });
+    expect(technique(plan)).toEqual(['T3']);
+  });
+
+  it('then prefers the exercise done the longest time ago', () => {
+    const history = [
+      done('2026-09-16T17:00:00.000Z', 'T1'),
+      done('2026-09-15T17:00:00.000Z', 'T2'),
+      done('2026-09-14T17:00:00.000Z', 'T3'),
+    ];
+    const plan = buildSession({ durationMin: 30, equipment: ALL, history, results: [], rng: zero, exercises: library });
+    expect(technique(plan)).toEqual(['T3']);
+  });
+
+  it('does not bring back an exercise skipped in the previous session', () => {
+    const skippedLast: CompletedSession = { ...done('2026-09-16T17:00:00.000Z', 'T3'), items: [{ exerciseId: 'T3', domain: 'technique', durationMin: 8, done: false }] };
+    const history = [skippedLast, done('2026-09-15T17:00:00.000Z', 'T2'), done('2026-09-14T17:00:00.000Z', 'T1')];
+    const plan = buildSession({ durationMin: 30, equipment: ALL, history, results: [], rng: zero, exercises: library });
+    expect(technique(plan)).toEqual(['T1']);
+  });
+
+  it('only counts exercises that were actually done', () => {
+    const skipped: CompletedSession = { ...done('2026-09-15T17:00:00.000Z', 'T3'), items: [{ exerciseId: 'T3', domain: 'technique', durationMin: 8, done: false }] };
+    const history = [done('2026-09-16T17:00:00.000Z', 'T1'), skipped, done('2026-09-14T17:00:00.000Z', 'T2')];
+    const plan = buildSession({ durationMin: 30, equipment: ALL, history, results: [], rng: zero, exercises: library });
+    expect(technique(plan)).toEqual(['T3']);
   });
 });
