@@ -10,7 +10,7 @@ export const BADGES: BadgeDef[] = [
   { id: 'pied-gauche', name: 'Pied gauche en feu', emoji: '🦶', description: "Atteins l'or au défi jongles ou au défi tir avec ton pied faible." },
   { id: 'fusee', name: 'Fusée', emoji: '🚀', description: "Atteins l'or au sprint 20 m." },
   { id: 'sniper', name: 'Sniper', emoji: '🎯', description: "Marque 15 points sur 15 au défi tir." },
-  { id: 'mur', name: 'Mur infranchissable', emoji: '🧤', description: "Atteins l'or aux arrêts de gardien." },
+  { id: 'mur', name: 'Mur infranchissable', emoji: '🧤', description: "Atteins l'or au défi tirs au but (gardien)." },
   { id: 'touche-a-tout', name: 'Touche-à-tout', emoji: '🧩', description: "Obtiens au moins le bronze dans les 4 domaines." },
   { id: 'collectionneur', name: 'Collectionneur', emoji: '🥇', description: "Atteins l'or sur 5 défis différents." },
 ];

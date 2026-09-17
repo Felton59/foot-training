@@ -95,13 +95,13 @@ Bibliothèque de départ : ~40 exercices (au moins 4 échauffements, 3 retours a
 | Jongles pied fort (FFF Cher, défi jonglage) | technique | jongles | + | 10 | 20 | 30 |
 | Jongles pied faible (FFF Cher, défi jonglage) | technique | jongles | + | 5 | 10 | 20 |
 | Défi slalom 12 points (FFF Yvelines U9, fiche 6) | technique | points (/12) | + | 8 | 10 | 12 |
-| Contrôles réussis sur 10 | technique | /10 | + | 5 | 7 | 9 |
+| Défi contrôle orienté + tir (FFF Escaut, défi U10-U11) | technique | points (/15) | + | 6 | 9 | 12 |
 | Défi passe dosée (FFF Yvelines U9, fiche 7) | passes-tirs | points (/50) | + | 15 | 25 | 35 |
 | Défi tir (FFF Mayenne, fiches 4 et 7) | passes-tirs | points (/15) | + | 5 | 8 | 11 |
 | Défi tir pied faible (FFF Mayenne, fiche 4) | passes-tirs | points (/15) | + | 3 | 6 | 9 |
-| Sprint 20 m | physique | s | − | 5.0 | 4.5 | 4.1 |
+| Sprint 20 m (FFF Vendée, tests PPF) | physique | s | − | 5.0 | 4.5 | 4.1 |
 | Allers-retours en 1 minute (FFF Mayenne, fiche 2) | physique | allers-retours | + | 3 | 4 | 5 |
-| Arrêts sur 10 tirs | gardien | /10 | + | 4 | 6 | 8 |
+| Défi tirs au but, gardien (FFF Indre-et-Loire, défi U11) | gardien | /10 | + | 3 | 5 | 7 |
 
 **Paliers au-delà de l'or** : une fois l'or atteint, des paliers « Or +1 », « Or +2 », etc. se débloquent, espacés du même écart qu'entre argent et or (ex. jongles : 75, 100, 125…). Pour les défis « /10 », le plafond est 10 ; pour les temps, un plancher raisonnable est fixé par défi (`minValue`) et on n'ajoute plus de palier au-delà.
 

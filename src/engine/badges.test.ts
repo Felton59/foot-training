@@ -51,7 +51,7 @@ describe('badge rules', () => {
 
   it('awards challenge badges', () => {
     const ids = earnedBadgeIds(state({
-      results: [res('jongles-pied-fort', 50), res('defi-tir-pied-faible', 9), res('sprint-20m', 4.0), res('defi-tir', 15), res('arrets-gardien', 8)],
+      results: [res('jongles-pied-fort', 50), res('defi-tir-pied-faible', 9), res('sprint-20m', 4.0), res('defi-tir', 15), res('defi-tirs-au-but', 7)],
     }));
     expect(ids).toEqual(expect.arrayContaining(['jongles-50', 'pied-gauche', 'fusee', 'sniper', 'mur']));
   });
@@ -59,11 +59,11 @@ describe('badge rules', () => {
   it('requires bronze in every domain for touche-a-tout', () => {
     const three = [res('jongles-pied-fort', 10), res('defi-passe-dosee', 15), res('allers-retours-1min', 3)];
     expect(earnedBadgeIds(state({ results: three }))).not.toContain('touche-a-tout');
-    expect(earnedBadgeIds(state({ results: [...three, res('arrets-gardien', 4)] }))).toContain('touche-a-tout');
+    expect(earnedBadgeIds(state({ results: [...three, res('defi-tirs-au-but', 4)] }))).toContain('touche-a-tout');
   });
 
   it('requires gold on 5 challenges for collectionneur', () => {
-    const golds = [res('jongles-pied-fort', 30), res('controles', 9), res('defi-passe-dosee', 35), res('defi-tir', 11)];
+    const golds = [res('jongles-pied-fort', 30), res('defi-controle-tir', 12), res('defi-passe-dosee', 35), res('defi-tir', 11)];
     expect(earnedBadgeIds(state({ results: golds }))).not.toContain('collectionneur');
     expect(earnedBadgeIds(state({ results: [...golds, res('allers-retours-1min', 5)] }))).toContain('collectionneur');
   });

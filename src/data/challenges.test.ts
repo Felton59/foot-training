@@ -40,10 +40,10 @@ describe('challenges data', () => {
 
 describe('official challenges', () => {
   it('replaces invented challenges with FFF ones', () => {
-    for (const old of ['jongles', 'slalom-plots', 'passes-a-deux', 'tirs-cadres', 'tirs-pied-faible']) {
+    for (const old of ['jongles', 'slalom-plots', 'passes-a-deux', 'tirs-cadres', 'tirs-pied-faible', 'controles', 'arrets-gardien']) {
       expect(getChallenge(old), old).toBeUndefined();
     }
-    for (const id of ['jongles-pied-fort', 'jongles-pied-faible', 'defi-slalom-12', 'defi-passe-dosee', 'defi-tir', 'defi-tir-pied-faible', 'allers-retours-1min']) {
+    for (const id of ['jongles-pied-fort', 'jongles-pied-faible', 'defi-slalom-12', 'defi-passe-dosee', 'defi-tir', 'defi-tir-pied-faible', 'allers-retours-1min', 'defi-controle-tir', 'sprint-20m', 'defi-tirs-au-but']) {
       expect(getChallenge(id)?.source, id).toMatch(/^FFF – District/);
     }
   });

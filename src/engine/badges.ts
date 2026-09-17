@@ -33,7 +33,7 @@ export const BADGE_RULES: Record<string, (f: BadgeFacts) => boolean> = {
   'pied-gauche': (f) => f.rank('jongles-pied-faible') >= 3 || f.rank('defi-tir-pied-faible') >= 3,
   fusee: (f) => f.rank('sprint-20m') >= 3,
   sniper: (f) => (f.best('defi-tir') ?? 0) >= 15,
-  mur: (f) => f.rank('arrets-gardien') >= 3,
+  mur: (f) => f.rank('defi-tirs-au-but') >= 3,
   'touche-a-tout': (f) =>
     ALL_DOMAINS.every((d) => CHALLENGES.some((c) => c.domain === d && f.rank(c.id) >= 1)),
   collectionneur: (f) => CHALLENGES.filter((c) => f.rank(c.id) >= 3).length >= 5,
