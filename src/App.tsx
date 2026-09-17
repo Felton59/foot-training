@@ -43,7 +43,12 @@ export default function App() {
     return (
       <>
         {banners}
-        <Onboarding onDone={(p) => update((s) => setProfile(s, p))} />
+        <Onboarding
+          onDone={(p) => {
+            update((s) => setProfile(s, p));
+            setTab('home');
+          }}
+        />
       </>
     );
   }
