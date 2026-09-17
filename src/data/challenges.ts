@@ -39,6 +39,16 @@ export const CHALLENGES: Challenge[] = [
     equipment: ['ballon', 'plots'],
     howTo: ["Pose un plot de départ, puis un plot tous les 5 m jusqu'à 20 m.", "Monte le ballon avec le pied et avance en jonglant uniquement avec les pieds, sans jamais laisser le ballon toucher le sol.", "Papa note la distance où le ballon est tombé (20 m si tu arrives au bout). Tu as 2 essais : garde le meilleur."],
     source: `${VENDEE_TESTS} (jonglerie en mouvement sur 20 m, mesurée ici en distance au lieu du temps)`,
+    diagram: {
+      height: 40,
+      items: [
+        { kind: 'plot', x: 10, y: 24 }, { kind: 'plot', x: 30, y: 24 }, { kind: 'plot', x: 50, y: 24 }, { kind: 'plot', x: 70, y: 24 }, { kind: 'plot', x: 90, y: 24 },
+        { kind: 'texte', x: 10, y: 34, text: '0' }, { kind: 'texte', x: 30, y: 34, text: '5 m' }, { kind: 'texte', x: 50, y: 34, text: '10 m' },
+        { kind: 'texte', x: 70, y: 34, text: '15 m' }, { kind: 'texte', x: 90, y: 34, text: '20 m' },
+        { kind: 'enfant', x: 12, y: 12 }, { kind: 'ballon', x: 19, y: 6 },
+      ],
+      arrows: [{ kind: 'course', points: [[19, 13], [58, 13]] }],
+    },
   },
   {
     id: 'defi-slalom-12',
@@ -51,6 +61,19 @@ export const CHALLENGES: Challenge[] = [
     equipment: ['ballon', 'plots'],
     howTo: ["Aligne 4 plots espacés de 2 m, puis pose un dernier plot 5 m plus loin. Tu pars avec 12 points.", "Slalome entre les 4 plots, puis avance jusqu'au dernier plot en poussant le ballon avec la semelle, pied droit puis pied gauche.", "Fais le tour du dernier plot et reviens de la même façon, le plus vite possible. Chaque plot touché fait perdre 1 point."],
     source: `${YVELINES_U9} (défi technique, fiche 6)`,
+    diagram: {
+      height: 50,
+      items: [
+        { kind: 'enfant', x: 6, y: 25 }, { kind: 'ballon', x: 12, y: 30 },
+        { kind: 'plot', x: 24, y: 25 }, { kind: 'plot', x: 34, y: 25 }, { kind: 'plot', x: 44, y: 25 }, { kind: 'plot', x: 54, y: 25 },
+        { kind: 'plot', x: 90, y: 25 },
+        { kind: 'texte', x: 39, y: 5, text: 'slalom (2 m)' }, { kind: 'texte', x: 73, y: 16, text: 'semelle (5 m)' },
+        { kind: 'texte', x: 50, y: 45, text: 'tour du dernier plot, puis retour' },
+      ],
+      arrows: [
+        { kind: 'course', curve: true, points: [[16, 25], [24, 14], [29, 25], [34, 36], [39, 25], [44, 14], [49, 25], [54, 36], [60, 25], [84, 25]] },
+      ],
+    },
   },
   {
     id: 'conduite-piquets',
@@ -64,6 +87,22 @@ export const CHALLENGES: Challenge[] = [
     howTo: ["Fais une porte de départ de 2 m. Pose un plot A à 8 m en face, un plot B à 4 m à gauche et un plot C à 4 m à droite, à mi-chemin. Derrière la porte, marque un petit carré de 1 m avec 4 plots.", "Papa appuie sur « Départ » quand tu passes la porte : contourne le plot A, puis les plots B et C, et reviens par la porte.", "Papa appuie sur « Arrivée » quand tu repasses la porte : arrête le ballon dans le carré, sinon l'essai ne compte pas. 2 essais : un en partant par la droite, un par la gauche."],
     timer: { kind: 'stopwatch' },
     source: `${VENDEE_TESTS} (conduite de balle ; distances choisies pour le jardin, le protocole ne les précise pas)`,
+    diagram: {
+      items: [
+        { kind: 'plot', x: 4, y: 26 }, { kind: 'plot', x: 12, y: 26 }, { kind: 'plot', x: 4, y: 34 }, { kind: 'plot', x: 12, y: 34 },
+        { kind: 'texte', x: 8, y: 44, text: 'carré' },
+        { kind: 'plot', x: 22, y: 22 }, { kind: 'plot', x: 22, y: 38 }, { kind: 'texte', x: 22, y: 14, text: 'porte' },
+        { kind: 'plot', x: 92, y: 30 }, { kind: 'texte', x: 92, y: 40, text: 'A' },
+        { kind: 'plot', x: 57, y: 6 }, { kind: 'texte', x: 65, y: 6, text: 'B' },
+        { kind: 'plot', x: 57, y: 54 }, { kind: 'texte', x: 65, y: 54, text: 'C' },
+      ],
+      arrows: [
+        { kind: 'course', points: [[27, 30], [70, 30], [85, 30]], label: '1' },
+        { kind: 'course', points: [[88, 25], [61, 10]], label: '2' },
+        { kind: 'course', points: [[53, 11], [53, 40], [53, 49]], label: '3' },
+        { kind: 'course', points: [[51, 50], [27, 34]], label: '4' },
+      ],
+    },
   },
   {
     id: 'defi-controle-tir',
@@ -76,6 +115,19 @@ export const CHALLENGES: Challenge[] = [
     equipment: ['ballon', 'plots'],
     howTo: ["Fais un but de 2 plots écartés de 2 m. Mets-toi à 9 m du but, dos au but ; papa se place à 5 m devant toi.", "Papa te passe le ballon et crie « gauche » ou « droite » : contrôle-le d'une seule touche en te retournant de ce côté (1 point si c'est le bon côté).", "Tire tout de suite, sans t'approcher à moins de 6 m du but : 2 points si tu marques. Fais 5 passages (15 points au maximum)."],
     source: "FFF – District de l'Escaut, défi technique « Conduite – passe – tir » U10-U11 (contrôle orienté puis frappe avant les 9 m), adapté à 2 joueurs",
+    diagram: {
+      items: [
+        { kind: 'plot', x: 6, y: 22 }, { kind: 'plot', x: 6, y: 38 }, { kind: 'texte', x: 7, y: 48, text: 'but' },
+        { kind: 'plot', x: 34, y: 6 }, { kind: 'plot', x: 34, y: 54 }, { kind: 'texte', x: 22, y: 56, text: 'limite 6 m' },
+        { kind: 'enfant', x: 54, y: 30 }, { kind: 'papa', x: 86, y: 30 },
+        { kind: 'texte', x: 54, y: 8, text: '9 m, dos au but' }, { kind: 'texte', x: 86, y: 46, text: '« gauche ! »' },
+      ],
+      arrows: [
+        { kind: 'balle', points: [[80, 30], [60, 30]], label: '1' },
+        { kind: 'balle', curve: true, points: [[50, 34], [46, 42], [40, 44]], label: '2' },
+        { kind: 'balle', points: [[38, 42], [9, 32]], label: '3' },
+      ],
+    },
   },
   {
     id: 'defi-passe-dosee',
@@ -88,6 +140,17 @@ export const CHALLENGES: Challenge[] = [
     equipment: ['ballon', 'plots'],
     howTo: ["À 5 m de toi, marque 3 carrés à la suite avec des plots : un grand de 3 m, un moyen de 2 m, puis un petit de 1 m.", "Fais 5 passes : le ballon doit s'arrêter dans un carré. Grand = 2 points, moyen = 5 points, petit = 10 points, dehors = 0.", "Additionne les points de tes 5 passes (50 au maximum)."],
     source: `${YVELINES_U9} (défi technique, fiche 7)`,
+    diagram: {
+      height: 44,
+      items: [
+        { kind: 'enfant', x: 5, y: 20 }, { kind: 'ballon', x: 11, y: 20 }, { kind: 'texte', x: 18, y: 36, text: '5 m' },
+        { kind: 'plot', x: 28, y: 6 }, { kind: 'plot', x: 28, y: 34 }, { kind: 'plot', x: 50, y: 6 }, { kind: 'plot', x: 50, y: 34 },
+        { kind: 'plot', x: 56, y: 10 }, { kind: 'plot', x: 56, y: 30 }, { kind: 'plot', x: 71, y: 10 }, { kind: 'plot', x: 71, y: 30 },
+        { kind: 'plot', x: 77, y: 14 }, { kind: 'plot', x: 77, y: 26 }, { kind: 'plot', x: 86, y: 14 }, { kind: 'plot', x: 86, y: 26 },
+        { kind: 'texte', x: 39, y: 40, text: '2 pts' }, { kind: 'texte', x: 63, y: 40, text: '5 pts' }, { kind: 'texte', x: 81, y: 40, text: '10 pts' },
+      ],
+      arrows: [{ kind: 'balle', points: [[15, 20], [80, 20]] }],
+    },
   },
   {
     id: 'defi-tir',
@@ -100,6 +163,19 @@ export const CHALLENGES: Challenge[] = [
     equipment: ['ballon', 'plots'],
     howTo: ["Fais un but de 2 plots écartés de 2 m et pose 3 repères de tir : à 5 m (1 point), 7 m (2 points) et 9 m (3 points).", "Fais 5 tirs en choisissant ton repère à chaque fois, ballon arrêté ou après une conduite.", "Un tir compte s'il passe entre les plots. Additionne tes points (15 au maximum)."],
     source: `${MAYENNE} (fiches 4 et 7)`,
+    diagram: {
+      items: [
+        { kind: 'plot', x: 94, y: 20 }, { kind: 'plot', x: 94, y: 40 },
+        { kind: 'plot', x: 36, y: 30 }, { kind: 'plot', x: 52, y: 30 }, { kind: 'plot', x: 68, y: 30 },
+        { kind: 'texte', x: 36, y: 20, text: '9 m' }, { kind: 'texte', x: 52, y: 20, text: '7 m' }, { kind: 'texte', x: 68, y: 20, text: '5 m' },
+        { kind: 'texte', x: 36, y: 42, text: '3 pts' }, { kind: 'texte', x: 52, y: 42, text: '2 pts' }, { kind: 'texte', x: 68, y: 42, text: '1 pt' },
+        { kind: 'enfant', x: 8, y: 30 }, { kind: 'ballon', x: 15, y: 34 }, { kind: 'texte', x: 50, y: 55, text: '5 tirs' },
+      ],
+      arrows: [
+        { kind: 'course', points: [[18, 36], [46, 36]], label: '1' },
+        { kind: 'balle', points: [[56, 34], [92, 30]], label: '2' },
+      ],
+    },
   },
   {
     id: 'defi-tir-pied-faible',
@@ -112,6 +188,19 @@ export const CHALLENGES: Challenge[] = [
     equipment: ['ballon', 'plots'],
     howTo: ["Fais un but de 2 plots écartés de 2 m et pose 3 repères de tir : à 5 m (1 point), 7 m (2 points) et 9 m (3 points).", "Fais 5 tirs avec ton pied faible uniquement, en choisissant ton repère à chaque fois.", "Un tir compte s'il passe entre les plots. Additionne tes points (15 au maximum)."],
     source: `${MAYENNE} (fiche 4, variante pied faible)`,
+    diagram: {
+      items: [
+        { kind: 'plot', x: 94, y: 20 }, { kind: 'plot', x: 94, y: 40 },
+        { kind: 'plot', x: 36, y: 30 }, { kind: 'plot', x: 52, y: 30 }, { kind: 'plot', x: 68, y: 30 },
+        { kind: 'texte', x: 36, y: 20, text: '9 m' }, { kind: 'texte', x: 52, y: 20, text: '7 m' }, { kind: 'texte', x: 68, y: 20, text: '5 m' },
+        { kind: 'texte', x: 36, y: 42, text: '3 pts' }, { kind: 'texte', x: 52, y: 42, text: '2 pts' }, { kind: 'texte', x: 68, y: 42, text: '1 pt' },
+        { kind: 'enfant', x: 8, y: 30 }, { kind: 'ballon', x: 15, y: 34 }, { kind: 'texte', x: 50, y: 55, text: '5 tirs, pied faible' },
+      ],
+      arrows: [
+        { kind: 'course', points: [[18, 36], [46, 36]], label: '1' },
+        { kind: 'balle', points: [[56, 34], [92, 30]], label: '2' },
+      ],
+    },
   },
   {
     id: 'sprint-20m',
@@ -125,6 +214,14 @@ export const CHALLENGES: Challenge[] = [
     howTo: ["Place 2 plots à 20 m l'un de l'autre et mets-toi derrière le premier.", "Pars quand tu veux : papa appuie sur « Départ » à ton premier pas, puis sur « Arrivée » quand tu passes le 2e plot.", "Fais 2 essais et garde le meilleur temps."],
     timer: { kind: 'stopwatch' },
     source: 'FFF – District de Vendée, tests athlétiques du Projet de Performance Fédéral (vitesse linéaire 20 m)',
+    diagram: {
+      height: 40,
+      items: [
+        { kind: 'plot', x: 8, y: 24 }, { kind: 'plot', x: 92, y: 24 }, { kind: 'enfant', x: 8, y: 12 },
+        { kind: 'texte', x: 8, y: 34, text: 'départ' }, { kind: 'texte', x: 92, y: 34, text: 'arrivée' }, { kind: 'texte', x: 50, y: 34, text: '20 m' },
+      ],
+      arrows: [{ kind: 'course', points: [[15, 12], [88, 12]] }],
+    },
   },
   {
     id: 'course-brisee-4x10',
@@ -138,6 +235,19 @@ export const CHALLENGES: Challenge[] = [
     howTo: ["Trace 2 lignes à 10 m l'une de l'autre avec des plots. Mets ton pied d'appui derrière la première ligne.", "Pars quand tu veux (papa appuie sur « Départ » à ton premier pas) : fais 4 fois les 10 m (aller, retour, aller, retour) en touchant chaque ligne avec le pied.", "Papa appuie sur « Arrivée » quand tu repasses la ligne de départ. Fais 2 essais et garde le meilleur temps."],
     timer: { kind: 'stopwatch' },
     source: `${VENDEE_TESTS} (vitesse en course brisée 4 × 10 m)`,
+    diagram: {
+      height: 48,
+      items: [
+        { kind: 'plot', x: 10, y: 6 }, { kind: 'plot', x: 10, y: 38 }, { kind: 'plot', x: 90, y: 6 }, { kind: 'plot', x: 90, y: 38 },
+        { kind: 'enfant', x: 6, y: 22 }, { kind: 'texte', x: 50, y: 45, text: '10 m' },
+      ],
+      arrows: [
+        { kind: 'course', points: [[14, 12], [86, 12]], label: '1' },
+        { kind: 'course', points: [[86, 19], [14, 19]], label: '2' },
+        { kind: 'course', points: [[14, 26], [86, 26]], label: '3' },
+        { kind: 'course', points: [[86, 33], [14, 33]], label: '4' },
+      ],
+    },
   },
   {
     id: 'allers-retours-1min',
@@ -150,6 +260,14 @@ export const CHALLENGES: Challenge[] = [
     howTo: ["Pose 2 plots à 10 m l'un de l'autre et mets-toi au premier avec ton ballon.", "Papa lance le compte à rebours d'1 minute : conduis ton ballon jusqu'au 2e plot, fais-en le tour et reviens toucher le 1er plot.", "Chaque retour au 1er plot compte 1 aller-retour. Papa compte à voix haute : combien en 1 minute ?"],
     timer: { kind: 'countdown', seconds: 60 },
     source: `${MAYENNE} (fiche 2)`,
+    diagram: {
+      height: 40,
+      items: [
+        { kind: 'plot', x: 10, y: 20 }, { kind: 'plot', x: 88, y: 20 }, { kind: 'enfant', x: 10, y: 8 }, { kind: 'ballon', x: 17, y: 11 },
+        { kind: 'texte', x: 50, y: 36, text: '10 m · un maximum en 1 minute' },
+      ],
+      arrows: [{ kind: 'course', curve: true, points: [[21, 13], [84, 13], [96, 20], [84, 27], [16, 27]] }],
+    },
   },
   {
     id: 'defi-tirs-au-but',
@@ -162,6 +280,17 @@ export const CHALLENGES: Challenge[] = [
     equipment: ['ballon', 'plots'],
     howTo: ["Fais un but de 2 plots écartés de 3 m et mets-toi sur ta ligne, au milieu.", "Papa tire 10 penalties depuis 6 m, quand tu es prêt. Tu peux te déplacer sur ta ligne, mais pas avancer avant le tir.", "Compte les ballons arrêtés ou détournés. Si papa tire à côté du but, il refait ce tir."],
     source: "FFF – District d'Indre-et-Loire, « Défi tirs au but » U11 (penalty à 9 m en foot à 8), distances réduites pour un but en plots",
+    diagram: {
+      items: [
+        { kind: 'papa', x: 50, y: 8 }, { kind: 'ballon', x: 50, y: 17 },
+        { kind: 'plot', x: 30, y: 50 }, { kind: 'plot', x: 70, y: 50 }, { kind: 'enfant', x: 50, y: 48 },
+        { kind: 'texte', x: 60, y: 32, text: '6 m' }, { kind: 'texte', x: 50, y: 56, text: 'reste sur ta ligne' }, { kind: 'texte', x: 88, y: 50, text: 'but de 3 m' },
+      ],
+      arrows: [
+        { kind: 'balle', points: [[50, 21], [60, 43]] },
+        { kind: 'course', points: [[44, 48], [36, 48]] },
+      ],
+    },
   },
 ];
 

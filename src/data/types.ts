@@ -49,6 +49,7 @@ export interface Challenge {
   timer?: { kind: 'stopwatch' } | { kind: 'countdown'; seconds: number };
   /** Fiche d'origine quand le défi vient d'une source officielle. */
   source?: string;
+  diagram?: Diagram;
 }
 
 export interface BadgeDef {

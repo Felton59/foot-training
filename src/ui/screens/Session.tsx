@@ -187,6 +187,7 @@ function ChallengePhase({ state, ip, onFinish }: { state: AppState; ip: InProgre
     <main className="screen stack">
       <p className="muted">🎯 Défi du jour</p>
       <h1>{challenge.name}</h1>
+      {challenge.diagram && <ExerciseDiagram diagram={challenge.diagram} title={challenge.name} />}
       <ol className="steps">
         {challenge.howTo.map((h) => <li key={h}>{h}</li>)}
       </ol>

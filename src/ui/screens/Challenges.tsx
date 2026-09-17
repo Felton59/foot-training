@@ -5,6 +5,7 @@ import { bestValue, rankLabel, reachedRank } from '../../engine/tiers';
 import { DOMAIN_LABELS, EQUIPMENT_LABELS, type AppState } from '../../storage/schema';
 import { addResult, summarizeChange, type ChangeSummary } from '../actions';
 import ChallengeInput from '../components/ChallengeInput';
+import ExerciseDiagram from '../components/ExerciseDiagram';
 import ProgressChart from '../components/ProgressChart';
 import { formatValue } from '../format';
 
@@ -59,6 +60,7 @@ export default function Challenges({ state, update, selectedId, onSelect: setSel
           <RankChip rank={rank} />
         </div>
         {missing.length > 0 && <p className="banner">Il te faut : {missing.map((e) => EQUIPMENT_LABELS[e]).join(', ')}.</p>}
+        {selected.diagram && <ExerciseDiagram diagram={selected.diagram} title={selected.name} />}
         <ol className="steps">
           {selected.howTo.map((h) => <li key={h}>{h}</li>)}
         </ol>

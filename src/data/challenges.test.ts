@@ -49,6 +49,26 @@ describe('official challenges', () => {
   });
 });
 
+describe('challenge diagrams', () => {
+  it('shows a diagram for every challenge that places things at a distance', () => {
+    const withDistance = CHALLENGES.filter((c) => c.howTo.some((s) => /\d+(,\d+)? m\b/.test(s)));
+    expect(withDistance.filter((c) => !c.diagram).map((c) => c.id)).toEqual([]);
+  });
+
+  it('keeps challenge diagram elements inside the pitch', () => {
+    for (const c of CHALLENGES.filter((ch) => ch.diagram)) {
+      const height = c.diagram!.height ?? 60;
+      const points = [...c.diagram!.items.map((i) => [i.x, i.y]), ...c.diagram!.arrows.flatMap((a) => a.points)];
+      for (const [x, y] of points) {
+        expect(x, c.id).toBeGreaterThanOrEqual(0);
+        expect(x, c.id).toBeLessThanOrEqual(100);
+        expect(y, c.id).toBeGreaterThanOrEqual(0);
+        expect(y, c.id).toBeLessThanOrEqual(height);
+      }
+    }
+  });
+});
+
 describe('age-appropriate goals', () => {
   it('keeps juggling goals reachable for an 8-year-old', () => {
     expect(getChallenge('jongles-pied-fort')?.tiers).toEqual({ bronze: 3, argent: 6, or: 10 });
