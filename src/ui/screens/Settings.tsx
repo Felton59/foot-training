@@ -18,9 +18,10 @@ export default function Settings({ state, update }: Props) {
   const [message, setMessage] = useState<string | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
 
-  const exportBackup = () => {
+  const exportBackup = async () => {
     const now = new Date();
-    downloadText(exportFileName(now), serializeBackup(markBackup(state, now)));
+    const ok = await downloadText(exportFileName(now), serializeBackup(markBackup(state, now)));
+    if (!ok) return;
     update((s) => markBackup(s, now));
     setMessage('💾 Sauvegarde téléchargée. Garde ce fichier en lieu sûr (Drive, e-mail…).');
   };
@@ -40,6 +41,12 @@ export default function Settings({ state, update }: Props) {
   const reset = () => {
     if (!window.confirm('Effacer toute la progression ? Cette action est définitive.')) return;
     if (!window.confirm('Vraiment tout effacer ? Pense à exporter une sauvegarde avant.')) return;
+    try {
+      const corruptKeys = Object.keys(localStorage).filter((k) => k.startsWith('foot-training:corrupt-'));
+      for (const k of corruptKeys) localStorage.removeItem(k);
+    } catch {
+      // localStorage unavailable
+    }
     update(() => initialState());
   };
 
@@ -56,7 +63,7 @@ export default function Settings({ state, update }: Props) {
       <button
         className="btn"
         disabled={!name.trim() || name.trim() === profile.name}
-        onClick={() => update((s) => setProfile(s, { ...profile, name: name.trim() }))}
+        onClick={() => update((s) => setProfile(s, { ...s.profile!, name: name.trim() }))}
       >
         Enregistrer le prénom
       </button>
@@ -66,7 +73,7 @@ export default function Settings({ state, update }: Props) {
             key={a}
             className={`avatar ${a === profile.avatar ? 'selected' : ''}`}
             aria-label={`Avatar ${a}`}
-            onClick={() => update((s) => setProfile(s, { ...profile, avatar: a }))}
+            onClick={() => update((s) => setProfile(s, { ...s.profile!, avatar: a }))}
           >
             {a}
           </button>
@@ -75,13 +82,13 @@ export default function Settings({ state, update }: Props) {
 
       <h2>Matériel disponible</h2>
       <p className="muted">Les séances et les défis ne proposent que ce que tu peux faire avec ce matériel.</p>
-      <EquipmentPicker value={profile.equipment} onChange={(equipment) => update((s) => setProfile(s, { ...profile, equipment }))} />
+      <EquipmentPicker value={profile.equipment} onChange={(equipment) => update((s) => setProfile(s, { ...s.profile!, equipment }))} />
 
       <h2>Sauvegarde</h2>
       <p className="muted">
         {state.lastBackupAt ? `Dernière sauvegarde : ${formatDate(state.lastBackupAt)}` : 'Aucune sauvegarde pour l’instant.'}
       </p>
-      <button className="btn btn-primary" onClick={exportBackup}>Exporter la sauvegarde</button>
+      <button className="btn btn-primary" onClick={() => void exportBackup()}>Exporter la sauvegarde</button>
       <button className="btn" onClick={() => fileInput.current?.click()}>Importer une sauvegarde</button>
       <input
         ref={fileInput}
