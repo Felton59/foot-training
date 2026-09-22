@@ -13,8 +13,8 @@ export interface Exercise {
   diagram?: Diagram;
   /** Affiche un chrono Départ / Arrivée pendant l'exercice. */
   stopwatch?: boolean;
-  /** Dribbles à revoir en vidéo pour cet exercice (ids de data/dribbles). */
-  dribbles?: string[];
+  /** Gestes techniques à revoir en vidéo pour cet exercice (ids de data/gestures). */
+  gestures?: string[];
   /** Version utilisée quand un vrai but est disponible (au lieu d'un but en plots). */
   withGoal?: { steps: string[]; equipment: Equipment[]; goal: GoalPlacement };
 }

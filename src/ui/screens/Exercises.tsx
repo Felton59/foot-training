@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
-import { DRIBBLES, getDribble } from '../../data/dribbles';
+import { CATEGORIES, GESTURES, LEVEL_LABELS, getGesture } from '../../data/gestures';
 import { EXERCISES, getExercise } from '../../data/exercises';
 import { exerciseFor, isDoable } from '../../engine/goal';
 import { groupExercisesByKind } from '../../engine/library';
 import { DOMAIN_LABELS, EQUIPMENT_LABELS, type AppState, type Equipment } from '../../storage/schema';
-import DribbleCard from '../components/DribbleCard';
-import DribbleLinks from '../components/DribbleLinks';
+import GestureCard from '../components/GestureCard';
+import GestureLinks from '../components/GestureLinks';
 import ExerciseDiagram from '../components/ExerciseDiagram';
 import Stopwatch from '../components/Stopwatch';
 
@@ -21,9 +21,8 @@ const KIND_ICONS: Record<string, string> = {
 const equipmentText = (equipment: Equipment[]) =>
   equipment.length ? equipment.map((e) => EQUIPMENT_LABELS[e]).join(', ') : 'Aucun matériel';
 
-const DRIBBLE_LIST = 'dribbles';
-const DRIBBLE_PREFIX = 'dribble:';
-const LEVEL_LABELS = { facile: 'Facile', moyen: 'Moyen', difficile: 'Difficile' } as const;
+const GESTURE_LIST = 'gestes';
+const GESTURE_PREFIX = 'geste:';
 
 interface Props {
   state: AppState;
@@ -33,44 +32,57 @@ interface Props {
 
 export default function Exercises({ state, selectedId, onSelect: setSelectedId }: Props) {
   const listScroll = useRef(0);
+  const gestureScroll = useRef(0);
   useEffect(() => {
-    window.scrollTo(0, selectedId ? 0 : listScroll.current);
+    window.scrollTo(0, !selectedId ? listScroll.current : selectedId === GESTURE_LIST ? gestureScroll.current : 0);
   }, [selectedId]);
   const owned = state.profile?.equipment ?? [];
   const found = selectedId ? getExercise(selectedId) : undefined;
   const selected = found ? exerciseFor(found, owned) : undefined;
 
-  if (selectedId === DRIBBLE_LIST) {
+  if (selectedId === GESTURE_LIST) {
     return (
       <div className="stack">
         <button className="link" onClick={() => setSelectedId(null)}>
           ← Tous les exercices
         </button>
-        <h1>Les dribbles 🎬</h1>
-        <p className="muted">Du plus facile au plus difficile. Touche un dribble pour voir la vidéo et les étapes.</p>
-        {DRIBBLES.map((d) => (
-          <button key={d.id} className="list-button" onClick={() => setSelectedId(DRIBBLE_PREFIX + d.id)}>
-            <span>
-              <strong>{d.name}</strong>
-              <br />
-              <span className="muted">{d.purpose}</span>
-            </span>
-            <span className={`chip level-${d.level}`}>{LEVEL_LABELS[d.level]}</span>
-          </button>
+        <h1>Gestes techniques 🎬</h1>
+        <p className="muted">Du plus facile au plus difficile dans chaque famille. Touche un geste pour voir la vidéo et les étapes.</p>
+        {CATEGORIES.map((c) => (
+          <section key={c.id} className="stack">
+            <h2>{c.label}</h2>
+            {GESTURES.filter((g) => g.category === c.id).map((g) => (
+              <button
+                key={g.id}
+                className="list-button"
+                onClick={() => {
+                  gestureScroll.current = window.scrollY;
+                  setSelectedId(GESTURE_PREFIX + g.id);
+                }}
+              >
+                <span>
+                  <strong>{g.name}</strong>
+                  <br />
+                  <span className="muted">{g.purpose}</span>
+                </span>
+                <span className={`chip level-${g.level}`}>{LEVEL_LABELS[g.level]}</span>
+              </button>
+            ))}
+          </section>
         ))}
       </div>
     );
   }
 
-  const dribble = selectedId?.startsWith(DRIBBLE_PREFIX) ? getDribble(selectedId.slice(DRIBBLE_PREFIX.length)) : undefined;
-  if (dribble) {
+  const gesture = selectedId?.startsWith(GESTURE_PREFIX) ? getGesture(selectedId.slice(GESTURE_PREFIX.length)) : undefined;
+  if (gesture) {
     return (
       <div className="stack">
         <button className="link" onClick={() => setSelectedId(null)}>
-          ← Tous les dribbles
+          ← Tous les gestes
         </button>
-        <h1>{dribble.name}</h1>
-        <DribbleCard dribble={dribble} />
+        <h1>{gesture.name}</h1>
+        <GestureCard gesture={gesture} />
       </div>
     );
   }
@@ -94,7 +106,7 @@ export default function Exercises({ state, selectedId, onSelect: setSelectedId }
           {selected.steps.map((step) => <li key={step}>{step}</li>)}
         </ol>
         {selected.tip && <p className="tip">💡 {selected.tip}</p>}
-        {selected.dribbles && <DribbleLinks ids={selected.dribbles} />}
+        {selected.gestures && <GestureLinks ids={selected.gestures} />}
         {selected.stopwatch && <Stopwatch />}
         {selected.source && <p className="muted">📄 D'après : {selected.source}</p>}
       </div>
@@ -111,13 +123,13 @@ export default function Exercises({ state, selectedId, onSelect: setSelectedId }
         className="list-button"
         onClick={() => {
           listScroll.current = window.scrollY;
-          setSelectedId(DRIBBLE_LIST);
+          setSelectedId(GESTURE_LIST);
         }}
       >
         <span>
-          <strong>🎬 Les dribbles en vidéo</strong>
+          <strong>🎬 Gestes techniques en vidéo</strong>
           <br />
-          <span className="muted">{DRIBBLES.length} gestes expliqués : crochet, feinte de corps, roulette…</span>
+          <span className="muted">{GESTURES.length} gestes expliqués : dribbles, frappes, passes, contrôles, tête, gardien…</span>
         </span>
       </button>
       {groupExercisesByKind(EXERCISES).map((group) => (

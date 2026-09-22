@@ -22,6 +22,7 @@ export const EXERCISES: Exercise[] = [
   { id: 'ech-mobilite', name: 'Réveil du corps', domain: 'echauffement', durationMin: 5, equipment: [],
     steps: ["Cours sur place en montant les genoux (30 s), puis en touchant tes fesses avec les talons (30 s).", "Fais 10 grands cercles de bras vers l'avant, puis 10 vers l'arrière.", "Fais 5 pas chassés vers la gauche, puis 5 vers la droite. Recommence tout jusqu'à la fin du temps."] },
   { id: 'ech-passes-douces', name: 'Passes douces avec papa', domain: 'echauffement', durationMin: 5, equipment: ['ballon'],
+    gestures: ['passe-courte', 'controle-sol'],
     steps: ["Mets-toi à 3 m de papa.", "Faites-vous des passes tout doucement.", "Arrête le ballon avec un pied, renvoie-le avec l'autre."],
     diagram: {
       height: 40,
@@ -31,13 +32,15 @@ export const EXERCISES: Exercise[] = [
 
   // Technique (16)
   { id: 'tech-jongles-series', name: 'Séries de jongles', domain: 'technique', durationMin: 8, equipment: ['ballon'],
+    gestures: ['jongle'],
     steps: ["Jongle le plus longtemps possible en comptant tes touches.", "Quand le ballon tombe, recommence en essayant de battre ton score.", "Si c'est trop dur : laisse le ballon rebondir une fois par terre entre deux touches."],
     tip: 'Cheville bloquée, pointe du pied légèrement levée.' },
   { id: 'tech-jongles-pied-faible', name: 'Jongles pied faible', domain: 'technique', durationMin: 6, equipment: ['ballon'],
+    gestures: ['jongle'],
     steps: ["Jongle uniquement avec ton pied le moins fort.", "Au début, laisse le ballon rebondir par terre entre deux touches.", "Quand ça devient facile, essaie sans rebond."] },
   { id: 'tech-conduite-semelle', name: 'Conduite à la semelle', domain: 'technique', durationMin: 6, equipment: ['ballon'],
+    gestures: ['rateau', 'conduite'],
     steps: ["Recule sur 5 m en tirant le ballon vers toi avec la semelle.", "Puis fais rouler le ballon de côté sous ta semelle, en pas chassés, sur 3 m.", "Recommence avec l'autre pied."],
-    dribbles: ['rateau'],
     diagram: {
       height: 50,
       items: [
@@ -50,6 +53,7 @@ export const EXERCISES: Exercise[] = [
       ],
     } },
   { id: 'tech-slalom', name: 'Slalom entre les plots', domain: 'technique', durationMin: 8, equipment: ['ballon', 'plots'],
+    gestures: ['conduite'],
     steps: ["Aligne 4 plots espacés de 1,5 m.", "Fais l'aller-retour en slalom, ballon au pied : aller avec le pied droit, retour avec le pied gauche.", "Tu pars avec 10 points : chaque plot touché fait perdre 1 point. Recommence en essayant de garder tes 10 points, puis de plus en plus vite."],
     source: "FFF – District de la Mayenne, « 30 exercices et défis techniques U7-U9 » (fiche 11)",
     tip: 'Petites touches, ballon collé au pied.',
@@ -64,8 +68,8 @@ export const EXERCISES: Exercise[] = [
       ],
     } },
   { id: 'tech-crochets', name: 'Crochets et demi-tours', domain: 'technique', durationMin: 6, equipment: ['ballon', 'plots'],
+    gestures: ['crochet', 'rateau'],
     steps: ["Pose un plot à 5 m devant toi.", "Conduis le ballon jusqu'au plot, fais demi-tour avec l'intérieur du pied et reviens.", "Recommence avec l'extérieur du pied, puis avec la semelle."],
-    dribbles: ['crochet', 'rateau'],
     diagram: {
       height: 40,
       items: [
@@ -75,6 +79,7 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'course', curve: true, points: [[18, 14], [72, 13], [89, 20], [72, 27], [22, 27]] }],
     } },
   { id: 'tech-controle-lance', name: 'Contrôles de balles lancées', domain: 'technique', durationMin: 8, equipment: ['ballon'],
+    gestures: ['controle-aerien', 'amorti-poitrine'],
     steps: ["Papa, à 3 m de toi, te lance le ballon en cloche, à la main.", "Arrête-le avec le pied, la cuisse ou la poitrine : il doit rester tout près de toi.", "Change de partie du corps à chaque fois."],
     diagram: {
       height: 40,
@@ -82,6 +87,7 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'balle', curve: true, points: [[78, 20], [50, 6], [22, 20]] }],
     } },
   { id: 'tech-controle-oriente', name: 'Contrôle orienté', domain: 'technique', durationMin: 8, equipment: ['ballon', 'plots'],
+    gestures: ['controle-oriente'],
     steps: ["Pose un plot à 3 m à ta gauche et un à 3 m à ta droite.", "Papa te fait une passe et crie « gauche » ou « droite ».", "D'une seule touche, pousse le ballon vers le bon plot."],
     diagram: {
       items: [
@@ -96,8 +102,8 @@ export const EXERCISES: Exercise[] = [
       ],
     } },
   { id: 'tech-dribble-1c1', name: 'Dribble contre papa', domain: 'technique', durationMin: 8, equipment: ['ballon', 'plots'],
+    gestures: ['feinte-corps', 'crochet', 'passement-jambe', 'grand-pont'],
     steps: ["Fais un but avec 2 plots écartés de 2 m ; papa se met devant.", "Pars à 8 m du but avec le ballon et essaie de passer papa avec une feinte.", "Si tu le passes, tire dans le but. Papa défend doucement au début."],
-    dribbles: ['feinte-corps', 'crochet', 'passement-jambe'],
     diagram: {
       items: [
         { kind: 'enfant', x: 8, y: 30 }, { kind: 'ballon', x: 15, y: 34 }, { kind: 'papa', x: 68, y: 30 },
@@ -114,8 +120,8 @@ export const EXERCISES: Exercise[] = [
       goal: { x: 95, y: 30, length: 20, vertical: true, removes: [[92, 20], [92, 40]] },
     } },
   { id: 'tech-feintes', name: 'Feintes sur place', domain: 'technique', durationMin: 6, equipment: ['ballon'],
-    steps: ["Ballon arrêté devant toi : fais tourner ta jambe devant le ballon sans le toucher (passement de jambe), 10 fois à gauche puis 10 fois à droite.", "Fais semblant de tirer, puis emmène le ballon sur le côté avec l'intérieur du pied (crochet), 10 fois.", "Recommence de plus en plus vite."],
-    dribbles: ['passement-jambe', 'crochet'] },
+    gestures: ['passement-jambe', 'crochet', 'double-contact'],
+    steps: ["Ballon arrêté devant toi : fais tourner ta jambe devant le ballon sans le toucher (passement de jambe), 10 fois à gauche puis 10 fois à droite.", "Fais semblant de tirer, puis emmène le ballon sur le côté avec l'intérieur du pied (crochet), 10 fois.", "Recommence de plus en plus vite."] },
 
   { id: 'tech-10-vies', name: 'Les 10 vies', domain: 'technique', durationMin: 6, equipment: ['ballon', 'plots'],
     steps: ["Fais un carré de 8 m sur 8 m avec 4 plots. Tu commences avec 10 vies.", "Conduis ton ballon dans le carré pendant 30 secondes : papa essaie de toucher ton ballon ou de le sortir du carré.", "Papa touche le ballon : tu perds 1 vie. Il le sort du carré : tu perds 2 vies. Fais 3 manches et compte les vies qui te restent."],
@@ -139,6 +145,7 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'course', curve: true, points: [[36, 25], [44, 24], [47, 28]] }],
     } },
   { id: 'tech-couleurs', name: "Couleurs annoncées", domain: 'technique', durationMin: 8, equipment: ['ballon', 'plots'],
+    gestures: ['conduite'],
     steps: ["Pose 3 plots de couleurs différentes en éventail, à 5 m de ton point de départ.", "Papa annonce une couleur : conduis ton ballon jusqu'au plot de cette couleur, fais-en le tour et reviens au départ.", "Quand c'est facile, papa annonce 2 couleurs à la suite. Chaque plot non touché rapporte 1 point."],
     source: "FFF – District de la Mayenne, « 30 exercices et défis techniques U7-U9 » (fiches 5, 6 et 14)",
     tip: "Pas de plots de couleur ? Numérote-les 1, 2 et 3.",
@@ -148,8 +155,8 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'course', curve: true, points: [[21, 26], [70, 18], [88, 25], [72, 32], [22, 30]] }],
     } },
   { id: 'tech-dribble-plots', name: "Dribble des plots et tir", domain: 'technique', durationMin: 8, equipment: ['ballon', 'plots'],
+    gestures: ['crochet', 'feinte-corps'],
     steps: ["Aligne 2 plots espacés de 4 m, puis fais un but de 2 plots 4 m après le 2e.", "Pars ballon au pied : évite le 1er plot par un dribble (1 point), puis le 2e (1 point).", "Tire dans le but (1 point) : 3 points possibles. Change de pied et de dribble à chaque passage."],
-    dribbles: ['crochet', 'feinte-corps'],
     source: "FFF – District de la Mayenne, « 30 exercices et défis techniques U7-U9 » (fiche 8)",
     diagram: {
       height: 50,
@@ -170,8 +177,8 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'course', points: [[21, 16], [62, 16]] }],
     } },
   { id: 'tech-epervier', name: "La traversée de l'épervier", domain: 'technique', durationMin: 6, equipment: ['ballon', 'plots'],
+    gestures: ['feinte-corps', 'crochet', 'petit-pont'],
     steps: ["Avec 4 plots, marque au milieu du terrain une bande de 3 m de large : c'est là que papa, l'épervier, a le droit de défendre.", "Traverse la bande ballon au pied, jusqu'à 5 m après. Papa essaie de sortir ton ballon, mais seulement dans sa bande.", "Traversée réussie = 1 point pour toi, ballon sorti = 1 point pour papa. Fais 10 traversées en allers-retours."],
-    dribbles: ['feinte-corps', 'crochet', 'petit-pont'],
     source: "FFF – District de Lyon et du Rhône, « Ateliers U9 »",
     tip: "Papa défend doucement au début : il doit te laisser une chance !",
     diagram: {
@@ -179,8 +186,8 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'course', curve: true, points: [[19, 36], [42, 44], [60, 40], [92, 34]] }],
     } },
   { id: 'tech-traverser-marquer', name: "Traverser puis marquer", domain: 'technique', durationMin: 8, equipment: ['ballon', 'plots'],
+    gestures: ['feinte-corps', 'double-contact'],
     steps: ["Marque une zone de 5 m de large où papa défend, et un but de 2 plots 5 m après la zone.", "Pars ballon au pied et passe la zone de papa sans te faire prendre le ballon.", "Une fois passé, va marquer dans le but. Si papa te prend le ballon, repars du départ. Combien de buts en 2 minutes ?"],
-    dribbles: ['feinte-corps', 'double-contact'],
     source: "FFF – District de Lyon et du Rhône, « Jeux d'éveil » (« Deux pour se défendre », en 1 contre 1)",
     diagram: {
       items: [{ kind: 'plot', x: 34, y: 6 }, { kind: 'plot', x: 34, y: 54 }, { kind: 'plot', x: 60, y: 6 }, { kind: 'plot', x: 60, y: 54 }, { kind: 'papa', x: 47, y: 30 }, { kind: 'plot', x: 92, y: 20 }, { kind: 'plot', x: 92, y: 40 }, { kind: 'enfant', x: 6, y: 34 }, { kind: 'ballon', x: 13, y: 36 }],
@@ -194,6 +201,7 @@ export const EXERCISES: Exercise[] = [
 
   // Passes et tirs (15)
   { id: 'pt-passes-interieur', name: 'Passes intérieur du pied', domain: 'passes-tirs', durationMin: 8, equipment: ['ballon'],
+    gestures: ['passe-courte', 'controle-sol'],
     steps: ["Mets-toi à 5 m de papa.", "Fais 10 passes avec l'intérieur du pied droit, puis 10 avec le gauche.", "Recommence jusqu'à la fin du temps."],
     tip: 'Pied d\'appui à côté du ballon, pointe vers papa.',
     diagram: {
@@ -202,6 +210,7 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'balle', points: [[17, 17], [82, 17]] }, { kind: 'balle', points: [[82, 23], [17, 23]] }],
     } },
   { id: 'pt-passes-une-touche', name: 'Passes en une touche', domain: 'passes-tirs', durationMin: 6, equipment: ['ballon'],
+    gestures: ['passe-courte'],
     steps: ["Mets-toi à 3 m de papa.", "Renvoie chaque passe directement, sans arrêter le ballon.", "Après 10 passes réussies, recule de 1 m."],
     diagram: {
       height: 40,
@@ -212,6 +221,7 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'balle', points: [[22, 17], [77, 17]] }, { kind: 'balle', points: [[77, 23], [22, 23]] }],
     } },
   { id: 'pt-passes-porte', name: 'Passes dans la porte', domain: 'passes-tirs', durationMin: 8, equipment: ['ballon', 'plots'],
+    gestures: ['passe-courte'],
     steps: ["Mets-toi à 5 m de papa et fais une porte avec 2 plots écartés de 1 m, à mi-chemin entre vous.", "Fais une passe à papa en faisant passer le ballon entre les plots.", "Après 5 réussites de suite, recule de 1 m."],
     diagram: {
       height: 50,
@@ -223,6 +233,7 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'balle', points: [[22, 25], [84, 25]] }],
     } },
   { id: 'pt-tirs-cadres', name: 'Tirs cadrés', domain: 'passes-tirs', durationMin: 8, equipment: ['ballon', 'plots'],
+    gestures: ['plat-du-pied', 'cou-de-pied'],
     steps: ["Fais un but avec 2 plots écartés de 2 m.", "Pose le ballon à 6 m du but et tire.", "Vise près d'un plot, puis près de l'autre."],
     diagram: {
       items: [
@@ -237,6 +248,7 @@ export const EXERCISES: Exercise[] = [
       goal: { x: 94, y: 30, length: 28, vertical: true, removes: [[90, 16], [90, 44]] },
     } },
   { id: 'pt-tirs-pied-faible', name: 'Tirs pied faible', domain: 'passes-tirs', durationMin: 6, equipment: ['ballon', 'plots'],
+    gestures: ['plat-du-pied'],
     steps: ["Fais un but avec 2 plots écartés de 2 m.", "Pose le ballon à 5 m du but.", "Tire uniquement avec ton pied le moins fort."],
     diagram: {
       items: [
@@ -252,6 +264,7 @@ export const EXERCISES: Exercise[] = [
       goal: { x: 94, y: 30, length: 28, vertical: true, removes: [[90, 16], [90, 44]] },
     } },
   { id: 'pt-tirs-apres-conduite', name: 'Conduite puis tir', domain: 'passes-tirs', durationMin: 8, equipment: ['ballon', 'plots'],
+    gestures: ['conduite', 'cou-de-pied'],
     steps: ["Fais un but de 2 plots écartés de 2 m, et pose 3 repères de tir : à 5 m (1 point), 7 m (2 points) et 9 m (3 points).", "Pars 5 m derrière le repère de ton choix en conduisant le ballon, et tire quand tu arrives sur le repère.", "Fais 3 tirs par manche et essaie de marquer au moins 3 points."],
     source: "FFF – District de la Mayenne, « 30 exercices et défis techniques U7-U9 » (fiche 7)",
     diagram: {
@@ -283,6 +296,7 @@ export const EXERCISES: Exercise[] = [
       ],
     } },
   { id: 'pt-passes-longues', name: 'Passes longues', domain: 'passes-tirs', durationMin: 8, equipment: ['ballon', 'grand-espace'],
+    gestures: ['passe-longue'],
     steps: ["Mets-toi à 12 m de papa.", "Fais-lui une passe en frappant avec le lacet, bien au milieu du ballon.", "Papa te renvoie le ballon. Recommence."],
     diagram: {
       height: 40,
@@ -290,6 +304,7 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'balle', points: [[14, 17], [84, 17]] }, { kind: 'balle', points: [[84, 23], [14, 23]] }],
     } },
   { id: 'pt-une-deux', name: 'Une-deux et tir', domain: 'passes-tirs', durationMin: 8, equipment: ['ballon', 'plots'],
+    gestures: ['une-deux'],
     steps: ["Fais un but de 2 plots à 15 m de toi ; papa se place à mi-chemin, sur le côté.", "Passe le ballon à papa (1) et cours vers le but (2).", "Papa te remet le ballon devant toi (3) : tire au but (4)."],
     diagram: {
       items: [
@@ -310,6 +325,7 @@ export const EXERCISES: Exercise[] = [
       goal: { x: 95, y: 30, length: 20, vertical: true, removes: [[92, 20], [92, 40]] },
     } },
   { id: 'pt-precision-cible', name: 'Tir sur cible', domain: 'passes-tirs', durationMin: 6, equipment: ['ballon'],
+    gestures: ['plat-du-pied'],
     steps: ["Choisis une cible : un arbre, un seau ou un sac.", "Pose le ballon à 5 m et tire 10 fois.", "Compte combien de fois tu as touché la cible, puis essaie de faire mieux."],
     diagram: {
       height: 40,
@@ -321,6 +337,7 @@ export const EXERCISES: Exercise[] = [
     } },
 
   { id: 'pt-passe-dosee', name: 'Passe dosée dans les carrés', domain: 'passes-tirs', durationMin: 8, equipment: ['ballon', 'plots'],
+    gestures: ['passe-courte'],
     steps: ["Avec des plots (ou des vêtements), marque 3 carrés l'un derrière l'autre, à 3 m de toi : un grand (3 m), un moyen (2 m), puis un petit (1 m).", "Fais une passe pour que le ballon s'arrête dans un carré : grand = 2 points, moyen = 5 points, petit = 10 points.", "Fais 10 passes et compte tes points, puis recommence avec l'autre pied."],
     source: "FFF – District de la Mayenne, « 30 exercices et défis techniques U7-U9 » (fiche 12)",
     tip: "Frappe avec l'intérieur du pied et dose ta force : le ballon doit s'arrêter, pas traverser.",
@@ -337,6 +354,7 @@ export const EXERCISES: Exercise[] = [
     } },
 
   { id: 'pt-tir-porte', name: "Tir dans la porte", domain: 'passes-tirs', durationMin: 8, equipment: ['ballon', 'plots'],
+    gestures: ['plat-du-pied'],
     steps: ["Fais une porte de 1 m avec 2 plots et pose ton ballon à 2 m de la porte.", "Tire 3 fois : si le ballon passe au moins 2 fois dans la porte, recule à 3 m, puis à 4 m.", "Recommence au pied droit, puis au pied gauche, puis en conduisant le ballon avant de tirer."],
     source: "FFF – District de la Mayenne, « 30 exercices et défis techniques U7-U9 » (fiche 4)",
     tip: "Frappe avec l'intérieur du pied pour que le ballon reste au sol.",
@@ -346,6 +364,7 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'balle', points: [[19, 20], [92, 20]] }],
     } },
   { id: 'pt-parcours-passes', name: "Parcours de passes", domain: 'passes-tirs', durationMin: 10, equipment: ['ballon', 'plots'],
+    gestures: ['passe-courte'],
     steps: ["Marque 3 petits carrés de 1 m à la suite, espacés de 4 m, le 1er à 3 m de toi.", "Fais une passe pour arrêter le ballon dans le 1er carré, va le chercher, puis vise le 2e carré, puis le 3e.", "Pour chaque carré : réussi au 1er essai = 10 points, au 2e = 5 points, au 3e = 1 point. Combien de points sur le parcours ?"],
     source: "FFF – District de la Mayenne, « 30 exercices et défis techniques U7-U9 » (fiche 13)",
     diagram: {
@@ -354,6 +373,7 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'balle', points: [[16, 20], [28, 20]] }, { kind: 'balle', points: [[34, 20], [54, 20]] }, { kind: 'balle', points: [[60, 20], [80, 20]] }],
     } },
   { id: 'pt-10-buts-or', name: "10 buts en or", domain: 'passes-tirs', durationMin: 6, equipment: ['ballon', 'plots'],
+    gestures: ['plat-du-pied'],
     steps: ["Fais un but de 2 plots écartés de 2 m. Papa se place sur le côté, à 5 m du but.", "Papa appuie sur « Départ » et te passe le ballon : tire au but, puis reviens vers papa pour la passe suivante.", "Marque 10 buts le plus vite possible : papa appuie sur « Arrivée » au 10e. Moins d'1 minute, c'est de l'or !"],
     source: "FFF – District de Lyon et du Rhône, « Ateliers U9 »",
     stopwatch: true,
@@ -367,6 +387,7 @@ export const EXERCISES: Exercise[] = [
       goal: { x: 95, y: 30, length: 20, vertical: true, removes: [[92, 20], [92, 40]] },
     } },
   { id: 'pt-beret-tir', name: "Le béret tir", domain: 'passes-tirs', durationMin: 6, equipment: ['ballon', 'plots'],
+    gestures: ['conduite', 'plat-du-pied'],
     steps: ["Pose le ballon à 8 m de toi, un plot 3 m derrière le ballon, et un but de 2 plots 6 m plus loin.", "Papa appuie sur « Départ » en criant « partez ! » : sprinte jusqu'au ballon et fais le tour du plot en conduite.", "Tire au but : papa appuie sur « Arrivée » quand le ballon passe. Essaie de battre ton temps."],
     source: "FFF – District de Lyon et du Rhône, « Ateliers U9 » et FFF – District des Yvelines, « 73 jeux / situations U7-U9 » (« Béret but »)",
     stopwatch: true,
@@ -467,6 +488,7 @@ export const EXERCISES: Exercise[] = [
 
   // Gardien (9)
   { id: 'gar-prise-balle', name: 'Prises de balle', domain: 'gardien', durationMin: 6, equipment: ['ballon'],
+    gestures: ['arret-gardien'],
     steps: ["Mets-toi à 3 m de papa.", "Papa te lance le ballon au ventre, puis à la poitrine, puis au-dessus de la tête.", "Attrape-le avec les mains en forme de W (les pouces presque collés)."],
     source: "FIFA Training Centre, « Goalkeeping fundamentals : learning to catch » (exercice 4)",
     diagram: {
@@ -478,6 +500,7 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'balle', points: [[78, 20], [22, 20]] }],
     } },
   { id: 'gar-balles-basses', name: 'Balles au sol', domain: 'gardien', durationMin: 6, equipment: ['ballon'],
+    gestures: ['arret-gardien'],
     steps: ["Mets-toi à 5 m de papa.", "Papa fait rouler le ballon vers toi.", "Descends en gardant les jambes serrées, ramasse le ballon et serre-le contre ton ventre."],
     diagram: {
       height: 40,
@@ -488,6 +511,7 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'balle', points: [[83, 20], [17, 20]] }],
     } },
   { id: 'gar-plongeons', name: 'Plongeons à genoux', domain: 'gardien', durationMin: 6, equipment: ['ballon'],
+    gestures: ['arret-gardien'],
     steps: ["Sur l'herbe (jamais sur un sol dur), mets-toi avec un genou au sol, l'autre jambe pliée, les bras le long du corps.", "Papa, à 3 m, fait rouler doucement le ballon à côté de toi, à gauche ou à droite.", "Pousse sur ta jambe, tends les bras vers le ballon et laisse-toi tomber sur le côté : attrape-le avec les deux mains et serre-le contre toi."],
     source: "FIFA Training Centre, « Goalkeeping fundamentals : learning to dive low » (exercice 1), en version douce",
     diagram: {
@@ -502,6 +526,7 @@ export const EXERCISES: Exercise[] = [
       ],
     } },
   { id: 'gar-arrets', name: 'Arrêts dans le but', domain: 'gardien', durationMin: 8, equipment: ['ballon', 'plots'],
+    gestures: ['arret-gardien'],
     steps: ["Fais un but avec 2 plots écartés de 2 m et mets-toi au milieu.", "Papa tire doucement depuis 5 m, d'abord droit sur toi.", "Puis il tire de plus en plus loin de tes mains."],
     diagram: {
       items: [
@@ -519,6 +544,7 @@ export const EXERCISES: Exercise[] = [
       goal: { x: 5, y: 30, length: 36, vertical: true, removes: [[10, 12], [10, 48]] },
     } },
   { id: 'gar-relances', name: 'Relances', domain: 'gardien', durationMin: 6, equipment: ['ballon', 'plots'],
+    gestures: ['relance-main', 'degagement-volee'],
     steps: ["Pose un plot à 8 m de toi.", "Relance le ballon à la main en le faisant rouler jusqu'au plot.", "Puis pose le ballon par terre et dégage-le au pied le plus loin possible."],
     diagram: {
       height: 40,
@@ -534,6 +560,7 @@ export const EXERCISES: Exercise[] = [
     tip: "Ne ferme pas les yeux : regarde le ballon jusque dans tes mains.",
   },
   { id: 'gar-arrets-genoux', name: "Arrêts à genoux", domain: 'gardien', durationMin: 6, equipment: ['ballon'],
+    gestures: ['arret-gardien'],
     steps: ["Mets-toi à genoux, le haut du corps un peu penché en avant. Papa se place à 4 m de toi.", "Papa te lance le ballon à la main vers le visage ou la poitrine : attrape-le devant ton visage, les bras un peu pliés.", "Quand tu attrapes 10 ballons de suite, papa tire doucement au pied, de volée."],
     source: "FIFA Training Centre, « Goalkeeping fundamentals : learning to catch » (exercices 2 et 3)",
     diagram: {
@@ -542,6 +569,7 @@ export const EXERCISES: Exercise[] = [
       arrows: [{ kind: 'balle', points: [[78, 20], [22, 20]] }],
     } },
   { id: 'gar-retourne-attrape', name: "Retourne-toi et attrape", domain: 'gardien', durationMin: 6, equipment: ['ballon', 'plots'],
+    gestures: ['arret-gardien'],
     steps: ["Fais un but de 2 plots écartés de 3 m et mets-toi sur le côté du but, dos à papa, qui est à 6 m.", "Papa crie « Hop ! » : retourne-toi, fais des pas chassés jusqu'au milieu du but.", "Papa tire doucement : attrape le ballon devant ton visage ou ton ventre, bien en équilibre."],
     source: "FIFA Training Centre, « Goalkeeping fundamentals : learning to catch » (exercice 5)",
     diagram: {
@@ -554,6 +582,7 @@ export const EXERCISES: Exercise[] = [
       goal: { x: 8, y: 30, length: 30, vertical: true, removes: [[12, 15], [12, 45]] },
     } },
   { id: 'gar-plongeon-couleur', name: "Plongeon couleur", domain: 'gardien', durationMin: 6, equipment: ['ballon', 'plots'],
+    gestures: ['arret-gardien'],
     steps: ["Sur l'herbe, mets-toi accroupi, un genou au sol. Pose un plot de couleur à 1,5 m à ta gauche et un d'une autre couleur à 1,5 m à ta droite.", "Papa, devant toi, montre ou crie une couleur : laisse-toi tomber sur le côté vers ce plot, les deux mains en avant.", "Quand c'est facile, papa fait rouler le ballon vers le plot annoncé : attrape-le en tombant et serre-le contre toi."],
     source: "FIFA Training Centre, « Goalkeeping fundamentals : learning to dive » (exercice 2) et FIFA Training Centre, « Goalkeeping fundamentals : learning to dive low » (exercice 1), en version douce",
     tip: "Tombe sur le côté (hanche puis épaule), jamais sur le ventre. Uniquement sur l'herbe.",

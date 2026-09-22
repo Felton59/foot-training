@@ -9,7 +9,7 @@ import {
   abandonSession, beginExercises, completeCurrent, finishSession, summarizeChange, updateProgress, type ChangeSummary,
 } from '../actions';
 import ChallengeInput from '../components/ChallengeInput';
-import DribbleLinks from '../components/DribbleLinks';
+import GestureLinks from '../components/GestureLinks';
 import ExerciseDiagram from '../components/ExerciseDiagram';
 import Stopwatch from '../components/Stopwatch';
 import { beep, unlockAudio } from '../lib/sound';
@@ -168,7 +168,7 @@ function ExerciseRunner({ ip, owned, update, onPause }: { ip: InProgressSession;
         {exercise?.steps.map((step) => <li key={step}>{step}</li>)}
       </ol>
       {exercise?.tip && <p className="tip">💡 {exercise.tip}</p>}
-      {exercise?.dribbles && <DribbleLinks ids={exercise.dribbles} />}
+      {exercise?.gestures && <GestureLinks ids={exercise.gestures} />}
       {exercise?.stopwatch && <Stopwatch />}
       {exercise?.source && <p className="muted">📄 D'après : {exercise.source}</p>}
       <button className="btn btn-primary btn-big" onClick={() => update((s) => completeCurrent(s, true))}>
