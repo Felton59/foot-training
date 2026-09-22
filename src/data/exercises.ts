@@ -37,6 +37,7 @@ export const EXERCISES: Exercise[] = [
     steps: ["Jongle uniquement avec ton pied le moins fort.", "Au début, laisse le ballon rebondir par terre entre deux touches.", "Quand ça devient facile, essaie sans rebond."] },
   { id: 'tech-conduite-semelle', name: 'Conduite à la semelle', domain: 'technique', durationMin: 6, equipment: ['ballon'],
     steps: ["Recule sur 5 m en tirant le ballon vers toi avec la semelle.", "Puis fais rouler le ballon de côté sous ta semelle, en pas chassés, sur 3 m.", "Recommence avec l'autre pied."],
+    dribbles: ['rateau'],
     diagram: {
       height: 50,
       items: [
@@ -64,6 +65,7 @@ export const EXERCISES: Exercise[] = [
     } },
   { id: 'tech-crochets', name: 'Crochets et demi-tours', domain: 'technique', durationMin: 6, equipment: ['ballon', 'plots'],
     steps: ["Pose un plot à 5 m devant toi.", "Conduis le ballon jusqu'au plot, fais demi-tour avec l'intérieur du pied et reviens.", "Recommence avec l'extérieur du pied, puis avec la semelle."],
+    dribbles: ['crochet', 'rateau'],
     diagram: {
       height: 40,
       items: [
@@ -95,6 +97,7 @@ export const EXERCISES: Exercise[] = [
     } },
   { id: 'tech-dribble-1c1', name: 'Dribble contre papa', domain: 'technique', durationMin: 8, equipment: ['ballon', 'plots'],
     steps: ["Fais un but avec 2 plots écartés de 2 m ; papa se met devant.", "Pars à 8 m du but avec le ballon et essaie de passer papa avec une feinte.", "Si tu le passes, tire dans le but. Papa défend doucement au début."],
+    dribbles: ['feinte-corps', 'crochet', 'passement-jambe'],
     diagram: {
       items: [
         { kind: 'enfant', x: 8, y: 30 }, { kind: 'ballon', x: 15, y: 34 }, { kind: 'papa', x: 68, y: 30 },
@@ -111,7 +114,8 @@ export const EXERCISES: Exercise[] = [
       goal: { x: 95, y: 30, length: 20, vertical: true, removes: [[92, 20], [92, 40]] },
     } },
   { id: 'tech-feintes', name: 'Feintes sur place', domain: 'technique', durationMin: 6, equipment: ['ballon'],
-    steps: ["Ballon arrêté devant toi : fais tourner ta jambe devant le ballon sans le toucher (passement de jambe), 10 fois à gauche puis 10 fois à droite.", "Fais semblant de tirer, puis emmène le ballon sur le côté avec l'intérieur du pied (crochet), 10 fois.", "Recommence de plus en plus vite."] },
+    steps: ["Ballon arrêté devant toi : fais tourner ta jambe devant le ballon sans le toucher (passement de jambe), 10 fois à gauche puis 10 fois à droite.", "Fais semblant de tirer, puis emmène le ballon sur le côté avec l'intérieur du pied (crochet), 10 fois.", "Recommence de plus en plus vite."],
+    dribbles: ['passement-jambe', 'crochet'] },
 
   { id: 'tech-10-vies', name: 'Les 10 vies', domain: 'technique', durationMin: 6, equipment: ['ballon', 'plots'],
     steps: ["Fais un carré de 8 m sur 8 m avec 4 plots. Tu commences avec 10 vies.", "Conduis ton ballon dans le carré pendant 30 secondes : papa essaie de toucher ton ballon ou de le sortir du carré.", "Papa touche le ballon : tu perds 1 vie. Il le sort du carré : tu perds 2 vies. Fais 3 manches et compte les vies qui te restent."],
@@ -145,6 +149,7 @@ export const EXERCISES: Exercise[] = [
     } },
   { id: 'tech-dribble-plots', name: "Dribble des plots et tir", domain: 'technique', durationMin: 8, equipment: ['ballon', 'plots'],
     steps: ["Aligne 2 plots espacés de 4 m, puis fais un but de 2 plots 4 m après le 2e.", "Pars ballon au pied : évite le 1er plot par un dribble (1 point), puis le 2e (1 point).", "Tire dans le but (1 point) : 3 points possibles. Change de pied et de dribble à chaque passage."],
+    dribbles: ['crochet', 'feinte-corps'],
     source: "FFF – District de la Mayenne, « 30 exercices et défis techniques U7-U9 » (fiche 8)",
     diagram: {
       height: 50,
@@ -166,6 +171,7 @@ export const EXERCISES: Exercise[] = [
     } },
   { id: 'tech-epervier', name: "La traversée de l'épervier", domain: 'technique', durationMin: 6, equipment: ['ballon', 'plots'],
     steps: ["Avec 4 plots, marque au milieu du terrain une bande de 3 m de large : c'est là que papa, l'épervier, a le droit de défendre.", "Traverse la bande ballon au pied, jusqu'à 5 m après. Papa essaie de sortir ton ballon, mais seulement dans sa bande.", "Traversée réussie = 1 point pour toi, ballon sorti = 1 point pour papa. Fais 10 traversées en allers-retours."],
+    dribbles: ['feinte-corps', 'crochet', 'petit-pont'],
     source: "FFF – District de Lyon et du Rhône, « Ateliers U9 »",
     tip: "Papa défend doucement au début : il doit te laisser une chance !",
     diagram: {
@@ -174,6 +180,7 @@ export const EXERCISES: Exercise[] = [
     } },
   { id: 'tech-traverser-marquer', name: "Traverser puis marquer", domain: 'technique', durationMin: 8, equipment: ['ballon', 'plots'],
     steps: ["Marque une zone de 5 m de large où papa défend, et un but de 2 plots 5 m après la zone.", "Pars ballon au pied et passe la zone de papa sans te faire prendre le ballon.", "Une fois passé, va marquer dans le but. Si papa te prend le ballon, repars du départ. Combien de buts en 2 minutes ?"],
+    dribbles: ['feinte-corps', 'double-contact'],
     source: "FFF – District de Lyon et du Rhône, « Jeux d'éveil » (« Deux pour se défendre », en 1 contre 1)",
     diagram: {
       items: [{ kind: 'plot', x: 34, y: 6 }, { kind: 'plot', x: 34, y: 54 }, { kind: 'plot', x: 60, y: 6 }, { kind: 'plot', x: 60, y: 54 }, { kind: 'papa', x: 47, y: 30 }, { kind: 'plot', x: 92, y: 20 }, { kind: 'plot', x: 92, y: 40 }, { kind: 'enfant', x: 6, y: 34 }, { kind: 'ballon', x: 13, y: 36 }],
